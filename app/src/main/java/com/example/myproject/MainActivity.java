@@ -2,6 +2,7 @@ package com.example.myproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,
                         "You clicked on Italy!",
                         Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this,loginActivity.class);
+                intent.putExtra("Language","Italian");
+                startActivityForResult(intent,1);
             }
         });
         franceImageView.setOnClickListener(new View.OnClickListener() {
@@ -29,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,
                         "You clicked on France!",
                         Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this,loginActivity.class);
+                intent.putExtra("Language","French");
+                startActivityForResult(intent,1);
             }
         });
     }
