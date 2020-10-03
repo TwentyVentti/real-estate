@@ -69,6 +69,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="15dp"
+            android:onClick="guestSessionClicked"
             android:text="Guest Session"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
