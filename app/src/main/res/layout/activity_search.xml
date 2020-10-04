@@ -18,63 +18,64 @@
 
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/search_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="9dp"
-            android:text="Search"
-            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            android:text="@string/search"
+            app:layout_constraintBottom_toTopOf="@+id/parametersTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.516"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+            app:layout_constraintTop_toBottomOf="@+id/searchEngineEditText" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:background="@drawable/rounded_edittext"
+            android:id="@+id/searchEngineEditText"
             android:layout_width="295dp"
             android:layout_height="250dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/rounded_edittext"
+            android:autofillHints=""
             android:ems="10"
-            android:hint="            Enter Your Search Here      "
+            android:hint="@string/enter_your_search_here"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
+            android:selectAllOnFocus="true"
+            app:layout_constraintBottom_toTopOf="@+id/search_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.538"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/searchTextView" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/searchTextView"
             android:layout_width="180dp"
             android:layout_height="40dp"
             android:layout_marginTop="180dp"
             android:layout_marginBottom="3dp"
             android:fontFamily="sans-serif-black"
             android:lineSpacingExtra="8sp"
-            android:text="Search Here"
+            android:text="@string/search_here"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
+            app:layout_constraintBottom_toTopOf="@+id/searchEngineEditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/parametersTextView"
             android:layout_width="255dp"
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="170dp"
-            android:text="        Searching for the first time ?                        Look at our parameters for search Here"
+            android:text="@string/searching_for_the_first_time_look_at_our_parameters_for_search_here"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.524"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
+            app:layout_constraintTop_toBottomOf="@+id/search_button" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
