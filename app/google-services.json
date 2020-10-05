@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "580036474924",
+    "firebase_url": "https://travelingo-eabb5.firebaseio.com",
+    "project_id": "travelingo-eabb5",
+    "storage_bucket": "travelingo-eabb5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580036474924:android:cb795eed39c8916507f989",
+        "android_client_info": {
+          "package_name": "com.example.myproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "580036474924-h6kor1lpji3lhnvhec3f9c1l4seudmkf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myproject",
+            "certificate_hash": "70cfaa5d4cab4090c7d2515635b6186c4ee90fb7"
+          }
+        },
+        {
+          "client_id": "580036474924-dfatd6ebdetb1i9n0embosraihkdo0ou.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPbRlWadhL2-wBSnzyz6UZiGuvjTvCjzw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "580036474924-dfatd6ebdetb1i9n0embosraihkdo0ou.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
