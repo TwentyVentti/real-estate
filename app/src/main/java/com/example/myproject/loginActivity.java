@@ -18,10 +18,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 public class loginActivity extends AppCompatActivity implements View.OnClickListener {
     EditText emailText;
     EditText passwordText;
@@ -50,7 +46,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void guestSessionClicked(View v){
-        Intent intent = new Intent(loginActivity.this,MainActivity.class);
+        Intent intent = new Intent(loginActivity.this, CitySelectActivity.class);
         startActivityForResult(intent,1);
     }
 
@@ -103,7 +99,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     progressBar.setVisibility(View.GONE);
-                    startActivity(new Intent(loginActivity.this, MainActivity.class));
+                    startActivity(new Intent(loginActivity.this, CitySelectActivity.class));
                 }
                 else{
                     Toast.makeText(loginActivity.this,"Failed to login! Please check your credentials",Toast.LENGTH_LONG).show();
