@@ -22,7 +22,7 @@ public class CitySelectActivity extends AppCompatActivity {
                 Toast.makeText(CitySelectActivity.this,
                         "You clicked on Italy!",
                         Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(CitySelectActivity.this,loginActivity.class);
+                Intent intent = new Intent(CitySelectActivity.this,MainActivity.class);
                 intent.putExtra("Language","Italian");
                 startActivityForResult(intent,1);
             }
@@ -33,7 +33,7 @@ public class CitySelectActivity extends AppCompatActivity {
                 Toast.makeText(CitySelectActivity.this,
                         "You clicked on France!",
                         Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(CitySelectActivity.this,loginActivity.class);
+                Intent intent = new Intent(CitySelectActivity.this,MainActivity.class);
                 intent.putExtra("Language","French");
                 startActivityForResult(intent,1);
             }
