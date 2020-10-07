@@ -46,7 +46,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void guestSessionClicked(View v){
-        Intent intent = new Intent(loginActivity.this, CitySelectActivity.class);
+        Intent intent = new Intent(loginActivity.this, SearchActivity.class);
         startActivityForResult(intent,1);
     }
 
@@ -99,7 +99,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     progressBar.setVisibility(View.GONE);
-                    startActivity(new Intent(loginActivity.this, CitySelectActivity.class));
+                    startActivity(new Intent(loginActivity.this, SearchActivity.class));
                 }
                 else{
                     Toast.makeText(loginActivity.this,"Failed to login! Please check your credentials",Toast.LENGTH_LONG).show();
