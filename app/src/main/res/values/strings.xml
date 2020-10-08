@@ -7,4 +7,10 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+
+    <string-array name="names">
+        <item>____________Select Your Country____________</item>
+        <item> France </item>
+        <item> Spain </item>
+    </string-array>
 </resources>
