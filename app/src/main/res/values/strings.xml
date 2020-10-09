@@ -13,4 +13,6 @@
         <item> France </item>
         <item> Spain </item>
     </string-array>
+    <string name="title_phrase_list">Phrases</string>
+    <string name="title_phrase_detail">Phrase Detail</string>
 </resources>
