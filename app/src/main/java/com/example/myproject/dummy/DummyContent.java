@@ -28,8 +28,8 @@ public class DummyContent {
     private static final int COUNT = 25;
 
     static {
-        // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
+        // Add 3 sample items.
+        for (int i = 1; i <= 3; i++) {
             addItem(createDummyItem(i));
         }
     }
@@ -40,7 +40,7 @@ public class DummyContent {
     }
 
     private static DummyItem createDummyItem(int position) {
-        Phrase phrase = new Phrase("","","");
+        Phrase phrase = new Phrase("English","French","Italian");
         return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position), phrase);
     }
 
