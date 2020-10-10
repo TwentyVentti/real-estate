@@ -46,7 +46,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void guestSessionClicked(View v){
-        Intent intent = new Intent(loginActivity.this, MainActivity.class);
+        Intent intent = new Intent(loginActivity.this, SearchActivity.class);
         startActivityForResult(intent,1);
     }
 
