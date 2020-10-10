@@ -13,7 +13,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myproject.dummy.DummyContent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -47,7 +46,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void guestSessionClicked(View v){
-        Intent intent = new Intent(loginActivity.this, DummyContent.DummyItem.class);
+        Intent intent = new Intent(loginActivity.this, SearchActivity.class);
         startActivityForResult(intent,1);
     }
 
