@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/search"
         app:srcCompat="@drawable/bar" />
 
-    <TextView
+    <EditText
         android:id="@+id/citySelect"
         android:layout_width="345dp"
         android:layout_height="27dp"
@@ -69,7 +69,7 @@
         android:background="@drawable/edittextstyle"
         android:gravity="center"
         android:onClick="citySelectClicked"
-        android:text="Search your city"
+        android:hint="Search your city"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/search"
         app:layout_constraintEnd_toEndOf="parent"
