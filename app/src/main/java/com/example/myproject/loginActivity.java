@@ -38,6 +38,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         mAuth = FirebaseAuth.getInstance();
         forgotpassword = (TextView)findViewById(R.id.textView);
         forgotpassword.setOnClickListener(this);
+
     }
 
     public void registerUser(View v) {

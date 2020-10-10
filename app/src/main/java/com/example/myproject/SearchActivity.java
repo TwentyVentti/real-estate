@@ -20,21 +20,14 @@ public class SearchActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.names));
 
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Button button = (Button) findViewById(R.id.search);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openNewActivity();
-            }
-        });
 
 
     }
 
-    public void openNewActivity() {
+
+
+    public void searchClicked(View v){
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
-
-
 }
