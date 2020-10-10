@@ -22,7 +22,13 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_greetings">Greetings</string>
+    <string name="menu_around_town">Around Town</string>
+    <string name="menu_arriving_dest">Arriving at Dest</string>
+    <string name="menu_at_customs">At Customs</string>
+    <string name="menu_at_restaurant">At a Restaurant</string>
+    <string name="menu_at_airport">At the Airport</string>
+    <string name="menu_at_hotel">At the Hotel</string>
+    <string name="menu_common_problems">Common Problems</string>
+    <string name="menu_on_the_airplane">On the Airplane</string>
 </resources>
