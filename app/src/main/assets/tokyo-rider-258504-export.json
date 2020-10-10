@@ -1,0 +1,469 @@
+{
+  "Phrases" : {
+    "Around Town" : [ {
+      "dutch" : "Waar kan ik een kruidenierswinkel vinden?",
+      "english" : "Where can I find a grocery store?",
+      "french" : "Où puis-je trouver une épicerie?",
+      "italian" : "Dove posso trovare un negozio di alimentari?",
+      "level" : 1,
+      "section" : "Around Town",
+      "spanish" : "¿Dónde puedo encontrar una tienda de comestibles?"
+    }, {
+      "dutch" : "Waar is het ziekenhuis?",
+      "english" : "Where is the hospital?",
+      "french" : "Où est l'hôpital?",
+      "italian" : "Dov'è l'ospedale?",
+      "level" : 1,
+      "section" : "Around Town",
+      "spanish" : "¿Dónde está el hospital?"
+    }, {
+      "dutch" : "Waar kan ik een restaurant vinden?",
+      "english" : "Where can I find a restaurant?",
+      "french" : "Où puis-je trouver un restaurant?",
+      "italian" : "Dove posso trovare un ristorante?",
+      "level" : 1,
+      "section" : "Around Town",
+      "spanish" : "¿Dónde puedo encontrar un restaurante?"
+    }, {
+      "dutch" : "Waar is de bank?",
+      "english" : "Where is the bank?",
+      "french" : "Où est la banque?",
+      "italian" : "Dov'è la Banca?",
+      "level" : 1,
+      "section" : "Around Town",
+      "spanish" : "¿Dónde está el banco?"
+    }, {
+      "dutch" : "Hoe kom je bij ____?",
+      "english" : "How do you get to ____?",
+      "french" : "Comment arrivez-vous à ____?",
+      "italian" : "Come si arriva a ____?",
+      "level" : 1,
+      "section" : "Around Town",
+      "spanish" : "Cómo llegas a ____?"
+    }, {
+      "dutch" : "Hoe ver is het naar _____?",
+      "english" : "How far is it to _____?",
+      "french" : "Quelle est la distance jusqu'à _____?",
+      "italian" : "Quanto manca per _____?",
+      "level" : 1,
+      "section" : "Around Town",
+      "spanish" : "Qué distancia hay hasta _____?"
+    } ],
+    "Arriving at Your Destination" : [ {
+      "dutch" : "Heb je een kaart?",
+      "english" : "Do you have a map?",
+      "french" : "Avez-vous une carte?",
+      "italian" : "Hai una cartina?",
+      "level" : 1,
+      "section" : "Arriving at Your Destination",
+      "spanish" : "¿Tienes un mapa?"
+    }, {
+      "dutch" : "Waar is de wisselkantoor?",
+      "english" : "Where is the currency exchange?",
+      "french" : "Où est le change de devises?",
+      "italian" : "Dov'è il cambio valuta?",
+      "level" : 1,
+      "section" : "Arriving at Your Destination",
+      "spanish" : "¿Dónde está el cambio de moneda?"
+    }, {
+      "dutch" : "Waar is de bushalte?",
+      "english" : "Where is the bus stop?",
+      "french" : "Où est l'arrêt de bus?",
+      "italian" : "Dov'è la fermata dell'autobus?",
+      "level" : 1,
+      "section" : "Arriving at Your Destination",
+      "spanish" : "¿Dónde esta la parada de autobus?"
+    }, {
+      "dutch" : "Waar kan ik een taxi vinden?",
+      "english" : "Where can I find a taxi?",
+      "french" : "Où puis-je trouver un taxi?",
+      "italian" : "Dove posso trovare un taxi?",
+      "level" : 1,
+      "section" : "Arriving at Your Destination",
+      "spanish" : "¿Dónde puedo encontrar un taxi?"
+    }, {
+      "dutch" : "Ik zou graag gaan naar _____.",
+      "english" : "I would like to go to _____.",
+      "french" : "Je voudrais aller à _____.",
+      "italian" : "Mi piacerebbe andare _____.",
+      "level" : 1,
+      "section" : "Arriving at Your Destination",
+      "spanish" : "Me gustaría ir a _____."
+    }, {
+      "dutch" : "Weet je waar dit hotel is?",
+      "english" : "Do you know where this hotel is?",
+      "french" : "Savez-vous où se trouve cet hôtel?",
+      "italian" : "Sai dov'è questo hotel?",
+      "level" : 1,
+      "section" : "Arriving at Your Destination",
+      "spanish" : "¿Sabes dónde está este hotel?"
+    }, {
+      "dutch" : "Ik begrijp het niet.",
+      "english" : "I don’t understand.",
+      "french" : "Je ne comprends pas.",
+      "italian" : "Non capisco.",
+      "level" : 1,
+      "section" : "Arriving at Your Destination",
+      "spanish" : "No entiendo."
+    } ],
+    "At Customs" : [ {
+      "dutch" : "Ik heb een aansluitende vlucht.",
+      "english" : "I have a connecting flight.",
+      "french" : "J'ai un vol de correspondance.",
+      "italian" : "Ho un volo in coincidenza.",
+      "level" : 2,
+      "section" : "At Customs",
+      "spanish" : "Tengo un vuelo de conexión."
+    }, {
+      "dutch" : "Ik reis voor mijn vrije tijd.",
+      "english" : "I am traveling for leisure.",
+      "french" : "Je voyage pour le plaisir.",
+      "italian" : "Viaggio per svago.",
+      "level" : 2,
+      "section" : "At Customs",
+      "spanish" : "Viajo por placer."
+    }, {
+      "dutch" : "Ik ben op reis voor werk.",
+      "english" : "I am traveling for work.",
+      "french" : "Je voyage pour le travail.",
+      "italian" : "Sto viaggiando per lavoro.",
+      "level" : 2,
+      "section" : "At Customs",
+      "spanish" : "Viajo por trabajo."
+    }, {
+      "dutch" : "Ik zal hier ___ dagen zijn.",
+      "english" : "I will be here for ___ days.",
+      "french" : "Je serai ici pendant ___ jours.",
+      "italian" : "Starò qui per ___ giorni.",
+      "level" : 2,
+      "section" : "At Customs",
+      "spanish" : "Estaré aquí por ___ días."
+    }, {
+      "dutch" : "Ik ben op bezoek bij familie.",
+      "english" : "I am visiting family.",
+      "french" : "Je visite ma famille.",
+      "italian" : "Sto visitando la famiglia.",
+      "level" : 2,
+      "section" : "At Customs",
+      "spanish" : "Estoy visitando a la familia."
+    }, {
+      "dutch" : "Ik logeer in _____.",
+      "english" : "I am staying at _____.",
+      "french" : "Je reste à _____.",
+      "italian" : "Sto a _____.",
+      "level" : 2,
+      "section" : "At Customs",
+      "spanish" : "Me quedo en _____."
+    } ],
+    "At a Restaurant" : [ {
+      "dutch" : "Routebeschrijving.",
+      "english" : "Directions. ",
+      "french" : "Instructions.",
+      "italian" : "Indicazioni.",
+      "level" : 1,
+      "section" : "At a Restaurant",
+      "spanish" : "Direcciones."
+    }, {
+      "dutch" : "Een tafel voor twee / vier.",
+      "english" : "A table for two/four.",
+      "french" : "Une table pour deux / quatre.",
+      "italian" : "Un tavolo per due / quattro.",
+      "level" : 1,
+      "section" : "At a Restaurant",
+      "spanish" : "Una mesa para dos / cuatro."
+    }, {
+      "dutch" : "Ik zou graag willen drinken…",
+      "english" : "I would like to drink…",
+      "french" : "J'aimerais boire…",
+      "italian" : "Vorrei bere ...",
+      "level" : 1,
+      "section" : "At a Restaurant",
+      "spanish" : "Me gustaría beber…"
+    }, {
+      "dutch" : "Mag ik een menu zien?",
+      "english" : "May I see a menu?",
+      "french" : "Puis-je voir un menu?",
+      "italian" : "Potrei vedere il menu?",
+      "level" : 1,
+      "section" : "At a Restaurant",
+      "spanish" : "¿Puedo ver el menú?"
+    }, {
+      "dutch" : "Ik wil graag bestellen ____.",
+      "english" : "I would like to order ____.",
+      "french" : "Je voudrais commander ____.",
+      "italian" : "Vorrei ordinare ____.",
+      "level" : 1,
+      "section" : "At a Restaurant",
+      "spanish" : "Me gustaría ordenar ____."
+    }, {
+      "dutch" : "Ik neem een ​​aperitiefje.",
+      "english" : "I’ll have an appetizer.",
+      "french" : "Je vais prendre un apéritif.",
+      "italian" : "Prendo un antipasto.",
+      "level" : 1,
+      "section" : "At a Restaurant",
+      "spanish" : "Tomaré un aperitivo."
+    }, {
+      "dutch" : "Ik wil graag een toetje.",
+      "english" : "I would like dessert.",
+      "french" : "Je voudrais un dessert.",
+      "italian" : "Vorrei il dessert.",
+      "level" : 1,
+      "section" : "At a Restaurant",
+      "spanish" : "Me gustaría postre."
+    }, {
+      "dutch" : "Mag ik de rekening?",
+      "english" : "May I have the bill?",
+      "french" : "Puis-je avoir le ticket?",
+      "italian" : "Potrei avere il conto?",
+      "level" : 1,
+      "section" : "At a Restaurant",
+      "spanish" : "¿Me puede traer la cuenta?"
+    } ],
+    "At the Airport" : [ {
+      "dutch" : "Ik zou graag willen…",
+      "english" : "I would like…",
+      "french" : "J'aimerais…",
+      "italian" : "Mi piacerebbe…",
+      "level" : 2,
+      "section" : "At the Airport",
+      "spanish" : "Me gustaría…"
+    }, {
+      "dutch" : "Hoe laat is mijn vlucht?",
+      "english" : "What time is my flight?",
+      "french" : "Quelle heure est mon vol?",
+      "italian" : "A che ora è il mio volo?",
+      "level" : 2,
+      "section" : "At the Airport",
+      "spanish" : "¿A qué hora es mi vuelo?"
+    }, {
+      "dutch" : "Met welke luchtvaartmaatschappij vlieg ik?",
+      "english" : "What airline am I flying?",
+      "french" : "Quelle compagnie aérienne suis-je en train de voler?",
+      "italian" : "Quale compagnia sto volando?",
+      "level" : 2,
+      "section" : "At the Airport",
+      "spanish" : "¿Qué aerolínea estoy volando?"
+    }, {
+      "dutch" : "Waar is mijn poort?",
+      "english" : "Where is my gate?",
+      "french" : "Où est ma porte?",
+      "italian" : "Dov'è il mio cancello?",
+      "level" : 2,
+      "section" : "At the Airport",
+      "spanish" : "¿Dónde está mi puerta?"
+    }, {
+      "dutch" : "Waar is de wc?",
+      "english" : "Where is the restroom?",
+      "french" : "Où sont les toilettes?",
+      "italian" : "Dove è il bagno?",
+      "level" : 2,
+      "section" : "At the Airport",
+      "spanish" : "¿Donde está el baño?"
+    }, {
+      "dutch" : "Hoeveel kost het tijdschrift?",
+      "english" : "How much does the magazine cost?",
+      "french" : "Combien coûte le magazine?",
+      "italian" : "Quanto costa la rivista?",
+      "level" : 2,
+      "section" : "At the Airport",
+      "spanish" : "¿Cuánto cuesta la revista?"
+    } ],
+    "At the Hotel" : [ {
+      "dutch" : "Heeft de kamer een badkamer?",
+      "english" : "Does the room have a bathroom?",
+      "french" : "La chambre a-t-elle une salle de bain?",
+      "italian" : "La camera ha il bagno?",
+      "level" : 2,
+      "section" : "At the Hotel",
+      "spanish" : "¿La habitación tiene baño?"
+    }, {
+      "dutch" : "Hoeveel bedden zijn er in de kamer?",
+      "english" : "How many beds are in the room?",
+      "french" : "Combien y a-t-il de lits dans la chambre?",
+      "italian" : "Quanti letti ci sono nella stanza?",
+      "level" : 2,
+      "section" : "At the Hotel",
+      "spanish" : "¿Cuántas camas hay en la habitación?"
+    }, {
+      "dutch" : "Ik wil graag een queensize bed.",
+      "english" : "I would like one queen bed, please.",
+      "french" : "Je voudrais un lit queen, s'il vous plaît.",
+      "italian" : "Vorrei un letto matrimoniale, per favore.",
+      "level" : 2,
+      "section" : "At the Hotel",
+      "spanish" : "Quisiera una cama queen, por favor."
+    }, {
+      "dutch" : "Ik zou graag twee tweepersoonsbedden willen, alstublieft.",
+      "english" : "I would like two double beds, please.",
+      "french" : "Je voudrais deux lits doubles, s'il vous plaît.",
+      "italian" : "Vorrei due letti matrimoniali, per favore.",
+      "level" : 2,
+      "section" : "At the Hotel",
+      "spanish" : "Quisiera dos camas dobles, por favor."
+    }, {
+      "dutch" : "Op welke verdieping sta ik?",
+      "english" : "What floor am I on?",
+      "french" : "À quel étage suis-je?",
+      "italian" : "Su che piano sono?",
+      "level" : 2,
+      "section" : "At the Hotel",
+      "spanish" : "En que piso estoy"
+    }, {
+      "dutch" : "Waar zijn de liften?",
+      "english" : "Where are the elevators?",
+      "french" : "Où sont les ascenseurs?",
+      "italian" : "Dove sono gli ascensori?",
+      "level" : 2,
+      "section" : "At the Hotel",
+      "spanish" : "¿Dónde están los ascensores?"
+    }, {
+      "dutch" : "Hoe krijg ik toegang tot internet?",
+      "english" : "How do I access the Internet?",
+      "french" : "Comment accéder à Internet?",
+      "italian" : "Come si accede a Internet?",
+      "level" : 2,
+      "section" : "At the Hotel",
+      "spanish" : "¿Cómo accedo a Internet?"
+    }, {
+      "dutch" : "Is er een gratis ontbijt?",
+      "english" : "Is there free breakfast?",
+      "french" : "Y a-t-il un petit-déjeuner gratuit?",
+      "italian" : "C'è la colazione gratuita?",
+      "level" : 2,
+      "section" : "At the Hotel",
+      "spanish" : "¿Hay desayuno gratis?"
+    }, {
+      "dutch" : "Mijn kamer heeft handdoeken nodig.",
+      "english" : "My room needs towels.",
+      "french" : "Ma chambre a besoin de serviettes.",
+      "italian" : "La mia stanza ha bisogno di asciugamani.",
+      "level" : 2,
+      "section" : "At the Hotel",
+      "spanish" : "Mi habitación necesita toallas."
+    }, {
+      "dutch" : "Mijn kamer is rommelig en ik zou graag willen dat hij schoongemaakt werd.",
+      "english" : "My room is messy, and I would like it cleaned.",
+      "french" : "Ma chambre est en désordre et j'aimerais qu'elle soit nettoyée.",
+      "italian" : "La mia stanza è in disordine e vorrei che fosse pulita.",
+      "level" : 2,
+      "section" : "At the Hotel",
+      "spanish" : "Mi habitación está desordenada y me gustaría que la limpiaran."
+    }, {
+      "dutch" : "Hoe bel ik voor roomservice?",
+      "english" : "How do I call for room service?",
+      "french" : "Comment faire appel au service d'étage?",
+      "italian" : "Come posso chiamare il servizio in camera?",
+      "level" : 2,
+      "section" : "At the Hotel",
+      "spanish" : "¿Cómo llamo al servicio de habitaciones?"
+    }, {
+      "dutch" : "Hoe bel ik naar de receptie?",
+      "english" : "How do I call down to the front desk?",
+      "french" : "Comment appeler la réception?",
+      "italian" : "Come posso chiamare la reception?",
+      "level" : 2,
+      "section" : "At the Hotel",
+      "spanish" : "¿Cómo llamo a la recepción?"
+    } ],
+    "Common Problems" : [ {
+      "dutch" : "Ik ben mijn paspoort kwijt.",
+      "english" : "I have lost my passport.",
+      "french" : "J'ai perdu mon passeport.",
+      "italian" : "Ho perso il passaporto.",
+      "level" : 1,
+      "section" : "Common Problems",
+      "spanish" : "Perdí mi pasaporte."
+    }, {
+      "dutch" : "Iemand heeft mijn geld gestolen.",
+      "english" : "Someone stole my money.",
+      "french" : "Quelqu'un a volé mon argent.",
+      "italian" : "Qualcuno ha rubato i miei soldi.",
+      "level" : 1,
+      "section" : "Common Problems",
+      "spanish" : "Alguien robó mi dinero."
+    }, {
+      "dutch" : "Helpen!",
+      "english" : "Help!",
+      "french" : "Aidez-moi!",
+      "italian" : "Aiuto!",
+      "level" : 1,
+      "section" : "Common Problems",
+      "spanish" : "¡Ayuda!"
+    } ],
+    "Greetings" : [ {
+      "dutch" : "Goedemorgen.",
+      "english" : "Good morning.",
+      "french" : "Bonjour.",
+      "italian" : "Buongiorno.",
+      "level" : 1,
+      "section" : "Greetings",
+      "spanish" : "Buenos días."
+    }, {
+      "dutch" : "Goedenmiddag.",
+      "english" : "Good afternoon.",
+      "french" : "Bonne après-midi.",
+      "italian" : "Buon pomeriggio.",
+      "level" : 1,
+      "section" : "Greetings",
+      "spanish" : "Buenas tardes."
+    }, {
+      "dutch" : "Goedenavond.",
+      "english" : "Good evening.",
+      "french" : "Bonsoir.",
+      "italian" : "Buonasera.",
+      "level" : 1,
+      "section" : "Greetings",
+      "spanish" : "Buena noches."
+    }, {
+      "dutch" : "Hallo / Hallo / Hey.",
+      "english" : "Hello / Hi / Hey.",
+      "french" : "Bonjour / Salut / Salut.",
+      "italian" : "Ciao / Ciao / Ehi.",
+      "level" : 1,
+      "section" : "Greetings",
+      "spanish" : "Hola / Hola / Hola."
+    }, {
+      "dutch" : "Hoe gaat het met jou? / Hoe gaat het ermee?",
+      "english" : "How are you? / How is it going?",
+      "french" : "Comment ça va? / Comment ça va?",
+      "italian" : "Come stai? / Come va?",
+      "level" : 1,
+      "section" : "Greetings",
+      "spanish" : "¿Cómo estás? / ¿Cómo va?"
+    } ],
+    "On the Airplane" : [ {
+      "dutch" : "Zijn maaltijden inbegrepen?",
+      "english" : "Are meals included?",
+      "french" : "Les repas sont-ils inclus?",
+      "italian" : "I pasti sono inclusi?",
+      "level" : 1,
+      "section" : "On the Airplane",
+      "spanish" : "¿Están incluidas las comidas?"
+    }, {
+      "dutch" : "Mag ik iets eten / drinken?",
+      "english" : "May I have something to eat/drink?",
+      "french" : "Puis-je avoir quelque chose à manger / boire?",
+      "italian" : "Posso avere qualcosa da mangiare / bere?",
+      "level" : 1,
+      "section" : "On the Airplane",
+      "spanish" : "¿Puedo comer o beber algo?"
+    }, {
+      "dutch" : "Mag ik een koptelefoon kopen?",
+      "english" : "May I purchase headphones?",
+      "french" : "Puis-je acheter des écouteurs?",
+      "italian" : "Posso acquistare delle cuffie?",
+      "level" : 1,
+      "section" : "On the Airplane",
+      "spanish" : "¿Puedo comprar auriculares?"
+    }, {
+      "dutch" : "Hoe laat is het?",
+      "english" : "What time is it?",
+      "french" : "Quelle heure est-il?",
+      "italian" : "Che ore sono?",
+      "level" : 1,
+      "section" : "On the Airplane",
+      "spanish" : "¿Que hora es?"
+    } ]
+  }
+}
