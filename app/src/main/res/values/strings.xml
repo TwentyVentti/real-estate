@@ -25,4 +25,10 @@
     <string name="menu_greetings">Greetings</string>
     <string name="menu_around_town">Around Town</string>
     <string name="menu_arriving_dest">Arriving at Dest</string>
+    <string name="menu_at_customs">At Customs</string>
+    <string name="menu_at_restaurant">At a Restaurant</string>
+    <string name="menu_at_airport">At the Airport</string>
+    <string name="menu_at_hotel">At the Hotel</string>
+    <string name="menu_common_problems">Common Problems</string>
+    <string name="menu_on_the_airplane">On the Airplane</string>
 </resources>
