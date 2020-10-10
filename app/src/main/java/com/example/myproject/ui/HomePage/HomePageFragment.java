@@ -1,4 +1,4 @@
-package com.example.myproject.ui.ArivingDest;
+package com.example.myproject.ui.HomePage;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,14 +14,14 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myproject.R;
 
-public class ArrivingDestFragment extends Fragment {
+public class HomePageFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ArrivingDestViewModel arrivingDestViewModel = ViewModelProviders.of(this).get(ArrivingDestViewModel.class);
+        HomePageViewModel homePageViewModel = ViewModelProviders.of(this).get(HomePageViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
-        arrivingDestViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        homePageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

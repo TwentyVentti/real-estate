@@ -1,14 +1,18 @@
-package com.example.myproject.ui.ArivingDest;
+package com.example.myproject.ui.HomePage;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ArrivingDestViewModel extends ViewModel {
+import java.util.Random;
 
+public class HomePageViewModel extends ViewModel {
+
+    Random random = new Random();
+    int LEVEL = random.nextInt(3);
     private MutableLiveData<String> mText;
 
-    public ArrivingDestViewModel() {
+    public HomePageViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is home ");
     }

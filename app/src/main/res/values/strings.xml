@@ -22,7 +22,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_greetings">Greetings</string>
+    <string name="menu_home">Home</string>
     <string name="menu_around_town">Around Town</string>
     <string name="menu_arriving_dest">Arriving at Dest</string>
     <string name="menu_at_customs">At Customs</string>
