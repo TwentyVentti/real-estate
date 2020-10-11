@@ -7,27 +7,27 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.example.myproject.ui.HomePage.HomePageViewModel;
+
+import java.util.ArrayList;
 
 public class SearchActivity extends AppCompatActivity {
 
+    EditText inputText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
-        ArrayAdapter<String> myAdapter= new ArrayAdapter<String>(SearchActivity.this,
-                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.names));
-
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+        inputText = (EditText) findViewById(R.id.citySelect);
 
     }
 
-
-
     public void searchClicked(View v){
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("String",inputText.getText());
         startActivity(intent);
     }
 }
