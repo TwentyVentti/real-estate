@@ -9,13 +9,17 @@ public class Phrase implements Serializable {
     private String italian;
     private String spanish;
     private String dutch;
+    private String section;
+    private Integer level;
 
-    public Phrase(String english) {
+    public Phrase(String english, String french, String italian, String spanish, String dutch, String section, Integer level) {
         this.english = english;
         this.french = french;
         this.italian = italian;
         this.spanish = spanish;
         this.dutch = dutch;
+        this.section = section;
+        this.level = level;
     }
 
     public String getEnglish() {
@@ -56,5 +60,21 @@ public class Phrase implements Serializable {
 
     public void setDutch(String dutch) {
         this.dutch = dutch;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }

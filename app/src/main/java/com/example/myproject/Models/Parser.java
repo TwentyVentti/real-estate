@@ -25,11 +25,9 @@ public class Parser {
     * <User> -> Country; City; n Stay
      */
 //    public Exp parseExp() {
-//        // TODO: Implement parse function for <exp>
-//        // ########## YOUR CODE STARTS HERE ##########
-//        //Case 1: Term
+//        // Case 1: Term
 //        Exp term = parseTerm();
-//        //Case 2: Term + exp
+//        // Case 2: Term + exp
 //        if (_tokenizer.hasNext()&&_tokenizer.current().type()==Token.Type.ADD){
 //            _tokenizer.next();
 //            Exp exp = parseExp();
@@ -43,9 +41,8 @@ public class Parser {
 //        } else {
 //            return term;
 //        }
-//        // ########## YOUR CODE ENDS HERE ##########
 //    }
-//
+
     /**
     * <Stay> -> month | week | day
     */
