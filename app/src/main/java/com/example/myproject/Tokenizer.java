@@ -1,8 +1,14 @@
 package com.example.myproject;
-
+// G = <V_t,V_n,S,P>
+// G = <{n},{Country,Stay},{Exp},{(<User> -> Country; Ci; n Stay),(<Stay>  -> month | week | day),(<Country>  -> France | Spain | Netherlands | Italy)}
+// Stay = Length Of Stay
+// Ci = City
+// <User> -> Country; Ci; n Stay
+// <Stay>  -> month | week | day
+// <Country>  -> France | Spain | Netherlands | Italy
 public class Tokenizer {
     private String _buffer;        //save text
-    private Token currentToken;    //save token extracted from next()
+    private Token current;    //save token extracted from next()
 
     /**
      * Tokenizer class constructor
@@ -21,31 +27,32 @@ public class Tokenizer {
         _buffer = _buffer.trim(); // remove whitespace
 
         if (_buffer.isEmpty()) {
-            currentToken = null;    // if there's no string left, set currentToken null and return
+            current = null;    // if there's no string left, set currentToken null and return
             return;
         }
 
 
-        // TODO: Implement left derivation tokenizer for
-        // TODO: Implement left round bracket and right round bracket
+        // TODO: Implement left derivation tokenizer for "Country" input.
+        // TODO: Implement left derivation tokenizer for "City" input.
         // TODO: Implement integer literal tokenising
+        // TODO: Implement left derivation tokenizer for "LegnthOfStay" input.
         char firstChar = _buffer.charAt(0);
         if (firstChar == '+')
-            currentToken = new Token("+", Token.Type.ADD);
+            current = new Token("+", Token.Type.ADD);
         if (firstChar == '-')
-            currentToken = new Token("-", Token.Type.SUB);
+            current = new Token("-", Token.Type.SUB);
         StringBuilder number = new StringBuilder();
         if (firstChar == '*') {
-            currentToken = new Token("*", Token.Type.MUL);
+            current = new Token("*", Token.Type.MUL);
         }
         if (firstChar == '/') {
-            currentToken = new Token("/", Token.Type.DIV);
+            current = new Token("/", Token.Type.DIV);
         }
         if (firstChar == '(') {
-            currentToken = new Token("(", Token.Type.LBRA);
+            current = new Token("(", Token.Type.LBRA);
         }
         if (firstChar == ')') {
-            currentToken = new Token(")", Token.Type.RBRA);
+            current = new Token(")", Token.Type.RBRA);
         }
         if (Character.isDigit(firstChar)) {
             number.append(firstChar);
@@ -53,15 +60,15 @@ public class Tokenizer {
                 if (Character.isDigit(_buffer.charAt(i))) {
                     number.append(_buffer.charAt(i));
                 } else {
-                    currentToken = new Token(number.toString(), Token.Type.INT);
+                    current = new Token(number.toString(), Token.Type.INT);
                     break;
                 }
             }
-            currentToken = new Token(number.toString(), Token.Type.INT);
+            current = new Token(number.toString(), Token.Type.INT);
         }
 
         // Remove the extracted token from buffer
-        int tokenLen = currentToken.token().length();
+        int tokenLen = current.token().length();
         _buffer = _buffer.substring(tokenLen);
     }
 
@@ -72,7 +79,7 @@ public class Tokenizer {
      * @return type: Token
      */
     public Token current() {
-        return currentToken;
+        return current;
     }
 
     /**
@@ -82,6 +89,6 @@ public class Tokenizer {
      * @return type: boolean
      */
     public boolean hasNext() {
-        return currentToken != null;
+        return current != null;
     }
 }
