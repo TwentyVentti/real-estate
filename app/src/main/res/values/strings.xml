@@ -33,4 +33,6 @@
     <string name="menu_on_the_airplane">On the Airplane</string>
     <string name="level_1">Level 1</string>
     <string name="this_is_a_popup_window">Example: France; Paris; 3 days.</string>
+    <string name="button_one">Button One</string>
+    <string name="button_two">Button Two</string>
 </resources>

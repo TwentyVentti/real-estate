@@ -2,19 +2,26 @@ package com.example.myproject.ViewModels;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.example.myproject.R;
 
 public class SearchActivity extends AppCompatActivity {
+    PopupWindow popUp;
+    boolean click = true;
 
     EditText inputText;
     @Override
@@ -30,28 +37,48 @@ public class SearchActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void onButtonShowPopupWindowClick(View view) {
-        // inflate the layout of the popup window
-        LayoutInflater inflater = (LayoutInflater)
-                getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.popup_window, null);
+        ShowPopup("Hello");
+    }
+    private PopupWindow POPUP_WINDOW_SCORE = null;
+    private void ShowPopup(String message)
+    {
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        int width = displayMetrics.widthPixels;
+        int height = displayMetrics.heightPixels;
 
-        // create the popup window
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true; // lets taps outside the popup also dismiss it
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        // Inflate the popup_layout.xml
+        LayoutInflater layoutInflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = layoutInflater.inflate(R.layout.popup_window, null);
 
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        // Creating the PopupWindow
+        POPUP_WINDOW_SCORE = new PopupWindow(this);
+        POPUP_WINDOW_SCORE.setContentView(layout);
+        POPUP_WINDOW_SCORE.setWidth(width);
+        POPUP_WINDOW_SCORE.setHeight(height);
+        POPUP_WINDOW_SCORE.setFocusable(true);
 
-        // dismiss the popup window when touched
-        popupView.setOnTouchListener(new View.OnTouchListener() {
+        // prevent clickable background
+        POPUP_WINDOW_SCORE.setBackgroundDrawable(null);
+
+        POPUP_WINDOW_SCORE.showAtLocation(layout, Gravity.CENTER, 1, 1);
+
+        TextView txtMessage = (TextView) layout.findViewById(R.id.layout_popup_txtMessage);
+        txtMessage.setText(message);
+
+        // Getting a reference to button one and do something
+        Button butOne = (Button) layout.findViewById(R.id.layout_popup_butOne);
+        butOne.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                popupWindow.dismiss();
-                return true;
+            public void onClick(View v)
+            {
+                //Do Something
+
+                //Close Window
+                POPUP_WINDOW_SCORE.dismiss();
             }
         });
+
+
     }
 }
