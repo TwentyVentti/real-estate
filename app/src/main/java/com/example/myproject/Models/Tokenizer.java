@@ -12,8 +12,7 @@ public class Tokenizer {
 
     /**
      * Tokenizer class constructor
-     * The constructor extracts the first token and save it to currentToken
-     * **** please do not modify this part ****
+     * The constructor extracts the first token and saves it to currentToken
      */
     public Tokenizer(String text) {
         _buffer = text;        // save input text (string)
@@ -30,29 +29,15 @@ public class Tokenizer {
             current = null;    // if there's no string left, set currentToken null and return
             return;
         }
-
-
         // TODO: Implement left derivation tokenizer for "Country" input.
         // TODO: Implement left derivation tokenizer for "Ci" input.
         // TODO: Implement integer literal tokenising
         // TODO: Implement left derivation tokenizer for "Stay" input.
         char firstChar = _buffer.charAt(0);
-//        if (firstChar == '+')
-//            current = new Token("+", Token.Type.ADD);
+        if (firstChar == ';')
+            current = new Token(";", Token.Type.SEMI);
 //        if (firstChar == '-')
 //            current = new Token("-", Token.Type.SUB);
-//        if (firstChar == '*') {
-//            current = new Token("*", Token.Type.MUL);
-//        }
-//        if (firstChar == '/') {
-//            current = new Token("/", Token.Type.DIV);
-//        }
-//        if (firstChar == '(') {
-//            current = new Token("(", Token.Type.LBRA);
-//        }
-//        if (firstChar == ')') {
-//            current = new Token(")", Token.Type.RBRA);
-//        }
         StringBuilder number = new StringBuilder();
         if (Character.isDigit(firstChar)) {
             number.append(firstChar);
