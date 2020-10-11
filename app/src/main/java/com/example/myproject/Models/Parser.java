@@ -14,19 +14,16 @@ import java.util.BitSet;
  *
  */
 public class Parser {
-}
 
-//public class Parser {
-//
-//    MyTokenizer _tokenizer;
-//
-//    public Parser(MyTokenizer tokenizer) {
-//        _tokenizer = tokenizer;
-//    }
-//
-//    /*
-//    <exp>    ::= <term> | <term> + <exp> | <term> - <exp>
-//     */
+    Tokenizer _tokenizer;
+
+    public Parser(Tokenizer tokenizer) {
+        _tokenizer = tokenizer;
+    }
+
+    /**
+    * <User> -> Country; City; n Stay
+     */
 //    public Exp parseExp() {
 //        // TODO: Implement parse function for <exp>
 //        // ########## YOUR CODE STARTS HERE ##########
@@ -49,7 +46,9 @@ public class Parser {
 //        // ########## YOUR CODE ENDS HERE ##########
 //    }
 //
-//    //<term>   ::=  <factor> | <factor> * <term> | <factor> / <term>
+    /**
+    * <Stay> -> month | week | day
+    */
 //    public Exp parseTerm() {
 //        // TODO: Implement parse function for <term>
 //        // ########## YOUR CODE STARTS HERE ##########
@@ -72,7 +71,9 @@ public class Parser {
 //        // ########## YOUR CODE ENDS HERE ##########
 //    }
 //
-//    //<factor> ::= <unsigned integer> | ( <exp> )
+    /**
+    * <City> -> Paris | Madrid | Amsterdam | Rome
+    */
 //    public Exp parseFactor() {
 //        // TODO: Implement parse function for <factor>
 //        // ########## YOUR CODE STARTS HERE ##########
@@ -88,6 +89,25 @@ public class Parser {
 //        }
 //        // ########## YOUR CODE ENDS HERE ##########
 //    }
+    /**
+    * <Country> -> France | Spain | Netherlands | Italy
+    */
+//    public Exp parseFactor() {
+//        // TODO: Implement parse function for <factor>
+//        // ########## YOUR CODE STARTS HERE ##########
+//        if (_tokenizer.hasNext()&&_tokenizer.current().type()==Token.Type.LBRA){
+//            _tokenizer.next();
+//            Exp exp = parseExp();
+//            _tokenizer.next();
+//            return exp;
+//        }else {
+//            IntExp i = new IntExp(Integer.parseInt(_tokenizer.current().token()));
+//            _tokenizer.next();
+//            return i;
+//        }
+//        // ########## YOUR CODE ENDS HERE ##########
+//    }
+
 //
 //    public static void main(String[] args) {
 //        MyTokenizer mathTokenizer = new MyTokenizer("2*5+1");
@@ -95,4 +115,4 @@ public class Parser {
 //        System.out.println(t1.show());
 //        System.out.println(t1.evaluate());
 //    }
-//}
+}
