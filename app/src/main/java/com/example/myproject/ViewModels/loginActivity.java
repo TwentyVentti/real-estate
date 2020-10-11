@@ -113,38 +113,6 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
 
 
 
-    /*
-    public void goLoginClicked(View v){
-        Intent intent = new Intent(loginActivity.this, MainActivity.class);
-        if (readAssets()){
-            startActivityForResult(intent,1);
-        } else {
-            Toast toast = Toast.makeText(getApplicationContext(), "Not a user, please create account", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-    }
-
-    public boolean readAssets(){
-        User user = new User("",usernameText.getText().toString(),passwordText.getText().toString());
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new InputStreamReader(getAssets().open("loginDetails.csv"), "UTF-8"));
-            String line;
-            while ((line=reader.readLine())!=null){
-                String[] tokens = line.split(",");
-                for (String token : tokens){
-                    if (((user.getUsername().equals(token) )||(user.getPassword().equals(token) ))){
-                        return true;
-                    }
-                }
-            }
-        } catch (IOException ex){
-            Toast toast = Toast.makeText(getApplicationContext(), "Not a user, please create account", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-        return false;
-    }
-    */
 
 
 }
