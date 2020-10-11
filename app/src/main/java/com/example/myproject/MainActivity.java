@@ -1,7 +1,7 @@
 package com.example.myproject;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +12,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.myproject.ui.HomePage.HomePageFragment;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.core.utilities.Tree;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-
-
+        String searchText = getIntent().getDataString();
+        Intent intent = new Intent(this, HomePageFragment.class);
+        intent.putExtra(searchText,1);
     }
 
     @Override
