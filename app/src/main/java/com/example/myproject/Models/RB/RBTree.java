@@ -1,16 +1,14 @@
 package com.example.myproject.Models.RB;
 
-import java.util.function.DoubleToIntFunction;
-
 /**
  * Skeleton code for Red Black Tree
- * 
+ *
  * @author dongwookim
  * @author Bernardo Pereira Nunes fixed small bug
  * @param <T> data type
  */
 public class RBTree<T extends Comparable<T>> {
-	
+
 	Node<T> root; // The root node of the tree
 
 	/**
@@ -22,13 +20,13 @@ public class RBTree<T extends Comparable<T>> {
 
 	/**
 	 * Add a new node into the tree with {@code root} node.
-	 * 
+	 *
 	 * @param root Node<T> The root node of the tree where x is being inserted.
 	 * @param x    Node<T> New node being inserted.
 	 */
 	private void insertRecurse(Node<T> root, Node<T> x) {
 		int cmp = root.value.compareTo(x.value);
-		
+
 		if (cmp > 0) {
 			if (root.left.value == null) {
 				root.left = x;
@@ -49,7 +47,7 @@ public class RBTree<T extends Comparable<T>> {
 
 	/**
 	 * Insert node into RBTree.
-	 * 
+	 *
 	 * @param x Node<T> The new node being inserted into the tree.
 	 */
 	private void insert(Node<T> x) {
@@ -74,9 +72,8 @@ public class RBTree<T extends Comparable<T>> {
 				// TODO: Implement this part
 				// ########## YOUR CODE STARTS HERE ##########
 				x.parent.colour = Colour.BLACK;
-				uncle.colour=Colour.BLACK;
 				x.parent.parent.colour = Colour.RED;
-
+				uncle.colour = Colour.BLACK;
 				// ########## YOUR CODE ENDS HERE ##########
 				// Check if violated further up the tree
 				x = x.parent.parent;
@@ -94,7 +91,8 @@ public class RBTree<T extends Comparable<T>> {
 						// Perform right rotation
 						// TODO: Implement this part
 						// ########## YOUR CODE STARTS HERE ##########
-						if (x.value == root.value){
+
+						if (x.value == root.value) {
 							root = x.left;
 						}
 						rotateRight(x);
@@ -106,14 +104,27 @@ public class RBTree<T extends Comparable<T>> {
 				x.parent.parent.colour = Colour.RED;
 
 				// Case 3 : Right Rotation, uncle is right node, x is on the left / Left Rotation, uncle is left node, x is on the right
+				// TODO: Complete this part
 				if (left) {
 					// Perform right rotation
-					rotateRight(x.parent.parent);
+					// ########## YOUR CODE STARTS HERE ##########
+					x = x.parent.parent;
+					if (x.value == root.value) {
+						root = x.left;
+					}
+					rotateRight(x);
+
+					// ########## YOUR CODE ENDS HERE ##########
 				} else {
 					// This is part of the "then" clause where left and right are swapped
 					// Perform left rotation
-					rotateLeft(x.parent.parent);
-
+					// ########## YOUR CODE STARTS HERE ##########
+					x = x.parent.parent;
+					if (x.value == root.value) {
+						root = x.right;
+					}
+					rotateLeft(x);
+					// ########## YOUR CODE ENDS HERE ##########
 				}
 			}
 		}
@@ -122,17 +133,17 @@ public class RBTree<T extends Comparable<T>> {
 		root.colour = Colour.BLACK;
 	}
 
-    /** Rotate the node so it becomes the child of its right branch
-    /*
-        e.g.
-              [x]                    b
-             /   \                 /   \
-           a       b     == >   [x]     f
-          / \     / \           /  \
-         c  d    e   f         a    e
-                              / \
-                             c   d
-    */
+	/** Rotate the node so it becomes the child of its right branch
+	 /*
+	 e.g.
+	 [x]                    b
+	 /   \                 /   \
+	 a       b     == >   [x]     f
+	 / \     / \           /  \
+	 c  d    e   f         a    e
+	 / \
+	 c   d
+	 */
 	public void rotateLeft(Node<T> x) {
 		// Make parent (if it exists) and right branch point to each other
 		if (x.parent != null) {
@@ -153,44 +164,41 @@ public class RBTree<T extends Comparable<T>> {
 		x.parent.left = x;
 	}
 
-    /** Rotate the node so it becomes the child of its left branch
-    /*
-        e.g.
-              [x]                    a
-             /   \                 /   \
-           a       b     == >     c     [x]
-          / \     / \                   /  \
-         c  d    e   f                 d    b
-                                           / \
-                                          e   f
-    */
+	/** Rotate the node so it becomes the child of its left branch
+	 /*
+	 e.g.
+	 [x]                    a
+	 /   \                 /   \
+	 a       b     == >     c     [x]
+	 / \     / \                   /  \
+	 c  d    e   f                 d    b
+	 / \
+	 e   f
+	 */
 	public void rotateRight(Node<T> x) {
 		// TODO: Implement this function
 		// HINT: It is the mirrored version of rotateLeft()
-		// Make parent (if it exists) and right branch point to each other
+		// ########## YOUR CODE STARTS HERE ##########
 		if (x.parent != null) {
-			if (x.parent.left.value == x.value) {
-				x.parent.left = x.left;
-			}
-			else {
+			// Determine whether this node is the left or right child of its parent
+			if (x.parent.right.value == x.value) {
 				x.parent.right = x.left;
+			} else {
+				x.parent.left = x.left;
 			}
 		}
 		x.left.parent = x.parent;
 
 		x.parent = x.left;
-		// Take right node's left branch
 		x.left = x.parent.right;
-		//issue here :
-
 		x.left.parent = x;
-		// Take the place of the left node's right branch
 		x.parent.right = x;
+		// ########## YOUR CODE ENDS HERE ##########
 	}
 
 	/**
 	 * Demo functions (Safely) insert a value into the tree
-	 * 
+	 *
 	 * @param value T The value of the new node being inserted.
 	 */
 	public void insert(T value) {
@@ -201,7 +209,7 @@ public class RBTree<T extends Comparable<T>> {
 
 	/**
 	 * Return the result of a pre-order traversal of the tree
-	 * 
+	 *
 	 * @param tree Tree we want to pre-order traverse
 	 * @return pre-order traversed tree
 	 */
@@ -222,7 +230,7 @@ public class RBTree<T extends Comparable<T>> {
 
 	/**
 	 * Return the corresponding node of a value, if it exists in the tree
-	 * 
+	 *
 	 * @param x Node<T> The root node of the tree we search for the value {@code v}
 	 * @param v Node<T> The node that we are looking for
 	 * @return
@@ -242,7 +250,7 @@ public class RBTree<T extends Comparable<T>> {
 
 	/**
 	 * Returns a node if the value of the node is {@code key}.
-	 * 
+	 *
 	 * @param key T The value we are looking for
 	 * @return
 	 */
