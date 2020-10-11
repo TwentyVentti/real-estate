@@ -1,4 +1,4 @@
-package com.example.myproject.Models;
+package com.example.myproject.Models.Parsing;
 
 public class SemiExp {
 }

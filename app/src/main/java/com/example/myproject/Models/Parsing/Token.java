@@ -1,4 +1,4 @@
-package com.example.myproject.Models;
+package com.example.myproject.Models.Parsing;
 /**
  * Token class to save extracted token from tokenizer.
  * Each token has its surface form saved in {@code _token}

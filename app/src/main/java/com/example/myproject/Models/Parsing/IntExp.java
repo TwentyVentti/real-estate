@@ -1,4 +1,4 @@
-package com.example.myproject.Models;
+package com.example.myproject.Models.Parsing;
 
 import java.util.ArrayList;
 
