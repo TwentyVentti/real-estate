@@ -1,24 +1,21 @@
 package com.example.myproject.Models;
 
+import java.util.BitSet;
+
+/**
+ * Name: Parser.java
+ *
+ *  The main objective of this class is to implement a simple parser.
+ *  It should be able to parser the following grammar rule:
+ *  <User>     -> Country; City; n Stay
+ *  <Stay>     -> month | week | day
+ *  <City>     -> Paris | Madrid | Amsterdam | Rome
+ *  <Country>  -> France | Spain | Netherlands | Italy
+ *
+ */
 public class Parser {
 }
-//
-//import com.sun.source.tree.BinaryTree;
-//        import com.sun.source.tree.Tree;
-//
-//        import java.util.BitSet;
-//
-///**
-// * Name: Parser.java
-// *
-// *  The main objective of this class is to implement a simple parser.
-// *  It should be able to parser the following grammar rule:
-// *  <exp>    ::= <term> | <term> + <exp> | <term> - <exp>
-// *  <term>   ::=  <factor> | <factor> * <term> | <factor> / <term>
-// *  <factor> ::= <unsigned integer> | ( <exp> )
-// *
-// */
-//
+
 //public class Parser {
 //
 //    MyTokenizer _tokenizer;

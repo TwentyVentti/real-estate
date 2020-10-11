@@ -6,8 +6,9 @@ package com.example.myproject.Models;
  *  G = <{n,Ci},{Country,Stay},{Exp},{(<User> -> Country; Ci; n Stay),(<Stay>  -> month | week | day),(<Country>  -> France | Spain | Netherlands | Italy)}
  *  Stay = Length Of Stay
  *  Ci = City
- *  <User> -> Country; Ci; n Stay
- *  <Stay>  -> month | week | day
+ *  <User>     -> Country; City; n Stay
+ *  <Stay>     -> month | week | day
+ *  <City>     -> Paris | Madrid | Amsterdam | Rome
  *  <Country>  -> France | Spain | Netherlands | Italy
  */
 public class Tokenizer {
