@@ -14,6 +14,20 @@ public class Phrase implements Serializable, Comparable<Phrase> {
     private Integer level;
     private Integer ID;
 
+    @Override
+    public String toString() {
+        return "Phrase{" +
+                "english='" + english + '\'' +
+                ", french='" + french + '\'' +
+                ", italian='" + italian + '\'' +
+                ", spanish='" + spanish + '\'' +
+                ", dutch='" + dutch + '\'' +
+                ", section='" + section + '\'' +
+                ", level=" + level +
+                ", ID=" + ID +
+                '}';
+    }
+
     public Phrase(String english, String french, String italian, String spanish, String dutch, String section, Integer level, Integer ID) {
         this.english = english;
         this.french = french;

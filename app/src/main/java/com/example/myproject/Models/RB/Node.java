@@ -1,5 +1,7 @@
 package com.example.myproject.Models.RB;
 
+import com.example.myproject.Models.Phrase;
+
 /**
  * Base class for node
  *
