@@ -16,7 +16,7 @@
         android:layout_marginBottom="204dp"
         android:background="#E15F8B"
         android:onClick="onButtonShowPopupWindowClick"
-        android:text="How to search?"
+        android:text="How to search ?"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/search"
