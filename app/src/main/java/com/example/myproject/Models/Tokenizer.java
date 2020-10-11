@@ -1,13 +1,13 @@
-package com.example.myproject;
-// G = <V_t,V_n,S,P>
-// G = <{n},{Country,Stay},{Exp},{(<User> -> Country; Ci; n Stay),(<Stay>  -> month | week | day),(<Country>  -> France | Spain | Netherlands | Italy)}
+package com.example.myproject.Models;
+// Grammar = <V_t,V_n,S,P>
+// G = <{n,Ci},{Country,Stay},{Exp},{(<User> -> Country; Ci; n Stay),(<Stay>  -> month | week | day),(<Country>  -> France | Spain | Netherlands | Italy)}
 // Stay = Length Of Stay
 // Ci = City
 // <User> -> Country; Ci; n Stay
 // <Stay>  -> month | week | day
 // <Country>  -> France | Spain | Netherlands | Italy
 public class Tokenizer {
-    private String _buffer;        //save text
+    private String _buffer;    //save text
     private Token current;    //save token extracted from next()
 
     /**
@@ -17,7 +17,7 @@ public class Tokenizer {
      */
     public Tokenizer(String text) {
         _buffer = text;        // save input text (string)
-        next();        // extracts the first token.
+        next();                // extracts the first token.
     }
 
     /**
@@ -33,27 +33,27 @@ public class Tokenizer {
 
 
         // TODO: Implement left derivation tokenizer for "Country" input.
-        // TODO: Implement left derivation tokenizer for "City" input.
+        // TODO: Implement left derivation tokenizer for "Ci" input.
         // TODO: Implement integer literal tokenising
-        // TODO: Implement left derivation tokenizer for "LegnthOfStay" input.
+        // TODO: Implement left derivation tokenizer for "Stay" input.
         char firstChar = _buffer.charAt(0);
-        if (firstChar == '+')
-            current = new Token("+", Token.Type.ADD);
-        if (firstChar == '-')
-            current = new Token("-", Token.Type.SUB);
+//        if (firstChar == '+')
+//            current = new Token("+", Token.Type.ADD);
+//        if (firstChar == '-')
+//            current = new Token("-", Token.Type.SUB);
+//        if (firstChar == '*') {
+//            current = new Token("*", Token.Type.MUL);
+//        }
+//        if (firstChar == '/') {
+//            current = new Token("/", Token.Type.DIV);
+//        }
+//        if (firstChar == '(') {
+//            current = new Token("(", Token.Type.LBRA);
+//        }
+//        if (firstChar == ')') {
+//            current = new Token(")", Token.Type.RBRA);
+//        }
         StringBuilder number = new StringBuilder();
-        if (firstChar == '*') {
-            current = new Token("*", Token.Type.MUL);
-        }
-        if (firstChar == '/') {
-            current = new Token("/", Token.Type.DIV);
-        }
-        if (firstChar == '(') {
-            current = new Token("(", Token.Type.LBRA);
-        }
-        if (firstChar == ')') {
-            current = new Token(")", Token.Type.RBRA);
-        }
         if (Character.isDigit(firstChar)) {
             number.append(firstChar);
             for (int i = 1; i < _buffer.length(); i++) {
