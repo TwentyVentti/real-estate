@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
         android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/citySelect"
+        app:layout_constraintBottom_toTopOf="@+id/citySelectEdit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -61,7 +61,7 @@
         app:srcCompat="@drawable/bar" />
 
     <EditText
-        android:id="@+id/citySelect"
+        android:id="@+id/citySelectEdit"
         android:layout_width="345dp"
         android:layout_height="27dp"
         android:layout_marginTop="20dp"
@@ -87,7 +87,7 @@
         app:layout_constraintBottom_toTopOf="@+id/imageView6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/citySelect" /><![CDATA[
+        app:layout_constraintTop_toBottomOf="@+id/citySelectEdit" /><![CDATA[
 
 
 
