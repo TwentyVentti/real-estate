@@ -1,6 +1,4 @@
-package com.example.myproject.Models;
-
-import java.util.BitSet;
+package com.example.myproject.Models.Parsing;
 
 /**
  * Name: Parser.java
