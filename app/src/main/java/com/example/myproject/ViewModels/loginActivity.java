@@ -37,7 +37,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         signin = (Button)findViewById(R.id.login_button);
         signin.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
-        forgotpassword = (TextView)findViewById(R.id.textView);
+        forgotpassword = (TextView)findViewById(R.id.emailText);
         forgotpassword.setOnClickListener(this);
 
     }
@@ -59,7 +59,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                 userLogin();
                 break;
 
-            case R.id.textView:
+            case R.id.emailText:
                 startActivity(new Intent(this,resetpasswordActivity.class));
                 break;
         }
