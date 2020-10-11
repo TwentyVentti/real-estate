@@ -30,38 +30,93 @@
             android:backgroundTint="#FFAEBC">
 
             <TextView
+                android:id="@+id/textView22"
+                android:layout_width="171dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:text="E.g: France; Paris; 3 days"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/layout_popup_butOne"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.21"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+            <TextView
                 android:id="@+id/textView20"
-                android:layout_width="174dp"
-                android:layout_height="30dp"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="33dp"
-                tools:layout_editor_absoluteY="300dp" />
+                android:layout_width="182dp"
+                android:layout_height="37dp"
+                android:layout_marginTop="10dp"
+                android:text="- Any number of Months, Weeks or Days"
+                app:layout_constraintBottom_toTopOf="@+id/textView22"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.226"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
             <TextView
                 android:id="@+id/textView21"
-                android:layout_width="53dp"
-                android:layout_height="20dp"
-                android:text="City"
+                android:layout_width="171dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="10dp"
+                android:text="Length of Stay"
                 android:textSize="18sp"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="270dp" />
+                app:layout_constraintBottom_toTopOf="@+id/textView20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.203"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="72dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:text="Country"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/textView13"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.123"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_popup_txtMessage"
+                app:layout_constraintVertical_bias="0.529" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="175dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="10dp"
+                android:text="- France, Italy, Spain, Netherlands"
+                app:layout_constraintBottom_toTopOf="@+id/textView19"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.209"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
             <TextView
                 android:id="@+id/textView18"
-                android:layout_width="174dp"
-                android:layout_height="30dp"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="33dp"
-                tools:layout_editor_absoluteY="210dp" />
+                android:layout_width="177dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
+                android:text="- Paris, Rome, Madrid, Amsterdam"
+                app:layout_constraintBottom_toTopOf="@+id/textView21"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.212"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
             <TextView
                 android:id="@+id/textView19"
                 android:layout_width="53dp"
                 android:layout_height="20dp"
+                android:layout_marginTop="10dp"
                 android:text="City"
                 android:textSize="18sp"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="180dp" />
+                app:layout_constraintBottom_toTopOf="@+id/textView18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.118"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <Button
                 android:id="@+id/layout_popup_butOne"
@@ -87,22 +142,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
 
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="72dp"
-                android:layout_height="25dp"
-                android:text="Country"
-                android:textSize="18sp"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="91dp" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="174dp"
-                android:layout_height="30dp"
-                android:text="- France, Italy, Spain, Netherlands"
-                tools:layout_editor_absoluteX="33dp"
-                tools:layout_editor_absoluteY="121dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
