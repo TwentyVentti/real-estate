@@ -2,8 +2,9 @@ package com.example.myproject.Models;
 
 
 import java.io.Serializable;
+import java.net.IDN;
 
-public class Phrase implements Serializable {
+public class Phrase implements Serializable, Comparable<Phrase> {
     private String english;
     private String french;
     private String italian;
@@ -11,8 +12,23 @@ public class Phrase implements Serializable {
     private String dutch;
     private String section;
     private Integer level;
+    private Integer ID;
 
-    public Phrase(String english, String french, String italian, String spanish, String dutch, String section, Integer level) {
+    @Override
+    public String toString() {
+        return "Phrase{" +
+                "english='" + english + '\'' +
+                ", french='" + french + '\'' +
+                ", italian='" + italian + '\'' +
+                ", spanish='" + spanish + '\'' +
+                ", dutch='" + dutch + '\'' +
+                ", section='" + section + '\'' +
+                ", level=" + level +
+                ", ID=" + ID +
+                '}';
+    }
+
+    public Phrase(String english, String french, String italian, String spanish, String dutch, String section, Integer level, Integer ID) {
         this.english = english;
         this.french = french;
         this.italian = italian;
@@ -20,6 +36,7 @@ public class Phrase implements Serializable {
         this.dutch = dutch;
         this.section = section;
         this.level = level;
+        this.ID = ID;
     }
 
     public String getEnglish() {
@@ -76,5 +93,18 @@ public class Phrase implements Serializable {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public Integer getID() {
+        return ID;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
+
+    @Override
+    public int compareTo(Phrase phrase) {
+        return 0;
     }
 }
