@@ -12,17 +12,14 @@
         android:layout_height="45dp"
         android:layout_marginStart="68dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="30dp"
         android:layout_marginBottom="90dp"
         android:background="#E15F8B"
         android:onClick="onButtonShowPopupWindowClick"
         android:text="How to search?"
         app:layout_constraintBottom_toTopOf="@+id/imageView6"
-        app:layout_constraintEnd_toStartOf="@+id/search"
-        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/citySelectEdit"
-        app:layout_constraintVertical_bias="0.888" />
+        app:layout_constraintVertical_bias="0.88" />
 
     <TextView
         android:id="@+id/textView6"
@@ -95,6 +92,7 @@
         android:id="@+id/search"
         android:layout_width="130dp"
         android:layout_height="45dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="68dp"
         android:layout_marginBottom="90dp"
@@ -103,8 +101,7 @@
         android:text="search"
         app:layout_constraintBottom_toTopOf="@+id/imageView6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.976"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/howToSearchButton"
         app:layout_constraintTop_toBottomOf="@+id/citySelectEdit" /><![CDATA[
 
 
