@@ -1,15 +1,6 @@
 package com.example.myproject;
 
 public class Tokenizer {
-    /**
-     * Name: Tokenizer.java
-     * <p>
-     * Remind:
-     * 1. Your job is to implement next() method.
-     * 2. Please do not modify anything else.
-     * 3. Check the correctness of implementation via "TokenizerTest.java" before the submission.
-     * 4. You may create additional fields or methods to finish your implementation.
-     */
     private String _buffer;        //save text
     private Token currentToken;    //save token extracted from next()
 
@@ -24,8 +15,7 @@ public class Tokenizer {
     }
 
     /**
-     * This function will find and extract a next token from {@code _buffer} and
-     * save the token to {@code currentToken}.
+     * TODO: Create comments and docstring for this method.
      */
     public void next() {
         _buffer = _buffer.trim(); // remove whitespace
@@ -35,17 +25,15 @@ public class Tokenizer {
             return;
         }
 
+
+        // TODO: Implement left derivation tokenizer for
+        // TODO: Implement left round bracket and right round bracket
+        // TODO: Implement integer literal tokenising
         char firstChar = _buffer.charAt(0);
         if (firstChar == '+')
             currentToken = new Token("+", Token.Type.ADD);
         if (firstChar == '-')
             currentToken = new Token("-", Token.Type.SUB);
-
-        // TODO: Implement multiplication and division tokenising
-        // TODO: Implement left round bracket and right round bracket
-        // TODO: Implement integer literal tokenising
-        // HINT: Character.isDigit() may be useful
-        // ########## YOUR CODE STARTS HERE ##########
         StringBuilder number = new StringBuilder();
         if (firstChar == '*') {
             currentToken = new Token("*", Token.Type.MUL);
@@ -71,8 +59,6 @@ public class Tokenizer {
             }
             currentToken = new Token(number.toString(), Token.Type.INT);
         }
-
-        // ########## YOUR CODE ENDS HERE ##########
 
         // Remove the extracted token from buffer
         int tokenLen = currentToken.token().length();
