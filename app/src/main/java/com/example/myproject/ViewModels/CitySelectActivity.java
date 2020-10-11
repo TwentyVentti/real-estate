@@ -1,4 +1,4 @@
-package com.example.myproject;
+package com.example.myproject.ViewModels;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.example.myproject.R;
 
 public class CitySelectActivity extends AppCompatActivity {
 

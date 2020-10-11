@@ -1,4 +1,4 @@
-package com.example.myproject;
+package com.example.myproject.ViewModels;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.myproject.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.core.utilities.Tree;
 

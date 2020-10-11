@@ -10,14 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".ViewModels.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".SearchActivity" />
-        <activity android:name=".resetpasswordActivity" />
-        <activity android:name=".registrationActivity" />
-        <activity android:name=".CitySelectActivity" />
-        <activity android:name=".loginActivity">
+        <activity android:name=".ViewModels.SearchActivity" />
+        <activity android:name=".ViewModels.resetpasswordActivity" />
+        <activity android:name=".ViewModels.registrationActivity" />
+        <activity android:name=".ViewModels.CitySelectActivity" />
+        <activity android:name=".ViewModels.loginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,18 +1,13 @@
-package com.example.myproject;
+package com.example.myproject.ViewModels;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 
-import com.example.myproject.ui.HomePage.HomePageViewModel;
-
-import java.util.ArrayList;
+import com.example.myproject.R;
 
 public class SearchActivity extends AppCompatActivity {
 
