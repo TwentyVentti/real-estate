@@ -43,3 +43,5 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
 
 }
+
+configurations { compile.exclude group: "junit", module: "junit" }
