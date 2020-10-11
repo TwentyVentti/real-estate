@@ -80,16 +80,15 @@ public class RBTree<T extends Comparable<T>> {
 			if (uncle.colour == Colour.RED) {
 				// Case 1: Recolour
 				// TODO: Implement this part
-				// ########## YOUR CODE STARTS HERE ##########
 				x.parent.colour = Colour.BLACK;
 				x.parent.parent.colour = Colour.RED;
 				uncle.colour = Colour.BLACK;
-				// ########## YOUR CODE ENDS HERE ##########
 				// Check if violated further up the tree
 				x = x.parent.parent;
 			} else {
 				if (x.value == (left ? x.parent.right.value : x.parent.left.value)) {
-					// Case 2: Left Rotation, uncle is right node, x is on the right / Right Rotation, uncle is left node, x is on the left
+
+				// Case 2: Left Rotation, uncle is right node, x is on the right / Right Rotation, uncle is left node, x is on the left
 					x = x.parent;
 					if (left) {
 						// Perform left rotation
@@ -99,14 +98,11 @@ public class RBTree<T extends Comparable<T>> {
 					} else {
 						// This is part of the "then" clause where left and right are swapped
 						// Perform right rotation
-						// TODO: Implement this part
-						// ########## YOUR CODE STARTS HERE ##########
 
 						if (x.value == root.value) {
 							root = x.left;
 						}
 						rotateRight(x);
-						// ########## YOUR CODE ENDS HERE ##########
 					}
 				}
 				// Adjust colours to ensure correctness after rotation
@@ -114,27 +110,21 @@ public class RBTree<T extends Comparable<T>> {
 				x.parent.parent.colour = Colour.RED;
 
 				// Case 3 : Right Rotation, uncle is right node, x is on the left / Left Rotation, uncle is left node, x is on the right
-				// TODO: Complete this part
 				if (left) {
 					// Perform right rotation
-					// ########## YOUR CODE STARTS HERE ##########
 					x = x.parent.parent;
 					if (x.value == root.value) {
 						root = x.left;
 					}
 					rotateRight(x);
-
-					// ########## YOUR CODE ENDS HERE ##########
 				} else {
 					// This is part of the "then" clause where left and right are swapped
 					// Perform left rotation
-					// ########## YOUR CODE STARTS HERE ##########
 					x = x.parent.parent;
 					if (x.value == root.value) {
 						root = x.right;
 					}
 					rotateLeft(x);
-					// ########## YOUR CODE ENDS HERE ##########
 				}
 			}
 		}
