@@ -65,7 +65,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="131dp"
         android:layout_marginEnd="131dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="31dp"
         android:background="#E15F8B"
         android:text="Register"
         android:textColor="#FFFFFF"
