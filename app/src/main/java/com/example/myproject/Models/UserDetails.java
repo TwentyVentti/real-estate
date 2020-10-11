@@ -1,12 +1,12 @@
 package com.example.myproject.Models;
 
-public class User {
+public class UserDetails {
     public String name;
     public String age;
     public String email;
     public String password;
 
-    public User(String name, String age, String email, String password){
+    public UserDetails(String name, String age, String email, String password){
         this.name = name;
         this.age = age;
         this.email = email;
