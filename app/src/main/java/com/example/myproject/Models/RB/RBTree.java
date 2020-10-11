@@ -1,15 +1,5 @@
 package com.example.myproject.Models.RB;
 
-import com.example.myproject.Models.Phrase;
-
-import java.io.FileReader;
-import java.lang.reflect.Type;
-import java.util.List;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
 /**
  * Skeleton code for Red Black Tree
  *
@@ -258,18 +248,4 @@ public class RBTree<T extends Comparable<T>> {
 		return find(root, key);
 	}
 
-	public RBTree<Phrase> loadData(String filePath) {
-		Gson gson = new Gson();
-		JsonReader jsonReader = null;
-
-		final Type CUS_LIST_TYPE = new TypeToken<List<Phrase>>() {}.getType();
-		//or TypeToken.getParameterized(ArrayList.class, PersonJSON.class).getType();
-
-		try{
-			jsonReader = new JsonReader(new FileReader(filePath));
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return gson.fromJson(jsonReader, CUS_LIST_TYPE);
-	}
 }
