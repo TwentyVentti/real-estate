@@ -3,8 +3,9 @@ package com.example.myproject.Models;
 
 import java.io.Serializable;
 import java.net.IDN;
+import java.util.ArrayList;
 
-public class Phrase implements Serializable, Comparable<Phrase> {
+public class Phrase implements Serializable{
     private String english;
     private String french;
     private String italian;
@@ -103,8 +104,12 @@ public class Phrase implements Serializable, Comparable<Phrase> {
         this.ID = ID;
     }
 
-    @Override
-    public int compareTo(Phrase phrase) {
-        return 0;
+
+    public ArrayList<Phrase> getFromJson(){
+
+
+        return new ArrayList<>();
+
     }
+
 }
