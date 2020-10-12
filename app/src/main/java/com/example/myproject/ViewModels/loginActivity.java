@@ -40,6 +40,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -51,10 +52,11 @@ import java.util.concurrent.Phaser;
 public class loginActivity extends AppCompatActivity implements View.OnClickListener {
     EditText emailText;
     EditText passwordText;
-    Button register,signin;
+    Button register,signin,guest;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
     TextView forgotpassword;
+    public static final String a = "a";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +70,15 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         mAuth = FirebaseAuth.getInstance();
         forgotpassword = (TextView)findViewById(R.id.textView);
         forgotpassword.setOnClickListener(this);
+        guest = (Button)findViewById(R.id.guest_user_button);
+
 
     }
 
     public void registerUser(View v) {
         Intent intent1 = new Intent(loginActivity.this, registrationActivity.class);
         startActivityForResult(intent1,1);
+
     }
 
     public String loadJSONFromAsset() {
@@ -95,8 +100,9 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     public void guestSessionClicked(View v) throws IOException {
         Intent intent = new Intent(loginActivity.this, SearchActivity.class);
         System.out.println(loadJSONFromAsset());
-
+        intent.putExtra("but",1);
         startActivityForResult(intent,1);
+
     }
     @RequiresApi(api = Build.VERSION_CODES.N)
     public List<Phrase> getFromJson() throws IOException {
@@ -146,6 +152,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.textView:
                 startActivity(new Intent(this,resetpasswordActivity.class));
                 break;
+
         }
 
     }

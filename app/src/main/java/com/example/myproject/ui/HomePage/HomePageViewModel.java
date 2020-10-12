@@ -2,6 +2,7 @@ package com.example.myproject.ui.HomePage;
 
 import android.content.Intent;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -17,11 +18,12 @@ public class HomePageViewModel extends ViewModel {
     public HomePageViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is home ");
-
-
     }
 
     public LiveData<String> getText() {
         return mText;
     }
+
+
+
 }

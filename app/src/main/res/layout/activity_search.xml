@@ -13,7 +13,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="204dp"
+        android:layout_marginBottom="135dp"
         android:background="#E15F8B"
         android:onClick="onButtonShowPopupWindowClick"
         android:text="How to search ?"
@@ -42,11 +42,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="142dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="142dp"
-        android:layout_marginBottom="88dp"
-        app:layout_constraintBottom_toTopOf="@+id/citySelectEdit"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView15"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:srcCompat="@drawable/logo" />
@@ -69,17 +70,17 @@
         android:layout_width="340dp"
         android:layout_height="59dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="36dp"
         android:background="@drawable/edittextstyle"
         android:gravity="center"
         android:hint="Search your city"
-        android:textColorHint="#E15F8B"
         android:textAllCaps="false"
+        android:textColorHint="#E15F8B"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <Button
         android:id="@+id/search"
@@ -87,7 +88,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="204dp"
+        android:layout_marginBottom="135dp"
         android:background="#E15F8B"
         android:onClick="searchClicked"
         android:text="search"
@@ -95,7 +96,38 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/howToSearchButton"
-        app:layout_constraintTop_toBottomOf="@+id/citySelectEdit" /><![CDATA[
+        app:layout_constraintTop_toBottomOf="@+id/citySelectEdit" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="88dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="131dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="60dp"
+        android:text="Welcome  "
+        android:textColor="#E15F8B"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/citySelectEdit"
+        app:layout_constraintEnd_toStartOf="@+id/textView16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+    <TextView
+        android:id="@+id/user"
+        android:layout_width="88dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="131dp"
+        android:layout_marginBottom="60dp"
+        android:textColor="#E15F8B"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/citySelectEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" /><![CDATA[
 
 
 

@@ -13,6 +13,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myproject.R;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class HomePageFragment extends Fragment {
@@ -27,5 +31,9 @@ public class HomePageFragment extends Fragment {
         HomePageViewModel homePageViewModel = ViewModelProviders.of(this).get(HomePageViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         return root;
+
+
     }
+
+
 }
