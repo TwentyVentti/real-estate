@@ -66,22 +66,20 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<String> getUserSelectionFromEdit(){
         ArrayList<String> editText = new ArrayList<>(Arrays.asList(userDetails.split(";")));
         ArrayList<String> inferedSelection = new ArrayList<>();
-        String country = editText.get(0);
-        switch (country.toUpperCase()){
-            case "FRANCE":
-                inferedSelection.add("French");
-                break;
-            case "ITALY":
-                inferedSelection.add("Italian");
-                break;
-            case "NETHERLANDS":
-                inferedSelection.add("Dutch");
-                break;
-            case "SPAIN":
-                inferedSelection.add("Spanish");
-                break;
-            default:
-                break;
+        String country = editText.get(0).toUpperCase();
+        if (country.equals("FRANCE")){
+            inferedSelection.add("French");
+        }
+        else if (country.equals("ITALY")){
+            inferedSelection.add("Italian");
+        }
+        else if (country.equals("NETHERLANDS")){
+            inferedSelection.add("Dutch");
+        }
+        else if (country.equals("SPAIN")){
+            inferedSelection.add("Spanish");
+        }
+        else {
         }
         inferedSelection.add(editText.get(1));
         levelFromDuration(editText.get(2));

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -37,6 +38,7 @@ public class SearchActivity extends AppCompatActivity {
     private FirebaseUser user;
     private DatabaseReference ref;
     private String ID;
+
 
     EditText inputText;
     @Override
@@ -87,21 +89,25 @@ public class SearchActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void onButtonShowPopupWindowClick(View view) {
-        ShowPopup("For the moment only these options are available --");
+        Resources RESOURCES = this.getResources();
+        Object SYSTEM_SERVICE = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        PopupWindow POPUP = new PopupWindow(this);
+        ShowPopup("For the moment only these options are available --", RESOURCES,SYSTEM_SERVICE, POPUP);
     }
-    private PopupWindow POPUP_WINDOW_SCORE = null;
-    private void ShowPopup(String message)
+    public static PopupWindow POPUP_WINDOW_SCORE = null;
+
+    public static void ShowPopup(String message, Resources resources, Object systemService,PopupWindow popUp )
     {
-        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
         // Inflate the popup_layout.xml
-        LayoutInflater layoutInflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = (LayoutInflater) systemService;
         View layout = layoutInflater.inflate(R.layout.popup_window, null);
 
         // Creating the PopupWindow
-        POPUP_WINDOW_SCORE = new PopupWindow(this);
+        POPUP_WINDOW_SCORE = popUp;
         POPUP_WINDOW_SCORE.setContentView(layout);
         POPUP_WINDOW_SCORE.setWidth(width);
         POPUP_WINDOW_SCORE.setHeight(height);

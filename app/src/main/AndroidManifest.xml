@@ -16,7 +16,6 @@
         <activity android:name=".ViewModels.SearchActivity" />
         <activity android:name=".ViewModels.resetpasswordActivity" />
         <activity android:name=".ViewModels.registrationActivity" />
-        <activity android:name=".ViewModels.CitySelectActivity" />
         <activity android:name=".ViewModels.loginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
