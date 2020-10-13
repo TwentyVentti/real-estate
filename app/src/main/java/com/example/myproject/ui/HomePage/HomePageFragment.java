@@ -13,19 +13,17 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myproject.R;
+import com.example.myproject.ViewModels.MainActivity;
 
-import org.json.JSONException;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class HomePageFragment extends Fragment {
-
-    ArrayAdapter<String> adapter;
+    ArrayAdapter<String> arrayAdapter;
     ListView listView;
-    ArrayList<String> arrayList;
+    ArrayList<String> sections;
     View.OnClickListener clickListener;
+    ArrayList<String> userSelectionFromEdit = MainActivity.getUserSelectionFromEdit();
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -33,12 +31,21 @@ public class HomePageFragment extends Fragment {
         HomePageViewModel homePageViewModel = ViewModelProviders.of(this).get(HomePageViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         listView = (ListView)root.findViewById(R.id.sectionListView);
+
+        sections = MainActivity.getUserSelectionFromEdit();
+
+        arrayAdapter = new ArrayAdapter<>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1, sections);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             }
         });
         return root;
+    }
+
+    public static ArrayList<String> getSections(){
+
+        return new ArrayList<>();
     }
 
 
