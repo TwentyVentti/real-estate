@@ -126,7 +126,11 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     public void guestSessionClicked(View v) throws IOException {
         Intent intent = new Intent(loginActivity.this, SearchActivity.class);
         System.out.println("JSON ARRAY PHRASES:");
-        Collections.singletonList(ObjectFromJSON());
+        ArrayList<HashMap<Integer,Phrase>> phraseHash = ObjectFromJSON();
+        for (int i = 0; i <2; i++) {
+            HashMap<Integer,Phrase> hashMap = phraseHash.get(i);
+        }
+
         intent.putExtra("but",1);
         startActivityForResult(intent,1);
 
