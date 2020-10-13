@@ -8,11 +8,6 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
 
-    <string-array name="names">
-        <item>____________Select Your Country____________</item>
-        <item> France </item>
-        <item> Spain </item>
-    </string-array>
     <string name="title_phrase_list">Phrases</string>
     <string name="title_phrase_detail">Phrase Detail</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -21,8 +16,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
     <string name="menu_home">Home</string>
+
     <string name="menu_around_town">Around Town</string>
     <string name="menu_arriving_dest">Arriving at Dest</string>
     <string name="menu_at_customs">At Customs</string>
@@ -41,4 +36,10 @@
     <string name="search_your_city">Search your city</string>
     <string name="how_to_search">How to search ?</string>
     <string name="lingo">lingo</string>
+    <string name="google_map_key">AIzaSyCFeVEs1n24pffvedWoXsAaRxcVjPqNes8</string>
+    <string-array name="names">
+        <item>____________Select Your Country____________</item>
+        <item> France </item>
+        <item> Spain </item>
+    </string-array>
 </resources>
