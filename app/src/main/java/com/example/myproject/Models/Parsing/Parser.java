@@ -1,24 +1,34 @@
 package com.example.myproject.Models.Parsing;
 
+import java.util.ArrayList;
+
 /**
  * Name: Parser.java
  *
  *  The main objective of this class is to implement a simple parser.
  *  It should be able to parser the following grammar rule:
- *  <User>     -> Country; City; n Stay
+ *  <User>     -> <Country>; <City>; Int <Stay>
+ *  <Country>  -> France | Spain | Netherlands | Italy
  *  <Stay>     -> month | week | day
  *  <City>     -> Paris | Madrid | Amsterdam | Rome
- *  <Country>  -> France | Spain | Netherlands | Italy
  *
  */
 public class Parser {
 
     Tokenizer _tokenizer;
+    ArrayList<String> selected;
 
     public Parser(Tokenizer tokenizer) {
         _tokenizer = tokenizer;
     }
+    /**
+     * <User> -> Country; City; n Stay
+     */
+    public Exp parseUser() {
+        //Case 1: Country; City; n Stay
 
+        return null;
+    }
     /**
     * <User> -> Country; City; n Stay
      */
