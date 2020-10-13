@@ -5,12 +5,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
-import android.content.res.AssetManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.JsonReader;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -19,8 +16,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myproject.Models.DeserializingJSON.Converter;
-import com.example.myproject.Models.DeserializingJSON.LastTry;
 import com.example.myproject.Models.Phrase;
 import com.example.myproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,15 +34,11 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.Phaser;
 
 public class loginActivity extends AppCompatActivity implements View.OnClickListener {
     EditText emailText;
@@ -80,7 +71,42 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         startActivityForResult(intent1,1);
 
     }
+    public ArrayList<HashMap<Integer,Phrase>> ObjectFromJSON() throws IOException{
+        ArrayList<HashMap<Integer, Phrase>> phraseListHashMap = new ArrayList<HashMap<Integer, Phrase>>();
+        try {
+            JSONObject obj = new JSONObject(loadJSONFromAsset());
 
+            JSONArray outerNames = obj.names();
+            JSONArray outerValues = obj.toJSONArray(outerNames);
+            assert outerValues != null;
+            JSONObject innerObj = ((JSONObject) outerValues.get(0));
+            JSONArray innerNames = innerObj.names();
+            JSONArray innerValues = innerObj.toJSONArray(innerNames);
+//            JSONArray sections = (JSONObject) values.getJSONObject(0).toJSONArray();
+//            Object town = sections.getString("Around_Town");
+            for (int i = 0; i < innerNames.length(); i++) {
+                JSONArray sectionArray = innerObj.getJSONArray((String) innerNames.get(i));
+                HashMap<Integer, Phrase> sectionHash = new HashMap<Integer, Phrase>();
+                for (int j = 0; j < sectionArray.length(); j++) {
+                    JSONObject phraseObject = sectionArray.getJSONObject(j);
+                    String dutch = phraseObject.getString("dutch");
+                    String english = phraseObject.getString("english");
+                    String french = phraseObject.getString("french");
+                    String italian = phraseObject.getString("italian");
+                    String spanish = phraseObject.getString("spanish");
+                    String section = phraseObject.getString("section");
+                    int id = phraseObject.getInt("id");
+                    int level = phraseObject.getInt("level");
+                    Phrase phrase = new Phrase(english,french,italian,spanish,dutch,section,level,id);
+                    sectionHash.put(j,phrase);
+                }
+                phraseListHashMap.add(sectionHash);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return phraseListHashMap;
+    }
     public String loadJSONFromAsset() {
         String json = null;
         try {
@@ -99,7 +125,8 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void guestSessionClicked(View v) throws IOException {
         Intent intent = new Intent(loginActivity.this, SearchActivity.class);
-        System.out.println(loadJSONFromAsset());
+        System.out.println("JSON ARRAY PHRASES:");
+        Collections.singletonList(ObjectFromJSON());
         intent.putExtra("but",1);
         startActivityForResult(intent,1);
 

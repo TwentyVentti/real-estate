@@ -1,31 +1,7 @@
 package com.example.myproject.Models;
 
 
-import android.content.res.AssetManager;
-import android.os.Build;
-import android.util.JsonReader;
-
-import androidx.annotation.RequiresApi;
-
-import com.example.myproject.Models.DeserializingJSON.Phrases;
-import com.example.myproject.Models.Parsing.Token;
-import com.fasterxml.jackson.core.JsonParser;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.lang.reflect.Type;
-import java.net.IDN;
-import java.util.ArrayList;
-import java.util.List;
-
-import bsh.Variable;
 
 public class Phrase implements Serializable{
     private String english;
