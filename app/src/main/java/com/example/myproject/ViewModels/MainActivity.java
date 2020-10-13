@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 .setDrawerLayout(drawer)
                 .build();
         userDetails = getIntent().getStringExtra("UD");
+//        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_home);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -64,31 +66,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static ArrayList<String> getUserSelectionFromEdit(){
-        ArrayList<String> editText = new ArrayList<>(Arrays.asList(userDetails.split(";")));
         ArrayList<String> inferedSelection = new ArrayList<>();
-        String country = editText.get(0).toUpperCase();
-        if (country.equals("FRANCE")){
-            inferedSelection.add("French");
-        }
-        else if (country.equals("ITALY")){
-            inferedSelection.add("Italian");
-        }
-        else if (country.equals("NETHERLANDS")){
-            inferedSelection.add("Dutch");
-        }
-        else if (country.equals("SPAIN")){
-            inferedSelection.add("Spanish");
-        }
-        else {
-        }
-        inferedSelection.add(editText.get(1));
-        levelFromDuration(editText.get(2));
+        if (userDetails!=null){
+            try{
 
+                ArrayList<String> editText = new ArrayList<>(Arrays.asList(userDetails.split(";")));
+                String country = editText.get(0).toUpperCase();
+                if (country.equals("FRANCE")){
+                    inferedSelection.add("French");
+                }
+                else if (country.equals("ITALY")){
+                    inferedSelection.add("Italian");
+                }
+                else if (country.equals("NETHERLANDS")){
+                    inferedSelection.add("Dutch");
+                }
+                else if (country.equals("SPAIN")){
+                    inferedSelection.add("Spanish");
+                }
+                inferedSelection.add(editText.get(1));
+                inferedSelection.add(Integer.toString(levelFromDuration(editText.get(2))));
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
         return inferedSelection;
     }
 
     public static int levelFromDuration(String duration){
         char firstChar = duration.charAt(0);
+        String unitOfTime = "";
+        int totalDays = 0;
         StringBuilder number = new StringBuilder();
         if (Character.isDigit(duration.charAt(0))) {
             number.append(firstChar);
@@ -96,10 +104,28 @@ public class MainActivity extends AppCompatActivity {
                 if (Character.isDigit(duration.charAt(i))) {
                     number.append(duration.charAt(i));
                 } else {
-                    break;
+                    unitOfTime = duration.substring(i).toUpperCase();
                 }
             }
         }
-        return 1;
+
+        if (unitOfTime.equals("DAY")||unitOfTime.equals("DAYS")){
+            totalDays = Integer.parseInt(number.toString());
+        }
+        else if (unitOfTime.equals("WEEK")||unitOfTime.equals("WEEKS")){
+            totalDays = Integer.parseInt(number.toString())*7;
+        }
+        else if (unitOfTime.equals("MONTH")||unitOfTime.equals("MONTHS")){
+            totalDays = Integer.parseInt(number.toString())*30;
+        }
+        int level = 0;
+        if (totalDays<=7){
+            level = 1;
+        } else if (totalDays<=14){
+            level = 2;
+        } else if (totalDays<=30){
+            level =3;
+        }
+        return level;
     }
 }

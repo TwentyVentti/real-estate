@@ -1,6 +1,7 @@
 package com.example.myproject.ui.HomePage;
 
 import android.content.Intent;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -17,15 +18,15 @@ import static com.example.myproject.ViewModels.MainActivity.getUserSelectionFrom
 import static com.example.myproject.ViewModels.MainActivity.userDetails;
 
 public class HomePageViewModel extends ViewModel {
-
-    Random random = new Random();
-    int LEVEL = random.nextInt(3);
     private MutableLiveData<String> mText;
+    private TextView testTextView;
 
     public HomePageViewModel() {
         mText = new MutableLiveData<>();
-        ArrayList<String> editText = MainActivity.getUserSelectionFromEdit();
-        mText.setValue(editText.get(1));
+//        testTextView = (TextView)
+//        ArrayList<String> editText = MainActivity.getUserSelectionFromEdit();
+        mText.setValue("editText.get(1)");
+
 
     }
 
