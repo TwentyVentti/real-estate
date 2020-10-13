@@ -47,8 +47,12 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     FirebaseAuth mAuth;
     ProgressBar progressBar;
     TextView forgotpassword;
+    String LEVEL_1 = "Level 1";
+    String LEVEL_2 = "Level 2";
+    String LEVEL_3 = "Level 3";
+    String LEVEL_4 = "Level 4";
     public static final String a = "a";
-    public static ArrayList<HashMap<Integer,Phrase>> phraseListHash;
+    public static HashMap<String,HashMap<String,ArrayList<Phrase>>> phraseListHash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +79,17 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         startActivityForResult(intent1,1);
 
     }
-    public ArrayList<HashMap<Integer,Phrase>> ObjectFromJSON() throws IOException{
-        ArrayList<HashMap<Integer, Phrase>> phraseListHashMap = new ArrayList<HashMap<Integer, Phrase>>();
+/*
+Level 1:
+    Around town:
+    Greetings
+Level 2:
+    At the restaurant:
+
+ */
+    public HashMap<String,HashMap<String,ArrayList<Phrase>>>ObjectFromJSON() throws IOException{
+//        ArrayList<HashMap<Integer, Phrase>> phraseListHashMap = new ArrayList<HashMap<Integer, Phrase>>();
+        HashMap<String,HashMap<String,ArrayList<Phrase>>> listHashMap = new HashMap<>();
         try {
             JSONObject obj = new JSONObject(loadJSONFromAsset());
 
@@ -86,9 +99,12 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             JSONObject innerObj = ((JSONObject) outerValues.get(0));
             JSONArray innerNames = innerObj.names();
             assert innerNames != null;
+
             for (int i = 0; i < innerNames.length(); i++) {
                 JSONArray sectionArray = innerObj.getJSONArray((String) innerNames.get(i));
-                HashMap<Integer, Phrase> sectionHash = new HashMap<Integer, Phrase>();
+                HashMap<String,ArrayList<Phrase>> innerHashMap = new HashMap<>();
+                ArrayList<Phrase> innerPhraseArrayList = new ArrayList<>();
+                int level = 0;
                 for (int j = 0; j < sectionArray.length(); j++) {
                     JSONObject phraseObject = sectionArray.getJSONObject(j);
                     String dutch = phraseObject.getString("dutch");
@@ -98,16 +114,41 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                     String spanish = phraseObject.getString("spanish");
                     String section = phraseObject.getString("section");
                     int id = phraseObject.getInt("id");
-                    int level = phraseObject.getInt("level");
+                    level = phraseObject.getInt("level");
                     Phrase phrase = new Phrase(english,french,italian,spanish,dutch,section,level,id);
-                    sectionHash.put(j,phrase);
+                    innerPhraseArrayList.add(phrase);
+//                    sectionHash.put(j,phrase);
+                    int x = 0;
                 }
-                phraseListHashMap.add(sectionHash);
+                String sectionName = (String)innerNames.get(i);
+                innerHashMap.put(sectionName,innerPhraseArrayList);
+
+//                switch (level){
+//                    case 1:
+//                        innerHashMap.put(sectionName,innerPhraseArrayList);
+//                        break;
+//
+//                    case 2:
+//                        innerHashMap.put(sectionName,innerPhraseArrayList);
+//                        break;
+//
+//                    case 3:
+//                        innerHashMap.put(sectionName,innerPhraseArrayList);
+//                        break;
+//
+//                    case 4:
+//                        innerHashMap.put(sectionName,innerPhraseArrayList);
+//                        break;
+//                    default:
+//                        break;
+//                }
+//                listHashMap.put((String)innerNames.get(i),innerPhraseArrayList);
+//                phraseListHashMap.add(sectionHash);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return phraseListHashMap;
+        return listHashMap;
     }
 
     public String loadJSONFromAsset() {

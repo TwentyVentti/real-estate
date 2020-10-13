@@ -59,10 +59,10 @@ public class HomePageFragment extends Fragment {
 
     public ArrayList<String> getSections(){
         ArrayList<String> sections = new ArrayList<>();
-        ArrayList<HashMap<Integer, Phrase>> phraseHash = loginActivity.phraseListHash;
-        for (int i = 0; i < phraseHash.size(); i++) {
-//            String section = phraseHash.get(i);
-        }
+//        HashMap<String,ArrayList<Phrase>> phraseHash = loginActivity.phraseListHash;
+//        for (int i = 0; i < phraseHash.size(); i++) {
+//            String section = phraseHash.get()
+//        }
         return new ArrayList<>();
     }
 
