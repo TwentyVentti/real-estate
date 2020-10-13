@@ -57,6 +57,7 @@ public class JsonParsermap {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         return  parseJsonArray(jsonArray);
     }
 
