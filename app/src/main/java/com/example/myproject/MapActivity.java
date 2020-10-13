@@ -24,6 +24,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.JsonParser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,6 +32,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.List;
 
 public class MapActivity extends AppCompatActivity {
 
@@ -134,13 +137,18 @@ public class MapActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
-
+            String data = null;
             try {
-                String data = downloadUrl(strings[0]);
+                data = downloadUrl(strings[0]);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return null;
+            return data;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            new ParserTask().execute(s);
         }
     }
 
@@ -164,5 +172,15 @@ public class MapActivity extends AppCompatActivity {
         String data = builder.toString();
         reader.close();
         return data;
+    }
+
+    private class  ParserTask extends AsyncTask<String,Integer, List<HashMap<String,String >>>{
+
+        @Override
+        protected List<HashMap<String, String>> doInBackground(String... strings) {
+            JsonParsermap jsonParsermap = new JsonParsermap();
+             
+            return null;
+        }
     }
 }
