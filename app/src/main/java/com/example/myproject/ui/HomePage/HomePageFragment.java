@@ -12,17 +12,20 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.myproject.Models.Phrase;
+import com.example.myproject.Models.User;
 import com.example.myproject.R;
 import com.example.myproject.ViewModels.MainActivity;
 import com.example.myproject.ViewModels.loginActivity;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class HomePageFragment extends Fragment {
-    ArrayAdapter<String> arrayAdapter;
-    ListView listView;
-    ArrayList<String> sections;
-    View.OnClickListener clickListener;
-    ArrayList<String> USER_SELECTION = MainActivity.getUserSelectionFromEdit();
+    public ArrayAdapter<String> arrayAdapter;
+    public ListView listView;
+    public ArrayList<String> sections;
+    public View.OnClickListener clickListener;
+    public User USER_SELECTION = MainActivity.user;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -30,9 +33,7 @@ public class HomePageFragment extends Fragment {
         HomePageViewModel homePageViewModel = ViewModelProviders.of(this).get(HomePageViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         listView = (ListView)root.findViewById(R.id.sectionListView);
-
         sections = MainActivity.getUserSelectionFromEdit();
-
         try {
             if (getActivity()!=null)
                 arrayAdapter = new ArrayAdapter<>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1, sections);
@@ -45,6 +46,7 @@ public class HomePageFragment extends Fragment {
             System.err.println("GENERAL EXCEPTION: ARRAY ADAPTER APPLICATION CONTEXT");
             ex.printStackTrace();
         }
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -53,7 +55,14 @@ public class HomePageFragment extends Fragment {
         return root;
     }
 
+
+
     public ArrayList<String> getSections(){
+        ArrayList<String> sections = new ArrayList<>();
+        ArrayList<HashMap<Integer, Phrase>> phraseHash = loginActivity.phraseListHash;
+        for (int i = 0; i < phraseHash.size(); i++) {
+//            String section = phraseHash.get(i);
+        }
         return new ArrayList<>();
     }
 

@@ -26,6 +26,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     public static String userDetails;
+    public static User user;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -76,24 +77,40 @@ public class User {
  */
     public static ArrayList<String> getUserSelectionFromEdit(){
         ArrayList<String> inferedSelection = new ArrayList<>();
-        User user;
         if (userDetails!=null){
             try{
                 ArrayList<String> editText = new ArrayList<>(Arrays.asList(userDetails.split(";")));
                 String country = editText.get(0).toUpperCase();
+                // Assigning the country to the static user object
+                // Adding the raw entries to the ArrayList if they match any countries we offer
                 if (country.equals("FRANCE")){
                     inferedSelection.add("French");
+                    user.setCountry("France");
+                    user.setLanguage("French");
                 }
                 else if (country.equals("ITALY")){
                     inferedSelection.add("Italian");
+                    user.setCountry("France");
+                    user.setLanguage("Italian");
                 }
                 else if (country.equals("NETHERLANDS")){
                     inferedSelection.add("Dutch");
+                    user.setCountry("Netherlands");
+                    user.setLanguage("Dutch");
                 }
                 else if (country.equals("SPAIN")){
                     inferedSelection.add("Spanish");
+                    user.setCountry("Spain");
+                    user.setLanguage("Spanish");
                 }
+                // Adding the city attribute
+                user.setCity(editText.get(1));
+
+                // Adding the city attribute to the arraylist
                 inferedSelection.add(editText.get(1));
+                int level = levelFromDuration(editText.get(2));
+                user.setLevel(level);
+                user.setDuration(Integer.parseInt(editText.get(2)));
                 inferedSelection.add(Integer.toString(levelFromDuration(editText.get(2))));
             }catch (Exception ex){
                 ex.printStackTrace();

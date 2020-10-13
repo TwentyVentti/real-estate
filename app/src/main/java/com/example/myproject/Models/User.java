@@ -7,7 +7,7 @@ public class User {
     private Integer duration;
     private String country;
 
-    public User(String language, Integer level, String city, Integer duration, String country) {
+    public User() {
         this.language = language;
         this.level = level;
         this.city = city;
