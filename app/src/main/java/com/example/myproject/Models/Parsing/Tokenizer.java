@@ -1,6 +1,10 @@
 package com.example.myproject.Models.Parsing;
 
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  *  Grammar = <V_t,V_n,S,P>
  *  G = <{n,Ci},{Country,Stay},{Exp},{(<User> -> Country; Ci; n Stay),(<Stay>  -> month | week | day),(<Country>  -> France | Spain | Netherlands | Italy)}
@@ -14,6 +18,10 @@ package com.example.myproject.Models.Parsing;
 public class Tokenizer {
     private String _buffer;    //save text
     private Token current;    //save token extracted from next()
+    final ArrayList<String> COUNTRIES = new ArrayList<>(Arrays.asList("France","Spain","Netherlands","Italy"));
+    final ArrayList<String> CITIES = new ArrayList<>(Arrays.asList("Paris","Madrid","Amsterdam","Rome"));
+    final ArrayList<String> DURATIONS = new ArrayList<>(Arrays.asList("Month","Week","Day"));
+
 
     /**
      * Tokenizer class constructor
@@ -70,9 +78,34 @@ public class Tokenizer {
         _buffer = _buffer.substring(tokenLen);
     }
 
-    public String wrongSpellingCheck(String word){
-        return "";
+    public Token misspelledCountry(String word){
+        switch (word.toUpperCase()){
+            case "FRANCE":
+                return new Token("French", Token.Type.FRENCH);
+            case "ITALY":
+                return new Token("Italian", Token.Type.ITALIAN);
+            case "NETHERLANDS":
+                return new Token("Dutch", Token.Type.DUTCH);
+            case "SPAIN":
+                return new Token("Spanish", Token.Type.SPANISH);
+        }
+        int equalLetters = 0;
+//        for (int i = 0; i < COUNTRIES.size(); i++) {
+//            char[] x = COUNTRIES.get(i).toCharArray();
+//            ArrayList<Character> countryCharArray = new ArrayList<Character>(Arrays.asList());
+//            for (char letter : word.toCharArray()) {
+//                if (countryCharArray)
+//            }
+//
+//        }
+        return null;
     }
+//    public Token misspelledCity(String word){
+//        return null;
+//    }
+//    public Token misspelledDuration(String word){
+//        return null;
+//    }
     /**
      * @return type: Token
      */
