@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> inferedSelection = new ArrayList<>();
         if (userDetails!=null){
             try{
-
                 ArrayList<String> editText = new ArrayList<>(Arrays.asList(userDetails.split(";")));
                 String country = editText.get(0).toUpperCase();
                 if (country.equals("FRANCE")){
