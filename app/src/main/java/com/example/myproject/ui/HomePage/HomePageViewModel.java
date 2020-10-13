@@ -7,7 +7,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
+
+import static com.example.myproject.ViewModels.MainActivity.userDetails;
 
 public class HomePageViewModel extends ViewModel {
 
@@ -18,6 +22,7 @@ public class HomePageViewModel extends ViewModel {
     public HomePageViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is home ");
+
     }
 
     public LiveData<String> getText() {

@@ -13,12 +13,17 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.myproject.Models.Parsing.Token;
 import com.example.myproject.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.core.utilities.Tree;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class MainActivity extends AppCompatActivity {
+    public static String userDetails;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -41,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        Intent intent = getIntent();
+        String editTextSearch = getIntent().getStringExtra("UserDetails");
+        userDetails = editTextSearch;
     }
 
     @Override
@@ -56,5 +62,26 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public static ArrayList<String> getUserSelectionFromEdit(){
+        ArrayList<String> editText = new ArrayList<>(Arrays.asList(userDetails.split(";")));
+        ArrayList<String> inferedSelection = new ArrayList<>();
+        String country = editText.get(0);
+        switch (country.toUpperCase()){
+            case "FRANCE":
+                inferedSelection.add("French");
+            case "ITALY":
+                inferedSelection.add("Italian");
+            case "NETHERLANDS":
+                inferedSelection.add("Dutch");
+            case "SPAIN":
+                inferedSelection.add("Spanish");
+        }
+        inferedSelection.add(editText.get(1));
+
+
+
+        return inferedSelection;
     }
 }
