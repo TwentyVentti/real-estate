@@ -43,11 +43,10 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_home, R.id.nav_gallery)
                 .setDrawerLayout(drawer)
                 .build();
+        userDetails = getIntent().getStringExtra("UD");
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        String editTextSearch = getIntent().getStringExtra("UserDetails");
-        userDetails = editTextSearch;
     }
 
     @Override
@@ -71,17 +70,38 @@ public class MainActivity extends AppCompatActivity {
         switch (country.toUpperCase()){
             case "FRANCE":
                 inferedSelection.add("French");
+                break;
             case "ITALY":
                 inferedSelection.add("Italian");
+                break;
             case "NETHERLANDS":
                 inferedSelection.add("Dutch");
+                break;
             case "SPAIN":
                 inferedSelection.add("Spanish");
+                break;
+            default:
+                break;
         }
         inferedSelection.add(editText.get(1));
-
-
+        levelFromDuration(editText.get(2));
 
         return inferedSelection;
+    }
+
+    public static int levelFromDuration(String duration){
+        char firstChar = duration.charAt(0);
+        StringBuilder number = new StringBuilder();
+        if (Character.isDigit(duration.charAt(0))) {
+            number.append(firstChar);
+            for (int i = 1; i < duration.length(); i++) {
+                if (Character.isDigit(duration.charAt(i))) {
+                    number.append(duration.charAt(i));
+                } else {
+                    break;
+                }
+            }
+        }
+        return 1;
     }
 }

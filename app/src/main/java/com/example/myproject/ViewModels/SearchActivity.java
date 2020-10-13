@@ -83,7 +83,7 @@ public class SearchActivity extends AppCompatActivity {
 
     public void searchClicked(View v){
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("UserDetails",inputText.getText());
+        intent.putExtra("UD",inputText.getText().toString());
         startActivity(intent);
     }
     public void onButtonShowPopupWindowClick(View view) {
