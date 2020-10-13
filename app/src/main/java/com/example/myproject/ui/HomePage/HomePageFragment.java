@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myproject.R;
 import com.example.myproject.ViewModels.MainActivity;
-
+import com.example.myproject.ViewModels.loginActivity;
 import java.util.ArrayList;
 
 public class HomePageFragment extends Fragment {
@@ -22,8 +22,7 @@ public class HomePageFragment extends Fragment {
     ListView listView;
     ArrayList<String> sections;
     View.OnClickListener clickListener;
-    ArrayList<String> userSelectionFromEdit = MainActivity.getUserSelectionFromEdit();
-
+    ArrayList<String> USER_SELECTION = MainActivity.getUserSelectionFromEdit();
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -34,7 +33,18 @@ public class HomePageFragment extends Fragment {
 
         sections = MainActivity.getUserSelectionFromEdit();
 
-        arrayAdapter = new ArrayAdapter<>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1, sections);
+        try {
+            if (getActivity()!=null)
+                arrayAdapter = new ArrayAdapter<>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1, sections);
+            else
+                System.err.println("NULL POINTER: ARRAY ADAPTER APPLICATION CONTEXT");
+        } catch (NullPointerException nullPointer){
+            System.err.println("NULL POINTER: ARRAY ADAPTER APPLICATION CONTEXT");
+            nullPointer.printStackTrace();
+        } catch (Exception ex){
+            System.err.println("GENERAL EXCEPTION: ARRAY ADAPTER APPLICATION CONTEXT");
+            ex.printStackTrace();
+        }
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -42,9 +52,15 @@ public class HomePageFragment extends Fragment {
         });
         return root;
     }
-
-    public static ArrayList<String> getSections(){
-
+/*
+public class User {
+    private String language;
+    private Integer level;
+    private String city;
+    private Integer duration;
+    private String country;
+ */
+    public ArrayList<String> getSections(){
         return new ArrayList<>();
     }
 

@@ -23,11 +23,7 @@ public class HomePageViewModel extends ViewModel {
 
     public HomePageViewModel() {
         mText = new MutableLiveData<>();
-//        testTextView = (TextView)
-//        ArrayList<String> editText = MainActivity.getUserSelectionFromEdit();
-        mText.setValue("editText.get(1)");
-
-
+        Intent intent =new Intent();
     }
 
     public LiveData<String> getText() {
