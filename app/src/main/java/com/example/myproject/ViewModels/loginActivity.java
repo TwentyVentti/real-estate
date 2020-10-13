@@ -82,6 +82,10 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
 /*
 Level 1:
     Around town:
+        F
+        F
+        F
+        F
     Greetings
 Level 2:
     At the restaurant:
@@ -89,7 +93,7 @@ Level 2:
  */
     public HashMap<String,HashMap<String,ArrayList<Phrase>>>ObjectFromJSON() throws IOException{
 //        ArrayList<HashMap<Integer, Phrase>> phraseListHashMap = new ArrayList<HashMap<Integer, Phrase>>();
-        HashMap<String,HashMap<String,ArrayList<Phrase>>> listHashMap = new HashMap<>();
+        HashMap<String,HashMap<String,ArrayList<Phrase>>> outerHashMap = new HashMap<>();
         try {
             JSONObject obj = new JSONObject(loadJSONFromAsset());
 
@@ -99,12 +103,12 @@ Level 2:
             JSONObject innerObj = ((JSONObject) outerValues.get(0));
             JSONArray innerNames = innerObj.names();
             assert innerNames != null;
+            int level = 0;
+            ArrayList<Phrase> innerPhraseArrayList = new ArrayList<>();
+            HashMap<String,ArrayList<Phrase>> innerHashMap = new HashMap<>();
 
             for (int i = 0; i < innerNames.length(); i++) {
                 JSONArray sectionArray = innerObj.getJSONArray((String) innerNames.get(i));
-                HashMap<String,ArrayList<Phrase>> innerHashMap = new HashMap<>();
-                ArrayList<Phrase> innerPhraseArrayList = new ArrayList<>();
-                int level = 0;
                 for (int j = 0; j < sectionArray.length(); j++) {
                     JSONObject phraseObject = sectionArray.getJSONObject(j);
                     String dutch = phraseObject.getString("dutch");
@@ -117,38 +121,33 @@ Level 2:
                     level = phraseObject.getInt("level");
                     Phrase phrase = new Phrase(english,french,italian,spanish,dutch,section,level,id);
                     innerPhraseArrayList.add(phrase);
-//                    sectionHash.put(j,phrase);
-                    int x = 0;
                 }
                 String sectionName = (String)innerNames.get(i);
                 innerHashMap.put(sectionName,innerPhraseArrayList);
+            switch (level){
+                case 1:
+                    outerHashMap.put(LEVEL_1,innerHashMap);
+                    break;
 
-//                switch (level){
-//                    case 1:
-//                        innerHashMap.put(sectionName,innerPhraseArrayList);
-//                        break;
-//
-//                    case 2:
-//                        innerHashMap.put(sectionName,innerPhraseArrayList);
-//                        break;
-//
-//                    case 3:
-//                        innerHashMap.put(sectionName,innerPhraseArrayList);
-//                        break;
-//
-//                    case 4:
-//                        innerHashMap.put(sectionName,innerPhraseArrayList);
-//                        break;
-//                    default:
-//                        break;
-//                }
-//                listHashMap.put((String)innerNames.get(i),innerPhraseArrayList);
-//                phraseListHashMap.add(sectionHash);
+                case 2:
+                    outerHashMap.put(LEVEL_2,innerHashMap);
+                    break;
+
+                case 3:
+                    outerHashMap.put(LEVEL_3,innerHashMap);
+                    break;
+
+                case 4:
+                    outerHashMap.put(LEVEL_4,innerHashMap);
+                    break;
+                default:
+                    break;
+            }
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return listHashMap;
+        return outerHashMap;
     }
 
     public String loadJSONFromAsset() {
