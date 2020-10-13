@@ -15,6 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.myproject.Models.Parsing.Token;
+import com.example.myproject.Models.User;
 import com.example.myproject.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.core.utilities.Tree;
@@ -65,8 +66,17 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    /*
+public class User {
+    private String language;
+    private Integer level;
+    private String city;
+    private Integer duration;
+    private String country;
+ */
     public static ArrayList<String> getUserSelectionFromEdit(){
         ArrayList<String> inferedSelection = new ArrayList<>();
+        User user;
         if (userDetails!=null){
             try{
                 ArrayList<String> editText = new ArrayList<>(Arrays.asList(userDetails.split(";")));

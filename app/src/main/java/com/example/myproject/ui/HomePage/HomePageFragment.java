@@ -52,14 +52,7 @@ public class HomePageFragment extends Fragment {
         });
         return root;
     }
-/*
-public class User {
-    private String language;
-    private Integer level;
-    private String city;
-    private Integer duration;
-    private String country;
- */
+
     public ArrayList<String> getSections(){
         return new ArrayList<>();
     }
