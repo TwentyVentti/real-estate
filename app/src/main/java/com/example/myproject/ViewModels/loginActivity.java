@@ -48,6 +48,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     ProgressBar progressBar;
     TextView forgotpassword;
     public static final String a = "a";
+    public static ArrayList<HashMap<Integer,Phrase>> phraseListHash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +106,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        phraseListHash = phraseListHashMap;
         return phraseListHashMap;
     }
     public String loadJSONFromAsset() {
