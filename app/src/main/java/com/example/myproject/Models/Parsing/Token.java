@@ -11,7 +11,7 @@ package com.example.myproject.Models.Parsing;
 
 public class Token {
 
-    public enum Type {UNKNOWN, INT, SEMI};
+    public enum Type {UNKNOWN, INT, SEMI, WORD};
     private String _token = "";
     private Type _type = Type.UNKNOWN;
 

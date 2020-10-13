@@ -1,17 +1,22 @@
 package com.example.myproject.Models.Parsing;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class IntExp extends Exp {
-    private Integer stay;
+    private Integer value;
 
-    public IntExp(Integer stay) { this.stay = stay; }
+    public IntExp(Integer value) {
+        this.value = value;
+    }
 
     @Override
-    public String show() { return stay.toString(); }
+    public HashMap<String, String> hashMap() {
+        return null;
+    }
 
     @Override
-    public ArrayList<String> selection() {
-        return ;
+    public String show() {
+        return value.toString();
     }
 }

@@ -21,33 +21,29 @@ public class Parser {
     public Parser(Tokenizer tokenizer) {
         _tokenizer = tokenizer;
     }
-    /**
-     * <User> -> Country; City; n Stay
-     */
-    public Exp parseUser() {
-        //Case 1: Country; City; n Stay
-
-        return null;
-    }
-    /**
-    * <User> -> Country; City; n Stay
-     */
-//    public Exp parseExp() {
-//        // Case 1: Term
-//        Exp term = parseTerm();
-//        // Case 2: Term + exp
-//        if (_tokenizer.hasNext()&&_tokenizer.current().type()==Token.Type.ADD){
-//            _tokenizer.next();
-//            Exp exp = parseExp();
-//            return new AddExp(term, exp);
+//    /**
+//     * <User> -> Country; City; n Stay
+//     */
+//    public Exp parseUser() {
+//        //Case 1: Country; City; n Stay
+//        Exp Country = parseCountry();
 //
-//            //Case 3: Factor / Term
-//        } else if (_tokenizer.hasNext()&&_tokenizer.current().type()==Token.Type.SUB){
+//        return null;
+//    }
+//    /**
+//     * <Country> -> France | Spain | Netherlands | Italy
+//     */
+//    public Exp parseCountry() {
+//        // TODO: Implement parse function for <factor>
+//        if (_tokenizer.hasNext()&&_tokenizer.current().type()==(Token.Type.WORD)){
 //            _tokenizer.next();
 //            Exp exp = parseExp();
-//            return new SubExp(term, exp);
-//        } else {
-//            return term;
+//            _tokenizer.next();
+//            return exp;
+//        }else {
+//            IntExp i = new IntExp(Integer.parseInt(_tokenizer.current().token()));
+//            _tokenizer.next();
+//            return i;
 //        }
 //    }
 
@@ -94,24 +90,7 @@ public class Parser {
 //        }
 //        // ########## YOUR CODE ENDS HERE ##########
 //    }
-    /**
-    * <Country> -> France | Spain | Netherlands | Italy
-    */
-//    public Exp parseFactor() {
-//        // TODO: Implement parse function for <factor>
-//        // ########## YOUR CODE STARTS HERE ##########
-//        if (_tokenizer.hasNext()&&_tokenizer.current().type()==Token.Type.LBRA){
-//            _tokenizer.next();
-//            Exp exp = parseExp();
-//            _tokenizer.next();
-//            return exp;
-//        }else {
-//            IntExp i = new IntExp(Integer.parseInt(_tokenizer.current().token()));
-//            _tokenizer.next();
-//            return i;
-//        }
-//        // ########## YOUR CODE ENDS HERE ##########
-//    }
+
 
 //
 //    public static void main(String[] args) {

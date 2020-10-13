@@ -37,6 +37,20 @@ public class Tokenizer {
         char firstChar = _buffer.charAt(0);
         if (firstChar == ';')
             current = new Token(";", Token.Type.SEMI);
+
+        StringBuilder word = new StringBuilder();
+        if (Character.isAlphabetic(firstChar)){
+            word.append(firstChar);
+            for (int i = 1; i < _buffer.length(); i++) {
+                if (Character.isAlphabetic(_buffer.charAt(i))) {
+                    word.append(_buffer.charAt(i));
+                } else {
+                    current = new Token(word.toString(), Token.Type.WORD);
+                    break;
+                }
+            }
+            current = new Token(word.toString(), Token.Type.INT);
+        }
         StringBuilder number = new StringBuilder();
         if (Character.isDigit(firstChar)) {
             number.append(firstChar);
@@ -56,6 +70,9 @@ public class Tokenizer {
         _buffer = _buffer.substring(tokenLen);
     }
 
+    public String wrongSpellingCheck(String word){
+        return "";
+    }
     /**
      * @return type: Token
      */
