@@ -8,8 +8,7 @@ import org.testng.annotations.Test;
 import static org.testng.AssertJUnit.assertEquals;
 
 /**
- * TODO: (a) If there is space within a string to search
- *       (b) Should Durations(s) be included ?
+ * TODO: If there is space within a string to search
  */
 public class TokenizerTest {
     private static Tokenizer tokenizer;
