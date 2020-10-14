@@ -17,6 +17,7 @@ import com.example.myproject.Models.Phrase;
 import com.example.myproject.Models.User;
 import com.example.myproject.R;
 import com.example.myproject.ViewModels.MainActivity;
+import com.example.myproject.ViewModels.PhraseListActivity;
 import com.example.myproject.ViewModels.loginActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +25,8 @@ import java.util.HashMap;
 public class HomePageFragment extends Fragment {
     public ArrayAdapter<String> arrayAdapter;
     public ListView sectionListView;
-    public ArrayList<String> sections = new ArrayList<>();
+    public static ArrayList<String> sections = new ArrayList<>();
+    public static ArrayList<HashMap<String,ArrayList<Phrase>>> levelArrayMap = new ArrayList<>();
     public View.OnClickListener clickListener;
     public User USER_SELECTION;
 
@@ -55,7 +57,7 @@ public class HomePageFragment extends Fragment {
         sectionListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent();
+                Intent intent = new Intent(getActivity().getApplicationContext(), PhraseListActivity.class);
                 intent.putExtra("Section",sections.get(i));
                 startActivityForResult(intent,1);
             }
