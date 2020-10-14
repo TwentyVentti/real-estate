@@ -35,8 +35,8 @@ import java.io.Serializable;
 public class SearchActivity extends AppCompatActivity {
     PopupWindow popUp;
     boolean click = true;
-    private FirebaseUser user;
-    private DatabaseReference ref;
+    FirebaseUser user;
+    DatabaseReference ref;
     private String ID;
 
 
@@ -49,8 +49,12 @@ public class SearchActivity extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         ref = FirebaseDatabase.getInstance().getReference("Users");
-        ID = user.getUid();
-
+        try {
+            ID = user.getUid();
+        }
+        catch (NullPointerException e){
+            ID = "Guest";
+        }
         final TextView userText = (TextView)findViewById(R.id.user);
         int id = 0;
         Intent intent = getIntent();

@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -248,6 +249,7 @@ Level 2:
                 if(task.isSuccessful()){
                     progressBar.setVisibility(View.GONE);
                     startActivity(new Intent(loginActivity.this, SearchActivity.class));
+                    FirebaseUser user = mAuth.getCurrentUser();
                 }
                 else{
                     Toast.makeText(loginActivity.this,"Failed to login! Please check your credentials",Toast.LENGTH_LONG).show();
