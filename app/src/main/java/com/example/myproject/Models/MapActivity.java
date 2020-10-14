@@ -41,9 +41,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
+//import com.skyfishjy.library.RippleBackground;
 
 public class MapActivity extends AppCompatActivity {
 
+    //private RippleBackground rippleBg;
     Spinner spType;
     Button btfind;
     SupportMapFragment supportMapFragment;
@@ -236,3 +238,35 @@ public class MapActivity extends AppCompatActivity {
         }
     }
 }
+
+
+
+
+
+//btnFind.setOnClickListener(new View.OnClickListener() {
+
+//            @Override
+
+  //          public void onClick(View v) {
+
+    //            LatLng currentMarkerLocation = mMap.getCameraPosition().target;
+
+      //          rippleBg.startRippleAnimation();
+
+        //        new Handler().postDelayed(new Runnable() {
+
+          //          @Override
+            //        public void run() {
+
+              //          rippleBg.stopRippleAnimation();
+
+                //        startActivity(new Intent(MapActivity.this, NewActivity.class));
+
+                  //      finish();
+
+                    //}
+                //}, 3000);
+
+            //}
+       // });
+   // }
