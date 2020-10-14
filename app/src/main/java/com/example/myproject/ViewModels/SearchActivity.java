@@ -51,7 +51,7 @@ public class SearchActivity extends AppCompatActivity {
         ref = FirebaseDatabase.getInstance().getReference("Users");
         ID = user.getUid();
 
-        final TextView u = (TextView)findViewById(R.id.user);
+        final TextView userText = (TextView)findViewById(R.id.user);
         int id = 0;
         Intent intent = getIntent();
         if (intent != null){
@@ -68,10 +68,10 @@ public class SearchActivity extends AppCompatActivity {
                 if (profile!=null & (finalId == 0)){
                     System.out.println(profile);
                     String name = profile.name;
-                    u.setText(name + "!");
+                    userText.setText(name + "!");
                 }
                 else{
-                    u.setText("Guest!");
+                    userText.setText("Guest!");
                 }
 
             }
