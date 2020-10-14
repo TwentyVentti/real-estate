@@ -7,11 +7,8 @@ import java.util.ArrayList;
  *
  *  The main objective of this class is to implement a simple parser.
  *  It should be able to parser the following grammar rule:
- *  <User>     -> <Country>; <City>; Int <Stay>
- *  <Country>  -> France | Spain | Netherlands | Italy
- *  <Stay>     -> month | week | day
- *  <City>     -> Paris | Madrid | Amsterdam | Rome
- *
+ *  USER    -> COUNTRY EQ STRING SEMI | CITY EQ STRING SEMI | DURATION EQ NUMBER TUNIT SEMI
+ *  TUNIT -> DAYS | WEEK | MONTH
  */
 public class Parser {
 
