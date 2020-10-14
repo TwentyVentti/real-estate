@@ -121,18 +121,11 @@ public class MapActivity extends AppCompatActivity {
 
 
     private void getCurrentLocation() {
-        //map.setMinZoomPreference(6.0f);
-        //map.setMaxZoomPreference(14.0f);
 
-        //Log.d("flag1","before curr");
-        //CancellationTokenSource cts = new CancellationTokenSource();
 
         @SuppressLint("MissingPermission")
         Task<Location> task = fusedLocationProviderClient.getLastLocation();
 
-        //Task<Location> task = fusedLocationProviderClient.getCurrentLocation(1,cts.getToken());
-
-        //Log.d("flag1","after curr");
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
@@ -141,24 +134,13 @@ public class MapActivity extends AppCompatActivity {
                 {
                     currentLat=location.getLatitude();
 
-                    //String temp = Double.toString(currentLat);
-                    //Log.d("location",temp);
-
                     currentLong=location.getLongitude();
 
-
-
-                    //Log.d("location",Double.toString(currentLong));
-                    // D/location: 37.4219983
-                    // D/location: -122.084
-                    // -35.2743989,149.1156678
 
                     supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
                             map=googleMap;
-                            //map.setMinZoomPreference(6.0f);
-                            //map.setMaxZoomPreference(14.0f);
                             map.animateCamera(CameraUpdateFactory.newLatLngZoom(
                                     new LatLng(currentLat,currentLong),10
                             ));
@@ -166,6 +148,11 @@ public class MapActivity extends AppCompatActivity {
                             map.setMinZoomPreference(13.0f);
                             //map.setMaxZoomPreference(40.0f);
                             Log.d("#123","after");
+                            UiSettings uiSettings = map.getUiSettings();
+                            uiSettings.setAllGesturesEnabled(true);
+                            uiSettings.setMapToolbarEnabled(true);
+                            uiSettings.setZoomControlsEnabled(true);
+                            uiSettings.setCompassEnabled(true);
 
                         }
 
