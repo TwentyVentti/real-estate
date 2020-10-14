@@ -1,5 +1,6 @@
 package com.example.myproject.ui.HomePage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,7 @@ import java.util.HashMap;
 
 public class HomePageFragment extends Fragment {
     public ArrayAdapter<String> arrayAdapter;
-    public ListView listView;
+    public ListView sectionListView;
     public ArrayList<String> sections = new ArrayList<>();
     public View.OnClickListener clickListener;
     public User USER_SELECTION;
@@ -32,14 +33,16 @@ public class HomePageFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         HomePageViewModel homePageViewModel = ViewModelProviders.of(this).get(HomePageViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        listView = (ListView)root.findViewById(R.id.sectionListView);
+        sectionListView = (ListView)root.findViewById(R.id.sectionListView);
         USER_SELECTION= MainActivity.getUserSelectionFromEdit();
         sections = getSections();
         try {
-            if (getActivity()!=null)
+            if (getActivity()!=null) {
                 arrayAdapter = new ArrayAdapter<>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1, sections);
-            else
+            }
+            else {
                 System.err.println("NULL POINTER: ARRAY ADAPTER APPLICATION CONTEXT");
+            }
         } catch (NullPointerException nullPointer){
             System.err.println("NULL POINTER: ARRAY ADAPTER APPLICATION CONTEXT");
             nullPointer.printStackTrace();
@@ -47,10 +50,14 @@ public class HomePageFragment extends Fragment {
             System.err.println("GENERAL EXCEPTION: ARRAY ADAPTER APPLICATION CONTEXT");
             ex.printStackTrace();
         }
+        sectionListView.setAdapter(arrayAdapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        sectionListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent();
+                intent.putExtra("Section",sections.get(i));
+                startActivityForResult(intent,1);
             }
         });
         return root;
