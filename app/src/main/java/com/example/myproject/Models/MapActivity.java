@@ -144,15 +144,14 @@ public class MapActivity extends AppCompatActivity {
                             map.animateCamera(CameraUpdateFactory.newLatLngZoom(
                                     new LatLng(currentLat,currentLong),10
                             ));
-                            Log.d("#123","before");
                             map.setMinZoomPreference(13.0f);
                             //map.setMaxZoomPreference(40.0f);
-                            Log.d("#123","after");
                             UiSettings uiSettings = map.getUiSettings();
                             uiSettings.setAllGesturesEnabled(true);
                             uiSettings.setMapToolbarEnabled(true);
                             uiSettings.setZoomControlsEnabled(true);
                             uiSettings.setCompassEnabled(true);
+
 
                         }
 
