@@ -52,7 +52,7 @@ public class Tokenizer {
                 case "days"  : case "day"   : current = new Token(keyword, Token.Type.DAY); break;
                 case "months": case "month" : current = new Token(keyword, Token.Type.MONTH); break;
                 default :
-                    System.out.println("Wrong keyword I guess");
+                    System.err.println("Wrong keyword I guess");
             }
         }
         if (Character.isDigit(firstChar)) {

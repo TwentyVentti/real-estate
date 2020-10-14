@@ -26,7 +26,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     public static String userDetails;
-    public static User user;
+    public static User user = new User();
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 .setDrawerLayout(drawer)
                 .build();
         userDetails = getIntent().getStringExtra("UD");
+        getUserSelectionFromEdit();
 //        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_home);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
@@ -75,8 +76,9 @@ public class User {
     private Integer duration;
     private String country;
  */
-    public static ArrayList<String> getUserSelectionFromEdit(){
+    public static User getUserSelectionFromEdit(){
         ArrayList<String> inferedSelection = new ArrayList<>();
+        User userNow = new User();
         if (userDetails!=null){
             try{
                 ArrayList<String> editText = new ArrayList<>(Arrays.asList(userDetails.split(";")));
@@ -85,38 +87,37 @@ public class User {
                 // Adding the raw entries to the ArrayList if they match any countries we offer
                 if (country.equals("FRANCE")){
                     inferedSelection.add("French");
-                    user.setCountry("France");
-                    user.setLanguage("French");
+                    userNow.setCountry("France");
+                    userNow.setLanguage("French");
                 }
                 else if (country.equals("ITALY")){
                     inferedSelection.add("Italian");
-                    user.setCountry("France");
-                    user.setLanguage("Italian");
+                    userNow.setCountry("France");
+                    userNow.setLanguage("Italian");
                 }
                 else if (country.equals("NETHERLANDS")){
                     inferedSelection.add("Dutch");
-                    user.setCountry("Netherlands");
-                    user.setLanguage("Dutch");
+                    userNow.setCountry("Netherlands");
+                    userNow.setLanguage("Dutch");
                 }
                 else if (country.equals("SPAIN")){
                     inferedSelection.add("Spanish");
-                    user.setCountry("Spain");
-                    user.setLanguage("Spanish");
+                    userNow.setCountry("Spain");
+                    userNow.setLanguage("Spanish");
                 }
                 // Adding the city attribute
-                user.setCity(editText.get(1));
+                userNow.setCity(editText.get(1));
 
                 // Adding the city attribute to the arraylist
                 inferedSelection.add(editText.get(1));
                 int level = levelFromDuration(editText.get(2));
-                user.setLevel(level);
-                user.setDuration(Integer.parseInt(editText.get(2)));
+                userNow.setLevel(level);
                 inferedSelection.add(Integer.toString(levelFromDuration(editText.get(2))));
             }catch (Exception ex){
                 ex.printStackTrace();
             }
         }
-        return inferedSelection;
+        return userNow;
     }
 
     public static int levelFromDuration(String duration){
