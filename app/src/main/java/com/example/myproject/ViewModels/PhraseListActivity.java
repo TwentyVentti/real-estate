@@ -15,11 +15,18 @@ import com.example.myproject.ui.HomePage.HomePageFragment;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents the activity which will be called when the user clicks on one of the list objects
+ * in the homePageFragment listView.
+ * @author Andrew Carse - u6666440
+ */
 public class PhraseListActivity extends AppCompatActivity {
     TextView sectionTextView;
     String section;
     ListView phraseListView;
     ArrayAdapter<String> phraseArrayAdapter;
+    ArrayList<String> userFirstLanguagePhrases;
+    ArrayList<String> userSelectedLanguagePhrases;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +50,10 @@ public class PhraseListActivity extends AppCompatActivity {
         }
         sectionTextView.setText(section);
     }
-
-    private ArrayList<String> getPhrases(){
+    /**
+     * @return the phrases that are needed to populate the listview.
+     */
+    private ArrayList<Phrase> getPhrases(){
         ArrayList<Phrase> phrases = new ArrayList<>();
         String currentSection = getIntent().getStringExtra("Section");
         for (int i = 0; i < HomePageFragment.levelArrayMap.size(); i++) {
@@ -54,8 +63,33 @@ public class PhraseListActivity extends AppCompatActivity {
                 }
             }
         }
+        return phrases;
+    }
 
-        return new ArrayList<>();
+    /**
+     * Sets the @userFirstLanguagePhrases and the @userSelectedLanguagePhrases
+     */
+    private void setLanguageArrays(){
+        String language = HomePageFragment.USER_SELECTION.getLanguage();
+        for (Phrase phrase :getPhrases()) {
+            userFirstLanguagePhrases.add(phrase.getEnglish());
+            switch (language){
+                case "French":
+                    userSelectedLanguagePhrases.add(phrase.getFrench());
+                    break;
+                case "Dutch":
+                    userSelectedLanguagePhrases.add(phrase.getDutch());
+                    break;
+                case "Italian":
+                    userSelectedLanguagePhrases.add(phrase.getItalian());
+                    break;
+                case "Spanish":
+                    userSelectedLanguagePhrases.add(phrase.getSpanish());
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
 }

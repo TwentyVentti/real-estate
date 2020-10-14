@@ -29,7 +29,7 @@ public class HomePageFragment extends Fragment {
     public static ArrayList<String> sections = new ArrayList<>();
     public static ArrayList<HashMap<String,ArrayList<Phrase>>> levelArrayMap = new ArrayList<>();
     public View.OnClickListener clickListener;
-    public User USER_SELECTION;
+    public static User USER_SELECTION;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
