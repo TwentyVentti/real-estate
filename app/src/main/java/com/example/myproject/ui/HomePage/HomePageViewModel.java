@@ -17,6 +17,10 @@ import java.util.Random;
 import static com.example.myproject.ViewModels.MainActivity.getUserSelectionFromEdit;
 import static com.example.myproject.ViewModels.MainActivity.userDetails;
 
+/**
+ * TODO: Docstring
+ * @author Andrew Carse - u6666440
+ */
 public class HomePageViewModel extends ViewModel {
     private MutableLiveData<String> mText;
     private TextView testTextView;

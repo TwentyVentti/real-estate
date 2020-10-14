@@ -23,13 +23,17 @@ import com.example.myproject.ViewModels.loginActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * TODO: Docstring
+ * @author Andrew Carse - u6666440
+ */
 public class HomePageFragment extends Fragment {
     public ArrayAdapter<String> arrayAdapter;
     public ListView sectionListView;
     public static ArrayList<String> sections = new ArrayList<>();
     public static ArrayList<HashMap<String,ArrayList<Phrase>>> levelArrayMap = new ArrayList<>();
     public View.OnClickListener clickListener;
-    public User USER_SELECTION;
+    public static User USER_SELECTION;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
