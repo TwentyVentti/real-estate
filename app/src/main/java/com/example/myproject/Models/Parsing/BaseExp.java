@@ -19,6 +19,23 @@ public class BaseExp extends Exp{
 
     @Override
     public int evaluate() {
+//        if (unitOfTime.equals("DAY")||unitOfTime.equals("DAYS")){
+//            totalDays = Integer.parseInt(number.toString());
+//        }
+//        else if (unitOfTime.equals("WEEK")||unitOfTime.equals("WEEKS")){
+//            totalDays = Integer.parseInt(number.toString())*7;
+//        }
+//        else if (unitOfTime.equals("MONTH")||unitOfTime.equals("MONTHS")){
+//            totalDays = Integer.parseInt(number.toString())*30;
+//        }
+//        int level = 0;
+//        if (totalDays<=7){
+//            level = 1;
+//        } else if (totalDays<=14){
+//            level = 2;
+//        } else if (totalDays<=30){
+//            level =3;
+//        }
         return 0;
     }
 
