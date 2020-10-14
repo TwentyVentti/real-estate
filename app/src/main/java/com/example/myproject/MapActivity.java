@@ -101,11 +101,11 @@ public class MapActivity extends AppCompatActivity {
     }
 
     private void getCurrentLocation() {
-        Log.d("flag1","before curr");
-        CancellationTokenSource cts = new CancellationTokenSource();
+        //Log.d("flag1","before curr");
+        //CancellationTokenSource cts = new CancellationTokenSource();
         @SuppressLint("MissingPermission")
-        //Task<Location> task = fusedLocationProviderClient.getLastLocation();
-        Task<Location> task = fusedLocationProviderClient.getCurrentLocation(1,cts.getToken());
+        Task<Location> task = fusedLocationProviderClient.getLastLocation();
+        //Task<Location> task = fusedLocationProviderClient.getCurrentLocation(1,cts.getToken());
         Log.d("flag1","after curr");
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
@@ -114,10 +114,10 @@ public class MapActivity extends AppCompatActivity {
                 if (location!=null)
                 {
                     currentLat=location.getLatitude();
-                    String temp = Double.toString(currentLat);
-                    Log.d("location",temp);
+                    //String temp = Double.toString(currentLat);
+                    //Log.d("location",temp);
                     currentLong=location.getLongitude();
-                    Log.d("location",Double.toString(currentLong));
+                    //Log.d("location",Double.toString(currentLong));
                     // D/location: 37.4219983
                     // D/location: -122.084
                     // -35.2743989,149.1156678
