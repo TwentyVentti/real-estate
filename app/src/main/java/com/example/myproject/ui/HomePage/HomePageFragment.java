@@ -31,7 +31,7 @@ public class HomePageFragment extends Fragment {
     public ArrayAdapter<String> arrayAdapter;
     public ListView sectionListView;
     public static ArrayList<String> sections = new ArrayList<>();
-    public static ArrayList<HashMap<String,ArrayList<Phrase>>> levelArrayMap = new ArrayList<>();
+    public static ArrayList<HashMap<String,ArrayList<Phrase>>> levelArrayMap;
     public View.OnClickListener clickListener;
     public static User USER_SELECTION;
 
@@ -80,19 +80,22 @@ public class HomePageFragment extends Fragment {
             switch (level){
                 case 1:
                     mapArrayList = phraseHash.get("Level 1");
+                    levelArrayMap = mapArrayList;
                     break;
                 case 2:
                     mapArrayList = phraseHash.get("Level 2");
+                    levelArrayMap = mapArrayList;
                     break;
                 case 3:
                     mapArrayList = phraseHash.get("Level 3");
+                    levelArrayMap = mapArrayList;
                     break;
                 default:
                     break;
             }
             assert mapArrayList != null;
             for (HashMap<String,ArrayList<Phrase>> levelMap : mapArrayList) {
-                sections.add(levelMap.keySet().iterator().next().replaceAll("_", " "));
+                sections.add(levelMap.keySet().iterator().next());
             }
         } catch (Exception ex){
             ex.printStackTrace();

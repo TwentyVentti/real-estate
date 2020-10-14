@@ -28,13 +28,15 @@ public class PhraseListActivity extends AppCompatActivity {
     String section;
     ListView phraseListView;
     ArrayAdapter<String> phraseArrayAdapter;
-    ArrayList<String> userFirstLanguagePhrases;
-    ArrayList<String> userSelectedLanguagePhrases;
+    ArrayList<String> userFirstLanguagePhrases = new ArrayList<>();
+    ArrayList<String> userSelectedLanguagePhrases = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLanguageArrays();
         setContentView(R.layout.activity_phrase_list);
+        sectionTextView = findViewById(R.id.sectionTextView);
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
@@ -42,7 +44,6 @@ public class PhraseListActivity extends AppCompatActivity {
             }
         };
         phraseListView = findViewById(R.id.phraseListView);
-        sectionTextView = findViewById(R.id.sectionTextView);
         phraseArrayAdapter = new ArrayAdapter<>(PhraseListActivity.this,android.R.layout.simple_list_item_1, userFirstLanguagePhrases);
         phraseListView.setAdapter(phraseArrayAdapter);
         phraseListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -82,7 +83,9 @@ public class PhraseListActivity extends AppCompatActivity {
      */
     private void setLanguageArrays(){
         String language = HomePageFragment.USER_SELECTION.getLanguage();
-        for (Phrase phrase :getPhrases()) {
+        ArrayList<Phrase> phraseArrayList = getPhrases();
+        int x =0;
+        for (Phrase phrase :phraseArrayList) {
             userFirstLanguagePhrases.add(phrase.getEnglish());
             switch (language){
                 case "French":
