@@ -41,6 +41,15 @@ public class SearchActivity extends AppCompatActivity {
 
 
     EditText inputText;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(this, SearchActivity.class);
+        startActivity(i);
+        finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

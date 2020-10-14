@@ -3,6 +3,7 @@ package com.example.myproject.ViewModels;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -23,6 +24,14 @@ public class resetpasswordActivity extends AppCompatActivity {
     ProgressBar progressBar;
 
     FirebaseAuth auth;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(this, loginActivity.class);
+        startActivity(i);
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
