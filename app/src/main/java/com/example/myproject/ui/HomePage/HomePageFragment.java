@@ -38,13 +38,6 @@ public class HomePageFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         sectionListView = (ListView)root.findViewById(R.id.sectionListView);
         USER_SELECTION= MainActivity.getUserSelectionFromEdit();
-        try {
-            getActivity().getActionBar().setTitle("Hello world App");
-            ((AppCompatActivity)getActivity()).getSupportActionBar().setSubtitle("welcome");
-
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
         sections = getSections();
         try {
             if (getActivity()!=null) {

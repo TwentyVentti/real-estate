@@ -3,11 +3,15 @@ package com.example.myproject.ViewModels;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.example.myproject.R;
 
 public class PhraseListActivity extends AppCompatActivity {
+    TextView sectionTextView;
+    String section;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,5 +23,17 @@ public class PhraseListActivity extends AppCompatActivity {
                 finish();
             }
         };
+        sectionTextView = findViewById(R.id.sectionTextView);
+        Intent homePageIntent = getIntent();
+        try {
+            if (section!=null){
+                section = homePageIntent.getStringExtra("Section").replaceAll(" ", "_");
+            }
+        } catch (Exception ex){
+            System.err.println("Null section title");
+            ex.printStackTrace();
+        }
+        sectionTextView.setText(section);
     }
+
 }
