@@ -16,7 +16,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_key"/>
 
-        <activity android:name=".MapActivity">
+        <activity android:name=".ViewModels.loginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +30,7 @@
         <activity android:name=".ViewModels.SearchActivity" />
         <activity android:name=".ViewModels.resetpasswordActivity" />
         <activity android:name=".ViewModels.registrationActivity" />
-        <activity android:name=".ViewModels.loginActivity">
+        <activity android:name=".Models.MapActivity">
 
         </activity>
     </application>

@@ -92,7 +92,6 @@ Level 2:
 
  */
     public HashMap<String,HashMap<String,ArrayList<Phrase>>>ObjectFromJSON() throws IOException{
-//        ArrayList<HashMap<Integer, Phrase>> phraseListHashMap = new ArrayList<HashMap<Integer, Phrase>>();
         HashMap<String,HashMap<String,ArrayList<Phrase>>> outerHashMap = new HashMap<>();
         try {
             JSONObject obj = new JSONObject(loadJSONFromAsset());
@@ -122,7 +121,7 @@ Level 2:
                     Phrase phrase = new Phrase(english,french,italian,spanish,dutch,section,level,id);
                     innerPhraseArrayList.add(phrase);
                 }
-                String sectionName = (String)innerNames.get(i);
+                String sectionName = (String) innerNames.get(i);
                 innerHashMap.put(sectionName,innerPhraseArrayList);
             switch (level){
                 case 1:
