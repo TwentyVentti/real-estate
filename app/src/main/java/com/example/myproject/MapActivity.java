@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,9 +23,15 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.CancellationTokenSource;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,6 +42,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 
+import bsh.util.JConsole;
+
 public class MapActivity extends AppCompatActivity {
 
     Spinner spType;
@@ -42,7 +51,7 @@ public class MapActivity extends AppCompatActivity {
     SupportMapFragment supportMapFragment;
     GoogleMap map;
     FusedLocationProviderClient fusedLocationProviderClient;
-    double currentLat=0, currentLong=0;
+    double currentLat = 0, currentLong = 0;
 
 
     @Override
@@ -50,43 +59,41 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        spType=findViewById(R.id.sp_type);
-        btfind=findViewById(R.id.bt_find);
-        supportMapFragment=(SupportMapFragment) getSupportFragmentManager()
+        spType = findViewById(R.id.sp_type);
+        btfind = findViewById(R.id.bt_find);
+        supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.google_map);
 
-        final String[] placeTypeList = {"mylocation","restaurants","bars","hotels"};
+        final String[] placeTypeList = {"restaurant", "bar", "hotel" };
 
-        String[] placeNameList = {"Mylocation","Restaurants","Bars","Hotels"};
+        String[] placeNameList = {"Restaurant", "Bar", "Hotel" };
 
         spType.setAdapter(new ArrayAdapter<>(MapActivity.this,
-                android.R.layout.simple_spinner_dropdown_item,placeNameList));
+                android.R.layout.simple_spinner_dropdown_item, placeNameList));
 
-        fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(this);
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-        {
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             getCurrentLocation();
-        }
-        else {
-            ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.ACCESS_FINE_LOCATION},44);
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
 
         }
 
         btfind.setOnClickListener(new View.OnClickListener() {
             @Override
+            // https://maps.googleapis.com/maps/api/place/nearbysearch/json?types=Bar&sensor=true&key=AIzaSyCFeVEs1n24pffvedWoXsAaRxcVjPqNes8
             public void onClick(View v) {
                 int i = spType.getSelectedItemPosition();
                 String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" +
-                "?location=" + currentLat + "," + currentLong +
-                "&radius=5000" +
-                "&types=" + placeTypeList[i] +
-                "&sensor=true" +
-                "$key=" + getResources().getString(R.string.google_map_key);
+                        "?location=" + currentLat + "," + currentLong +
+                        "&radius=5000" +
+                        "&types=" + placeTypeList[i] +
+                        "&sensor=true" +
+                        "&key=" + getResources().getString(R.string.google_map_key);
 
                 new PlaceTask().execute(url);
-
 
 
             }
@@ -94,9 +101,12 @@ public class MapActivity extends AppCompatActivity {
     }
 
     private void getCurrentLocation() {
+        Log.d("flag1","before curr");
+        CancellationTokenSource cts = new CancellationTokenSource();
         @SuppressLint("MissingPermission")
-        Task<Location> task= fusedLocationProviderClient.getLastLocation();
-
+        //Task<Location> task = fusedLocationProviderClient.getLastLocation();
+        Task<Location> task = fusedLocationProviderClient.getCurrentLocation(1,cts.getToken());
+        Log.d("flag1","after curr");
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
@@ -104,7 +114,13 @@ public class MapActivity extends AppCompatActivity {
                 if (location!=null)
                 {
                     currentLat=location.getLatitude();
+                    String temp = Double.toString(currentLat);
+                    Log.d("location",temp);
                     currentLong=location.getLongitude();
+                    Log.d("location",Double.toString(currentLong));
+                    // D/location: 37.4219983
+                    // D/location: -122.084
+                    // -35.2743989,149.1156678
 
                     supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                         @Override
@@ -179,8 +195,37 @@ public class MapActivity extends AppCompatActivity {
         @Override
         protected List<HashMap<String, String>> doInBackground(String... strings) {
             JsonParsermap jsonParsermap = new JsonParsermap();
-             
-            return null;
+            List<HashMap<String,String>> mapList = null;
+            JSONObject object = null;
+            try {
+                object = new JSONObject(strings[0]);
+                mapList = jsonParsermap.parseResult(object);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+            return mapList;
+        }
+
+        @Override
+        protected void onPostExecute(List<HashMap<String, String>> hashMaps) {
+            map.clear();
+
+            for (int i=0; i<hashMaps.size(); i++)
+            {
+                HashMap<String,String> hashMapList = hashMaps.get(i);
+
+                double lat = Double.parseDouble(hashMapList.get("lat"));
+                double lng = Double.parseDouble(hashMapList.get("lng"));
+                String name = hashMapList.get("name");
+                LatLng latLng = new LatLng(lat,lng);
+                MarkerOptions options = new MarkerOptions();
+                options.position(latLng);
+                options.title(name);
+                map.addMarker(options);
+
+            }
         }
     }
 }

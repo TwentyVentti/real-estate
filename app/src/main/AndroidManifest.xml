@@ -15,8 +15,14 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_key"/>
-        
-        <activity android:name=".MapActivity"></activity>
+
+        <activity android:name=".MapActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ViewModels.MainActivity"
             android:label="@string/title_activity_main"
@@ -25,11 +31,7 @@
         <activity android:name=".ViewModels.resetpasswordActivity" />
         <activity android:name=".ViewModels.registrationActivity" />
         <activity android:name=".ViewModels.loginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
