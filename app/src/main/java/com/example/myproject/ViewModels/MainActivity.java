@@ -24,6 +24,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
+/**
+ * @author Andrew Carse - u6666440
+ */
 public class MainActivity extends AppCompatActivity {
     public static String userDetails;
     public static User user = new User();

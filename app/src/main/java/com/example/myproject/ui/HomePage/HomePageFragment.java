@@ -23,6 +23,10 @@ import com.example.myproject.ViewModels.loginActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * TODO: Docstring
+ * @author Andrew Carse - u6666440
+ */
 public class HomePageFragment extends Fragment {
     public ArrayAdapter<String> arrayAdapter;
     public ListView sectionListView;
