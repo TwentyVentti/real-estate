@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myproject.Models.Phrase;
 import com.example.myproject.R;
@@ -40,7 +43,15 @@ public class PhraseListActivity extends AppCompatActivity {
         };
         phraseListView = findViewById(R.id.phraseListView);
         sectionTextView = findViewById(R.id.sectionTextView);
-//        phraseArrayAdapter = new ArrayAdapter<>(PhraseListActivity.this,android.R.layout.simple_list_item_1, sections);
+        phraseArrayAdapter = new ArrayAdapter<>(PhraseListActivity.this,android.R.layout.simple_list_item_1, userFirstLanguagePhrases);
+        phraseListView.setAdapter(phraseArrayAdapter);
+        phraseListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast toast = Toast.makeText(getApplicationContext(),userSelectedLanguagePhrases.get(i),Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
         Intent homePageIntent = getIntent();
         try {
             section = homePageIntent.getStringExtra("Section").replaceAll("_", " ");
