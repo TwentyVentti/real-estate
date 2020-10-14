@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,9 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SplashScreenActivity"></activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_map_key"/>
+            android:value="@string/google_map_key" />
 
         <activity android:name=".ViewModels.loginActivity">
             <intent-filter>
@@ -30,9 +33,7 @@
         <activity android:name=".ViewModels.SearchActivity" />
         <activity android:name=".ViewModels.resetpasswordActivity" />
         <activity android:name=".ViewModels.registrationActivity" />
-        <activity android:name=".Models.MapActivity">
-
-        </activity>
+        <activity android:name=".Models.MapActivity"></activity>
     </application>
 
 </manifest>
