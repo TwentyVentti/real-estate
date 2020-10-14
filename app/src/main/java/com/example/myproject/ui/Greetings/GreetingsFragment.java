@@ -25,7 +25,7 @@ public class GreetingsFragment extends Fragment {
         startActivity(i);
 
         //GreetingsViewModel greetingsViewModel = ViewModelProviders.of(this).get(GreetingsViewModel.class);
-        View root = inflater.inflate(R.layout.activity_map, container, false);
+        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
         //final TextView textView = root.findViewById(R.id.text_gallery);
         //greetingsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
         //    @Override

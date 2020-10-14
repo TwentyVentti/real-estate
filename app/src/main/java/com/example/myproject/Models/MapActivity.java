@@ -46,7 +46,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
-//import com.skyfishjy.library.RippleBackground;
 
 public class MapActivity extends AppCompatActivity {
 
@@ -162,36 +161,7 @@ public class MapActivity extends AppCompatActivity {
             }
         });
     }
-/*private void getCurrentLocation(){
-    Log.d(TAG, "getDeviceLocation: getting the devices current location");
 
-    fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
-    try{
-
-            Task<Location> task = fusedLocationProviderClient.getLastLocation();
-            //final Task location = fusedLocationProviderClient.getLastLocation();
-            task.addOnCompleteListener(new OnCompleteListener() {
-                @Override
-                public void onComplete(@NonNull Task task) {
-                    if(task.isSuccessful()){
-                        Log.d(TAG, "onComplete: found location!");
-                        Location currentLocation = (Location) task.getResult();
-
-                        moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
-                                DEFAULT_ZOOM);
-
-                    }else{
-                        Log.d(TAG, "onComplete: current location is null");
-                        Toast.makeText(MapActivity.this, "unable to get current location", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-
-    }catch (SecurityException e){
-        Log.e(TAG, "getDeviceLocation: SecurityException: " + e.getMessage() );
-    }
-}*/
 
     private void moveCamera(LatLng latLng, float zoom){
         Log.d(TAG, "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude );
@@ -286,35 +256,3 @@ public class MapActivity extends AppCompatActivity {
         }
     }
 }
-
-
-
-
-
-//btnFind.setOnClickListener(new View.OnClickListener() {
-
-//            @Override
-
-  //          public void onClick(View v) {
-
-    //            LatLng currentMarkerLocation = mMap.getCameraPosition().target;
-
-      //          rippleBg.startRippleAnimation();
-
-        //        new Handler().postDelayed(new Runnable() {
-
-          //          @Override
-            //        public void run() {
-
-              //          rippleBg.stopRippleAnimation();
-
-                //        startActivity(new Intent(MapActivity.this, NewActivity.class));
-
-                  //      finish();
-
-                    //}
-                //}, 3000);
-
-            //}
-       // });
-   // }
