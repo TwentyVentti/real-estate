@@ -3,6 +3,7 @@ package com.example.myproject.ViewModels;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.JsonReader;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -75,9 +77,14 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(this,loginActivity.class));
                 break;
+
+
         }
-        return  true;
+        return  super.onOptionsItemSelected(item);
     }
+
+
+
 
     @Override
     public boolean onSupportNavigateUp() {
