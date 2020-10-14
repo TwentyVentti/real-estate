@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 public class Tokenizer {
     private String _buffer;    //save text
     private Token current;    //save token extracted from next()
+    private int PARENTHESIS = 2;
 
     /**
      * Tokenizer class constructor
@@ -65,7 +66,9 @@ public class Tokenizer {
         int tokenLen;
         // Remove the extracted token from buffer
         if (current.type() == Token.Type.STRING)
-            tokenLen = current.token().length() + 2;
+            //No magic numbers: 2, 3, 4;
+            // Instead make a global variable.
+            tokenLen = current.token().length() + PARENTHESIS;
         else
             tokenLen = current.token().length();
 

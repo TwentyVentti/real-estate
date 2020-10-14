@@ -18,7 +18,7 @@ public class TokenizerTest {
     private static final String testCountryCase = "country = \"France\";";
     private static final String testSearchCase = "country = \"France\"; city = \"Paris\"; duration = 1 weeks ; ";
 
-    @Test(timeOut = 1000)
+    @Test//(timeOut = 1000)
     public void testCityToken() {
         tokenizer = new Tokenizer(testCityCase);
 
