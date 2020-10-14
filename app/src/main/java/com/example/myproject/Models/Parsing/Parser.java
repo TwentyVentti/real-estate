@@ -7,8 +7,9 @@ import java.util.ArrayList;
  *
  *  The main objective of this class is to implement a simple parser.
  *  It should be able to parser the following grammar rule:
+ *  BASE    -> BASE USER | USER
  *  USER    -> COUNTRY EQ STRING SEMI | CITY EQ STRING SEMI | DURATION EQ NUMBER TUNIT SEMI
- *  TUNIT -> DAYS | WEEK | MONTH
+ *  TUNIT   -> DAYS | WEEK | MONTH
  */
 public class Parser {
 
@@ -18,8 +19,9 @@ public class Parser {
     public Parser(Tokenizer tokenizer) {
         _tokenizer = tokenizer;
     }
+
 //    /**
-//     * <User> -> Country; City; n Stay
+//     * USER    -> COUNTRY EQ STRING SEMI | CITY EQ STRING SEMI | DURATION EQ NUMBER TUNIT SEMI
 //     */
 //    public Exp parseUser() {
 //        //Case 1: Country; City; n Stay
