@@ -16,7 +16,7 @@ public class TokenizerTest {
     private static final String testCityCase = "city = \"Paris\" ; ";
     private static final String testDurationCase = "duration = 68 days;";
     private static final String testCountryCase = "country = \"France\";";
-    private static final String testSearchCase = "country = \"France\"; city = \"Paris\"; duration = 1 weeks ; ";
+    private static final String testSearchCase = "country = \"France\"; city = \"Paris\"; duration = 1 week ; ";
 
     @Test//(timeOut = 1000)
     public void testCityToken() {
@@ -135,7 +135,7 @@ public class TokenizerTest {
 
         tokenizer.next();
         assertEquals("wrong token type", Token.Type.WEEK, tokenizer.current().type());
-        assertEquals("wrong token value", "weeks", tokenizer.current().token());
+        assertEquals("wrong token value", "week", tokenizer.current().token());
 
         tokenizer.next();
         assertEquals("wrong token type", Token.Type.SEMI, tokenizer.current().type());

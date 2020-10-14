@@ -44,13 +44,13 @@ public class Tokenizer {
         if (Character.isLowerCase(firstChar)) {
             String[] result = _buffer.split("[^A-Za-z]");
             String keyword = result[0];
-            switch (keyword) {
+            switch (keyword.toLowerCase()) {
                 case "city" : current = new Token(keyword, Token.Type.CITY); break;
                 case "country" : current = new Token(keyword, Token.Type.COUNTRY); break;
                 case "duration" : current = new Token(keyword, Token.Type.DURATION); break;
-                case "weeks" : current = new Token(keyword, Token.Type.WEEK); break;
-                case "days" : current = new Token(keyword, Token.Type.DAY); break;
-                case "months": current = new Token(keyword, Token.Type.MONTH); break;
+                case "weeks" : case "week"  : current = new Token(keyword, Token.Type.WEEK); break;
+                case "days"  : case "day"   : current = new Token(keyword, Token.Type.DAY); break;
+                case "months": case "month" : current = new Token(keyword, Token.Type.MONTH); break;
                 default :
                     System.out.println("Wrong keyword I guess");
             }
