@@ -16,14 +16,16 @@
 
         <TextView
             android:id="@+id/sectionTextView"
-            android:layout_width="272dp"
-            android:layout_height="44dp"
+            android:layout_width="329dp"
+            android:layout_height="102dp"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/imageView6"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.046" />
+            app:layout_constraintVertical_bias="0.026" />
 
         <ImageView
             android:id="@+id/imageView6"
@@ -41,8 +43,8 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <ListView
-            android:layout_width="407dp"
-            android:layout_height="587dp"
+            android:layout_width="414dp"
+            android:layout_height="532dp"
             android:layout_marginTop="20dp"
             app:layout_constraintBottom_toTopOf="@+id/imageView6"
             app:layout_constraintEnd_toEndOf="parent"

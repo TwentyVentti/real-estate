@@ -88,14 +88,10 @@ public class HomePageFragment extends Fragment {
             }
             assert mapArrayList != null;
             for (HashMap<String,ArrayList<Phrase>> levelMap : mapArrayList) {
-                sections.add(levelMap.keySet().iterator().next());
+                sections.add(levelMap.keySet().iterator().next().replaceAll("_", " "));
             }
         } catch (Exception ex){
             ex.printStackTrace();
-        }
-        int x = 3;
-        if (x>2){
-            int y=2;
         }
 
         return sections;

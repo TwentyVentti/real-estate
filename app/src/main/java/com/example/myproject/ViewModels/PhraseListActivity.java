@@ -26,9 +26,7 @@ public class PhraseListActivity extends AppCompatActivity {
         sectionTextView = findViewById(R.id.sectionTextView);
         Intent homePageIntent = getIntent();
         try {
-            if (section!=null){
-                section = homePageIntent.getStringExtra("Section").replaceAll(" ", "_");
-            }
+            section = homePageIntent.getStringExtra("Section").replaceAll("_", " ");
         } catch (Exception ex){
             System.err.println("Null section title");
             ex.printStackTrace();
