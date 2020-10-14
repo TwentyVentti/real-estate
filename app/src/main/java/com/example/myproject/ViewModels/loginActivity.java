@@ -105,6 +105,7 @@ Level 2:
             assert innerNames != null;
             int level = 0;
             ArrayList<HashMap<String,ArrayList<Phrase>>> innerArrayListHashMap = new ArrayList<>();
+            ArrayList<HashMap<String,ArrayList<Phrase>>> tempGet = new ArrayList<>();
             HashMap<String,ArrayList<Phrase>> innerHashMap = new HashMap<>();
             ArrayList<Phrase> innerArrayList = new ArrayList<>();
 
@@ -128,25 +129,48 @@ Level 2:
                 innerHashMap.put(sectionName,innerArrayList);
                 innerArrayList = new ArrayList<>();
                 innerArrayListHashMap.add(innerHashMap);
+
             switch (level){
                 case 1:
-                    outerHashMap.put(LEVEL_1,innerArrayListHashMap);
+                    if (outerHashMap.get(LEVEL_1) == null) {
+                        outerHashMap.put(LEVEL_1, innerArrayListHashMap);
+                    }
+                    else {
+                        outerHashMap.get(LEVEL_1).add(innerHashMap);
+                    }
                     break;
 
                 case 2:
-                    outerHashMap.put(LEVEL_2,innerArrayListHashMap);
+                    if (outerHashMap.get(LEVEL_2) == null) {
+                        outerHashMap.put(LEVEL_2, innerArrayListHashMap);
+                    }
+                    else {
+                        outerHashMap.get(LEVEL_2).add(innerHashMap);
+                    }
                     break;
 
                 case 3:
-                    outerHashMap.put(LEVEL_3,innerArrayListHashMap);
+                    if (outerHashMap.get(LEVEL_3) == null) {
+                        outerHashMap.put(LEVEL_3, innerArrayListHashMap);
+                    }
+                    else {
+                        outerHashMap.get(LEVEL_3).add(innerHashMap);
+                    }
                     break;
 
                 case 4:
-                    outerHashMap.put(LEVEL_4,innerArrayListHashMap);
+                    if (outerHashMap.get(LEVEL_4) == null) {
+                        outerHashMap.put(LEVEL_4, innerArrayListHashMap);
+                    }
+                    else {
+                        outerHashMap.get(LEVEL_4).add(innerHashMap);
+                    }
                     break;
                 default:
                     break;
             }
+                innerArrayListHashMap = new ArrayList<>();
+                innerHashMap = new HashMap<>();
             }
         } catch (JSONException e) {
             e.printStackTrace();
