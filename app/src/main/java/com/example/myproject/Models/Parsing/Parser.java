@@ -12,7 +12,7 @@ import static com.example.myproject.Models.Parsing.Token.Type.*;
  *  <BASE>    -> <USER> <BASE>| <USER>
  *  <USER>  -> <PLACE> EQ STRING SEMI | DURATION EQ INTEGER <TUNIT> SEMI
  *  <PLACE>   -> COUNTRY | CITY
- *  <TUNIT>   -> DAYS | WEEK | MONTH
+ *  <TUNIT>   -> DAY | WEEK | MONTH
  */
 public class Parser {
 
@@ -49,7 +49,7 @@ public class Parser {
         _tokenizer.next();
         _tokenizer.next();
 
-        String place = _tokenizer.current().token();
+        String place = _tokenizer.current().token().trim();
 
         _tokenizer.next();
         _tokenizer.next();

@@ -38,7 +38,7 @@ public class Tokenizer {
         if (firstChar == '\"') {
             // StringTokenizer is a legacy library if possible could use a better one idk
             StringTokenizer st = new StringTokenizer(_buffer.substring(1),"\"");
-            current = new Token(st.nextToken().toLowerCase().trim(), Token.Type.STRING);
+            current = new Token(st.nextToken().toLowerCase(), Token.Type.STRING);
             // TODO: Checker for some types of invalid strings
         }
         if (Character.isLowerCase(firstChar)) {

@@ -7,9 +7,6 @@ import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-/**
- * TODO: If there is space within a string to search
- */
 public class TokenizerTest {
     private static Tokenizer tokenizer;
     private static final String testCityCase = "city = \"Paris\" ; ";
