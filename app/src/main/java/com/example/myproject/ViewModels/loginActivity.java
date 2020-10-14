@@ -52,7 +52,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     String LEVEL_3 = "Level 3";
     String LEVEL_4 = "Level 4";
     public static final String a = "a";
-    public static HashMap<String,HashMap<String,ArrayList<Phrase>>> phraseListHash;
+    public static HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> phraseListHash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,18 +81,19 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     }
 /*
 Level 1:
-    Around town:
-        F
-        F
-        F
-        F
-    Greetings
+    [Around town:
+        phrase1
+        phrase2
+        phrase3
+        phrase4
+    Greetings]
+    //HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>>
 Level 2:
     At the restaurant:
 
  */
-    public HashMap<String,HashMap<String,ArrayList<Phrase>>>ObjectFromJSON() throws IOException{
-        HashMap<String,HashMap<String,ArrayList<Phrase>>> outerHashMap = new HashMap<>();
+    public HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>>ObjectFromJSON() throws IOException{
+        HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> outerHashMap = new HashMap<>();
         try {
             JSONObject obj = new JSONObject(loadJSONFromAsset());
 
@@ -103,8 +104,9 @@ Level 2:
             JSONArray innerNames = innerObj.names();
             assert innerNames != null;
             int level = 0;
-            ArrayList<Phrase> innerPhraseArrayList = new ArrayList<>();
+            ArrayList<HashMap<String,ArrayList<Phrase>>> innerArrayListHashMap = new ArrayList<>();
             HashMap<String,ArrayList<Phrase>> innerHashMap = new HashMap<>();
+            ArrayList<Phrase> innerArrayList = new ArrayList<>();
 
             for (int i = 0; i < innerNames.length(); i++) {
                 JSONArray sectionArray = innerObj.getJSONArray((String) innerNames.get(i));
@@ -119,25 +121,28 @@ Level 2:
                     int id = phraseObject.getInt("id");
                     level = phraseObject.getInt("level");
                     Phrase phrase = new Phrase(english,french,italian,spanish,dutch,section,level,id);
-                    innerPhraseArrayList.add(phrase);
+                    innerArrayList.add(phrase);
+//                    innerArrayListHashMap.add(phrase);
                 }
                 String sectionName = (String) innerNames.get(i);
-                innerHashMap.put(sectionName,innerPhraseArrayList);
+                innerHashMap.put(sectionName,innerArrayList);
+                innerArrayList = new ArrayList<>();
+                innerArrayListHashMap.add(innerHashMap);
             switch (level){
                 case 1:
-                    outerHashMap.put(LEVEL_1,innerHashMap);
+                    outerHashMap.put(LEVEL_1,innerArrayListHashMap);
                     break;
 
                 case 2:
-                    outerHashMap.put(LEVEL_2,innerHashMap);
+                    outerHashMap.put(LEVEL_2,innerArrayListHashMap);
                     break;
 
                 case 3:
-                    outerHashMap.put(LEVEL_3,innerHashMap);
+                    outerHashMap.put(LEVEL_3,innerArrayListHashMap);
                     break;
 
                 case 4:
-                    outerHashMap.put(LEVEL_4,innerHashMap);
+                    outerHashMap.put(LEVEL_4,innerArrayListHashMap);
                     break;
                 default:
                     break;
