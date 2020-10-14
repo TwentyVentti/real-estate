@@ -2,16 +2,17 @@ package com.example.myproject.Models.Parsing;
 
 import java.util.ArrayList;
 
+import static com.example.myproject.Models.Parsing.Token.Type.*;
+
 /**
  * Name: Parser.java
  *
  *  The main objective of this class is to implement a simple parser.
  *  It should be able to parser the following grammar rule:
- *  <User>     -> <Country>; <City>; Int <Stay>
- *  <Country>  -> France | Spain | Netherlands | Italy
- *  <Stay>     -> month | week | day
- *  <City>     -> Paris | Madrid | Amsterdam | Rome
- *
+ *  <BASE>    -> <USER> <BASE>| <USER>
+ *  <USER>  -> <PLACE> EQ STRING SEMI | DURATION EQ INTEGER <TUNIT> SEMI
+ *  <PLACE>   -> COUNTRY | CITY
+ *  <TUNIT>   -> DAY | WEEK | MONTH
  */
 public class Parser {
 
@@ -21,82 +22,60 @@ public class Parser {
     public Parser(Tokenizer tokenizer) {
         _tokenizer = tokenizer;
     }
-//    /**
-//     * <User> -> Country; City; n Stay
-//     */
-//    public Exp parseUser() {
-//        //Case 1: Country; City; n Stay
-//        Exp Country = parseCountry();
-//
-//        return null;
-//    }
-//    /**
-//     * <Country> -> France | Spain | Netherlands | Italy
-//     */
-//    public Exp parseCountry() {
-//        // TODO: Implement parse function for <factor>
-//        if (_tokenizer.hasNext()&&_tokenizer.current().type()==(Token.Type.WORD)){
-//            _tokenizer.next();
-//            Exp exp = parseExp();
-//            _tokenizer.next();
-//            return exp;
-//        }else {
-//            IntExp i = new IntExp(Integer.parseInt(_tokenizer.current().token()));
-//            _tokenizer.next();
-//            return i;
-//        }
-//    }
 
-    /**
-    * <Stay> -> month | week | day
-    */
-//    public Exp parseTerm() {
-//        // TODO: Implement parse function for <term>
-//        // ########## YOUR CODE STARTS HERE ##########
-//        //Case 1: Factor
-//        Exp factor = parseFactor();
-//        //Case 2: Factor * Term
-//        if (_tokenizer.hasNext()&&_tokenizer.current().type()==Token.Type.MUL){
-//            _tokenizer.next();
-//            Exp term = parseTerm();
-//            return new MultExp(factor, term);
-//
-//            //Case 3: Factor / Term
-//        } else if (_tokenizer.hasNext()&&_tokenizer.current().type()==Token.Type.DIV){
-//            _tokenizer.next();
-//            Exp term = parseTerm();
-//            return new DivExp(factor, term);
-//        } else {
-//            return factor;
-//        }
-//        // ########## YOUR CODE ENDS HERE ##########
-//    }
-//
-    /**
-    * <City> -> Paris | Madrid | Amsterdam | Rome
-    */
-//    public Exp parseFactor() {
-//        // TODO: Implement parse function for <factor>
-//        // ########## YOUR CODE STARTS HERE ##########
-//        if (_tokenizer.hasNext()&&_tokenizer.current().type()==Token.Type.LBRA){
-//            _tokenizer.next();
-//            Exp exp = parseExp();
-//            _tokenizer.next();
-//            return exp;
-//        }else {
-//            IntExp i = new IntExp(Integer.parseInt(_tokenizer.current().token()));
-//            _tokenizer.next();
-//            return i;
-//        }
-//        // ########## YOUR CODE ENDS HERE ##########
-//    }
+    public Exp parseBase() {
+        Exp base1 = parseUser();
+        if (_tokenizer.hasNext()) {
+            _tokenizer.next();
+            Exp base2 = parseBase();
+            return new BaseExp(base1, base2);
+        } else {
+            return base1;
+        }
+    }
+
+    public Exp parseUser() {
+        switch (_tokenizer.current().type()) {
+            case CITY:
+            case COUNTRY:
+                return parseLocation();
+            default : return parseTime();
+        }
+    }
+
+    public Exp parseLocation() {
+        Token.Type placeType = _tokenizer.current().type();
+
+        _tokenizer.next();
+        _tokenizer.next();
+
+        String place = _tokenizer.current().token().trim();
+
+        _tokenizer.next();
+        _tokenizer.next();
+
+        return new PlaceExp(placeType, place);
+    }
+    public Exp parseTime() {
+        _tokenizer.next();
+        _tokenizer.next();
+        int time = Integer.parseInt(_tokenizer.current().token());
+
+        _tokenizer.next();
+        Token.Type tunit = parseTUnit();
+
+        _tokenizer.next();
+        return new TimeExp(time, tunit);
+    }
+    public Token.Type parseTUnit() {
+        switch (_tokenizer.current().type()) {
+            case DAY: case MONTH: case WEEK:
+                return _tokenizer.current().type();
+            default:
+                System.out.println("Error in creation of TUnit");
+        }
 
 
-//
-//    public static void main(String[] args) {
-//        MyTokenizer mathTokenizer = new MyTokenizer("2*5+1");
-//        Exp t1 = new Parser(mathTokenizer).parseExp();
-//        System.out.println(t1.show());
-//        System.out.println(t1.evaluate());
-//    }
+        return _tokenizer.current().type();
+    }
 }
