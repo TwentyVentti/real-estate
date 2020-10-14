@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.AsyncTask;
@@ -15,18 +16,22 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.myproject.JsonParsermap;
 import com.example.myproject.R;
+import com.example.myproject.ViewModels.MainActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.CancellationTokenSource;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
@@ -50,9 +55,20 @@ public class MapActivity extends AppCompatActivity {
     Button btfind;
     SupportMapFragment supportMapFragment;
     GoogleMap map;
+
     FusedLocationProviderClient fusedLocationProviderClient;
     double currentLat = 0, currentLong = 0;
+    private static final String TAG = "MapActivity";
+    private static final float DEFAULT_ZOOM = 15f;
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+        finish();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +80,11 @@ public class MapActivity extends AppCompatActivity {
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.google_map);
 
+
         final String[] placeTypeList = {"restaurant", "bar", "hotel","atm"};
         //grocery,hospital,parking
 
-        String[] placeNameList = {"Restaurant", "Bar", "Hotel","Atm"};
+        String[] placeNameList = {"Looking for a place to eat?", "Looking for a place to drink?", "Looking for a place to stay?","Looking for a place to withdraw money?"};
         //Grocery,Hospital,Parking
 
         spType.setAdapter(new ArrayAdapter<>(MapActivity.this,
@@ -102,7 +119,10 @@ public class MapActivity extends AppCompatActivity {
         });
     }
 
+
     private void getCurrentLocation() {
+        //map.setMinZoomPreference(6.0f);
+        //map.setMaxZoomPreference(14.0f);
 
         //Log.d("flag1","before curr");
         //CancellationTokenSource cts = new CancellationTokenSource();
@@ -126,6 +146,8 @@ public class MapActivity extends AppCompatActivity {
 
                     currentLong=location.getLongitude();
 
+
+
                     //Log.d("location",Double.toString(currentLong));
                     // D/location: 37.4219983
                     // D/location: -122.084
@@ -135,19 +157,59 @@ public class MapActivity extends AppCompatActivity {
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
                             map=googleMap;
+                            //map.setMinZoomPreference(6.0f);
+                            //map.setMaxZoomPreference(14.0f);
                             map.animateCamera(CameraUpdateFactory.newLatLngZoom(
                                     new LatLng(currentLat,currentLong),10
                             ));
+                            Log.d("#123","before");
+                            map.setMinZoomPreference(13.0f);
+                            //map.setMaxZoomPreference(40.0f);
+                            Log.d("#123","after");
+
                         }
+
                     });
 
                 }
 
             }
         });
-        {
+    }
+/*private void getCurrentLocation(){
+    Log.d(TAG, "getDeviceLocation: getting the devices current location");
 
-        }
+    fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+    try{
+
+            Task<Location> task = fusedLocationProviderClient.getLastLocation();
+            //final Task location = fusedLocationProviderClient.getLastLocation();
+            task.addOnCompleteListener(new OnCompleteListener() {
+                @Override
+                public void onComplete(@NonNull Task task) {
+                    if(task.isSuccessful()){
+                        Log.d(TAG, "onComplete: found location!");
+                        Location currentLocation = (Location) task.getResult();
+
+                        moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
+                                DEFAULT_ZOOM);
+
+                    }else{
+                        Log.d(TAG, "onComplete: current location is null");
+                        Toast.makeText(MapActivity.this, "unable to get current location", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+    }catch (SecurityException e){
+        Log.e(TAG, "getDeviceLocation: SecurityException: " + e.getMessage() );
+    }
+}*/
+
+    private void moveCamera(LatLng latLng, float zoom){
+        Log.d(TAG, "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude );
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
     }
 
     @Override
