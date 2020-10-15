@@ -1,5 +1,6 @@
 package com.example.myproject.Models;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.example.myproject.JsonParsermap;
 import com.example.myproject.R;
 import com.example.myproject.ViewModels.MainActivity;
+import com.example.myproject.ui.HomePage.HomePageFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -61,18 +63,17 @@ public class MapActivity extends AppCompatActivity {
     private static final float DEFAULT_ZOOM = 15f;
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
-        finish();
-
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent i = new Intent(getApplicationContext(), HomePageFragment.class);
+                finish();
+                startActivity(i);
+            }
+        };
 
         spType = findViewById(R.id.sp_type);
         btfind = findViewById(R.id.bt_find);
