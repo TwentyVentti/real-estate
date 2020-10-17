@@ -86,15 +86,7 @@ public class GreetingsFragment extends Fragment {
 
 
 
-
-        //setContentView(R.layout.activity_map);
-        //View v = inflater.inflate(R.layout.activity_map, container, false);
-
-
-        //spType = findViewById(R.id.sp_type);
-        //btfind = findViewById(R.id.bt_find);
-        //supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
-        //      .findFragmentById(R.id.google_map);
+;
 
 
         final String[] placeTypeList = {"restaurant", "bar", "hotel","atm"};
@@ -103,9 +95,7 @@ public class GreetingsFragment extends Fragment {
         String[] placeNameList = {"Looking for a place to eat?", "Looking for a place to drink?", "Looking for a place to stay?","Looking for a place to withdraw money?"};
         //Grocery,Hospital,Parking
 
-        //spType.setAdapter(new ArrayAdapter<>(this,
-        //      android.R.layout.simple_spinner_dropdown_item,
-        //    placeNameList));
+
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, placeNameList);
@@ -214,11 +204,7 @@ public class GreetingsFragment extends Fragment {
     }
 
 
-    private void moveCamera(LatLng latLng, float zoom){
-        Log.d(TAG, "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude );
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
