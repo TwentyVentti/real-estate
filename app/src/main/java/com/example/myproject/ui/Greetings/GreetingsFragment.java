@@ -174,12 +174,30 @@ public class GreetingsFragment extends Fragment {
                             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
                             mCurrLocationMarker = map.addMarker(markerOptions);
 
+                            //move map camera
+                            map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                            map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLat, currentLat), 13));
+
+                            CameraPosition cameraPosition = new CameraPosition.Builder()
+                                    .target(latLng)      // Sets the center of the map to location user
+                                    .zoom(15)                   // Sets the zoom
+                                    .bearing(90)                // Sets the orientation of the camera to east
+                                    .tilt(40)                   // Sets the tilt of the camera to 30 degrees
+                                    .build();                   // Creates a CameraPosition from the builder
+                            map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
 
                             //map.animateCamera(CameraUpdateFactory.newLatLngZoom(
                             //        new LatLng(currentLat,currentLong),10
                             //));
                             //map.setMinZoomPreference(12.0f);
                             //map.setMaxZoomPreference(30.0f);
+                            UiSettings uiSettings = map.getUiSettings();
+                            uiSettings.setAllGesturesEnabled(true);
+                            uiSettings.setMapToolbarEnabled(true);
+                            uiSettings.setZoomControlsEnabled(true);
+                            uiSettings.setCompassEnabled(true);
+
 
 
 
