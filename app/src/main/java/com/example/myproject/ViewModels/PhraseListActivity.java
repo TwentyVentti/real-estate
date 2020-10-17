@@ -15,8 +15,11 @@ import android.widget.Toast;
 import com.example.myproject.Models.Phrase;
 import com.example.myproject.R;
 import com.example.myproject.ui.HomePage.HomePageFragment;
+import android.speech.tts.TextToSpeech;
+//import com.google.cloud.texttospeech.v1beta1.TextToSpeechClient;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * This class represents the activity which will be called when the user clicks on one of the list objects
@@ -30,13 +33,21 @@ public class PhraseListActivity extends AppCompatActivity {
     ArrayAdapter<String> phraseArrayAdapter;
     ArrayList<String> userFirstLanguagePhrases = new ArrayList<>();
     ArrayList<String> userSelectedLanguagePhrases = new ArrayList<>();
-
+    TextToSpeech textToSpeech;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setLanguageArrays();
         setContentView(R.layout.activity_phrase_list);
         sectionTextView = findViewById(R.id.sectionTextView);
+        textToSpeech=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                }
+            }
+        });
+
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
@@ -49,6 +60,7 @@ public class PhraseListActivity extends AppCompatActivity {
         phraseListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
                 Toast toast = Toast.makeText(getApplicationContext(),userSelectedLanguagePhrases.get(i),Toast.LENGTH_LONG);
                 toast.show();
             }
