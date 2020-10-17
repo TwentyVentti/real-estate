@@ -17,7 +17,7 @@
         android:layout_width="284dp"
         android:layout_height="50dp"
         android:layout_marginStart="9dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="13dp"
         android:layout_weight="1"
@@ -25,15 +25,15 @@
         app:layout_constraintBottom_toTopOf="@+id/google_map"
         app:layout_constraintEnd_toStartOf="@+id/bt_find"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3">
+        app:layout_constraintTop_toTopOf="parent">
 
     </Spinner>
 
     <Button
         android:id="@+id/bt_find"
-        android:layout_width="111dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="7dp"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="2dp"
         android:layout_marginBottom="2dp"
         android:background="#E15F8B"
@@ -42,15 +42,15 @@
         app:layout_constraintBottom_toTopOf="@+id/google_map"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/sp_type"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3">
+        app:layout_constraintTop_toTopOf="parent">
 
     </Button>
 
     <fragment
         android:id="@+id/google_map"
         class="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="406dp"
-        android:layout_height="575dp"
+        android:layout_width="397dp"
+        android:layout_height="535dp"
         android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,25 +60,7 @@
 
     </fragment>
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#E15F8B"
-        android:elevation="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Around Town"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="14dp" />
-    </androidx.appcompat.widget.Toolbar>
 
 
 
