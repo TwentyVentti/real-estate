@@ -17,7 +17,10 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.myproject.Models.Parsing.BaseExp;
+import com.example.myproject.Models.Parsing.Parser;
 import com.example.myproject.Models.Parsing.Token;
+import com.example.myproject.Models.Parsing.Tokenizer;
 import com.example.myproject.Models.User;
 import com.example.myproject.R;
 import com.google.android.material.navigation.NavigationView;
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 .setDrawerLayout(drawer)
                 .build();
         userDetails = getIntent().getStringExtra("UD");
+
         getUserSelectionFromEdit();
 //        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_home);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -112,42 +116,57 @@ public class User {
     private String country;
  */
     public static User getUserSelectionFromEdit(){
+
+        Tokenizer tokenizer = new Tokenizer(userDetails);
+        BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
+        t1.evaluate();
+        System.out.println(t1.city);
+        System.out.println(t1.country);
+        System.out.println(t1.time);
+        System.out.println(t1.tunit);
+        System.out.println(t1.level);
+
         ArrayList<String> inferedSelection = new ArrayList<>();
         User userNow = new User();
         if (userDetails!=null){
             try{
-                ArrayList<String> editText = new ArrayList<>(Arrays.asList(userDetails.split(";")));
-                String country = editText.get(0).toUpperCase();
+//                ArrayList<String> editText = new ArrayList<>(Arrays.asList(userDetails.split(";")));
+//                String country = editText.get(0).toUpperCase();
                 // Assigning the country to the static user object
                 // Adding the raw entries to the ArrayList if they match any countries we offer
-                if (country.equals("FRANCE")){
+
+                if (t1.country.equals("france")){
                     inferedSelection.add("French");
                     userNow.setCountry("France");
                     userNow.setLanguage("French");
                 }
-                else if (country.equals("ITALY")){
+                else if (t1.country.equals("italy")){
                     inferedSelection.add("Italian");
                     userNow.setCountry("France");
                     userNow.setLanguage("Italian");
                 }
-                else if (country.equals("NETHERLANDS")){
+                else if (t1.country.equals("netherlands")){
                     inferedSelection.add("Dutch");
                     userNow.setCountry("Netherlands");
                     userNow.setLanguage("Dutch");
                 }
-                else if (country.equals("SPAIN")){
+                else if (t1.country.equals("spain")){
                     inferedSelection.add("Spanish");
                     userNow.setCountry("Spain");
                     userNow.setLanguage("Spanish");
                 }
+                else {
+                    System.out.println("No strings matched");
+                }
                 // Adding the city attribute
-                userNow.setCity(editText.get(1));
+                userNow.setCity(t1.city);
 
                 // Adding the city attribute to the arraylist
-                inferedSelection.add(editText.get(1));
-                int level = levelFromDuration(editText.get(2));
+                inferedSelection.add(t1.city);
+                int level = t1.level;
+
                 userNow.setLevel(level);
-                inferedSelection.add(Integer.toString(levelFromDuration(editText.get(2))));
+                inferedSelection.add(Integer.toString(t1.level));
             }catch (Exception ex){
                 ex.printStackTrace();
             }
@@ -155,39 +174,4 @@ public class User {
         return userNow;
     }
 
-    public static int levelFromDuration(String duration){
-        char firstChar = duration.charAt(0);
-        String unitOfTime = "";
-        int totalDays = 0;
-        StringBuilder number = new StringBuilder();
-        if (Character.isDigit(duration.charAt(0))) {
-            number.append(firstChar);
-            for (int i = 1; i < duration.length(); i++) {
-                if (Character.isDigit(duration.charAt(i))) {
-                    number.append(duration.charAt(i));
-                } else {
-                    unitOfTime = duration.substring(i).toUpperCase();
-                }
-            }
-        }
-
-        if (unitOfTime.equals("DAY")||unitOfTime.equals("DAYS")){
-            totalDays = Integer.parseInt(number.toString());
-        }
-        else if (unitOfTime.equals("WEEK")||unitOfTime.equals("WEEKS")){
-            totalDays = Integer.parseInt(number.toString())*7;
-        }
-        else if (unitOfTime.equals("MONTH")||unitOfTime.equals("MONTHS")){
-            totalDays = Integer.parseInt(number.toString())*30;
-        }
-        int level = 0;
-        if (totalDays<=7){
-            level = 1;
-        } else if (totalDays<=14){
-            level = 2;
-        } else if (totalDays<=30){
-            level =3;
-        }
-        return level;
-    }
 }

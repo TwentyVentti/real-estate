@@ -69,7 +69,7 @@ public class HomePageFragment extends Fragment {
         });
         return root;
     }
-
+    /** TODO: Level 3 not created */
     public ArrayList<String> getSections(){
         ArrayList<String> sections = new ArrayList<>();
         HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> phraseHash;

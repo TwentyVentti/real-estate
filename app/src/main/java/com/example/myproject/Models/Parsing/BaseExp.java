@@ -42,7 +42,7 @@ public class BaseExp extends Exp{
                 else if (totalDays <= 14)
                     level = 2;
                 else
-                    level =3;
+                    level = 3;
                 break;
             case "CITY":
                 city = temp[1];

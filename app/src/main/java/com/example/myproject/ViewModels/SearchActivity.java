@@ -20,6 +20,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myproject.Models.Parsing.BaseExp;
+import com.example.myproject.Models.Parsing.Parser;
+import com.example.myproject.Models.Parsing.Tokenizer;
 import com.example.myproject.Models.UserDetails;
 import com.example.myproject.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -99,6 +102,7 @@ public class SearchActivity extends AppCompatActivity {
     public void searchClicked(View v){
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("UD",inputText.getText().toString());
+
         startActivity(intent);
     }
     public void onButtonShowPopupWindowClick(View view) {
