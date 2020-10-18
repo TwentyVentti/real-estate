@@ -14,10 +14,26 @@ public class ParserTest {
     private static final String testSearchCase = "country = \"France\"; city = \"Paris\"; duration = 1 week ; ";
 
     @Test
-    public void basicTest() {
+    public void testCity() {
         Tokenizer tokenizer = new Tokenizer(testCityCase);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
-        assertEquals(t1.city, "Paris");
+        assertEquals(t1.city, "paris");
+    }
+
+    @Test
+    public void testCountry() {
+        Tokenizer tokenizer = new Tokenizer(testCountryCase);
+        BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
+        t1.evaluate();
+        assertEquals(t1.country, "france");
+    }
+
+    @Test
+    public void testDuration() {
+        Tokenizer tokenizer = new Tokenizer(testDurationCase);
+        BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
+        t1.evaluate();
+        assertEquals(t1.tunit, "day");
     }
 }

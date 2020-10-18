@@ -26,6 +26,22 @@ public class BaseExp extends Exp{
             case "TIME":
                 time = Integer.parseInt(temp[1]);
                 tunit = temp[2];
+                int totalDays = 0;
+                if (tunit.equals("DAY")||tunit.equals("DAYS")){
+                    totalDays = time;
+                }
+                else if (tunit.equals("WEEK")||tunit.equals("WEEKS")){
+                    totalDays = time*7;
+                }
+                else if (tunit.equals("MONTH")||tunit.equals("MONTHS")){
+                    totalDays = time*30;
+                }
+                if (totalDays <= 7)
+                    level = 1;
+                else if (totalDays <= 14)
+                    level = 2;
+                else
+                    level =3;
                 break;
             case "CITY":
                 city = temp[1];
@@ -44,26 +60,6 @@ public class BaseExp extends Exp{
         if (term2 != null) {
             setTerm(term2);
         }
-
-        int totalDays = 0;
-
-        if (tunit.equals("DAY")||tunit.equals("DAYS")){
-            totalDays = time;
-        }
-        else if (tunit.equals("WEEK")||tunit.equals("WEEKS")){
-            totalDays = time*7;
-        }
-        else if (tunit.equals("MONTH")||tunit.equals("MONTHS")){
-            totalDays = time*30;
-        }
-
-        if (totalDays <= 7)
-            level = 1;
-        else if (totalDays <= 14)
-            level = 2;
-        else
-            level =3;
-
         return new String[0];
     }
 

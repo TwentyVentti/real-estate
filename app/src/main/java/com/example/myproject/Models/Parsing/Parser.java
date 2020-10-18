@@ -29,9 +29,9 @@ public class Parser {
             _tokenizer.next();
             Exp base2 = parseBase();
             return new BaseExp(base1, base2);
-        } else {
-            return new BaseExp(base1);
         }
+        else
+            return new BaseExp(base1);
     }
 
     public Exp parseUser() {
