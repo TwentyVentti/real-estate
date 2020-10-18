@@ -43,6 +43,7 @@ public class SearchActivity extends AppCompatActivity {
     private String ID;
 
 
+
     EditText inputText;
 
     @Override
@@ -58,6 +59,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         inputText = (EditText) findViewById(R.id.citySelectEdit);
+
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         ref = FirebaseDatabase.getInstance().getReference("Users");
@@ -100,10 +102,17 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void searchClicked(View v){
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("UD",inputText.getText().toString());
 
-        startActivity(intent);
+        if (inputText.length() == 0){
+            Toast.makeText(SearchActivity.this,"Please enter your details!",Toast.LENGTH_LONG).show();
+
+        }
+        else {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("UD", inputText.getText().toString());
+
+            startActivity(intent);
+        }
     }
     public void onButtonShowPopupWindowClick(View view) {
         Resources RESOURCES = this.getResources();
