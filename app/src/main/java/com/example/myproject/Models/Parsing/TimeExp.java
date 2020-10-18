@@ -12,11 +12,13 @@ public class TimeExp extends Exp{
 
     @Override
     public String show() {
-        return Integer.toString(time);
+        return "type=time " + time + "; value=" + unit ;
     }
 
     @Override
-    public int evaluate() {
-        return 0;
+    public String[] evaluate()
+    {
+        String [] temp = {"TIME", Integer.toString(time), unit.toString()};
+        return temp;
     }
 }

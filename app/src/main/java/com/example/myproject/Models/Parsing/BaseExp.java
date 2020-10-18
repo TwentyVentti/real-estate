@@ -1,47 +1,75 @@
 package com.example.myproject.Models.Parsing;
 
-import java.util.HashMap;
-
 public class BaseExp extends Exp{
-    private Exp term;
-    private Exp exp;
-    private HashMap<String,String> hash;
+    private Exp term1;
+    private Exp term2;
 
-    public BaseExp(Exp term, Exp exp) {
-        this.term = term;
-        this.exp = exp;
+    // These 5 parameters can be accessed by the created object
+    public int time;
+    public String tunit;
+    public String country;
+    public String city;
+    public int level;
+    
+    public BaseExp(Exp term1, Exp term2) {
+        this.term1 = term1;
+        this.term2 = term2;
     }
 
-    public HashMap<String, String> hashMap() {
-        hash.put(term.show(),exp.show());
-        return hash;
+    public BaseExp(Exp term1) {
+        this.term1 = term1;
     }
 
+    private void setTerm (Exp type) {
+        String[] temp = type.evaluate();
+        switch (temp[0]) {
+            case "TIME":
+                time = Integer.parseInt(temp[1]);
+                tunit = temp[2];
+                break;
+            case "CITY":
+                city = temp[1];
+                break;
+            case "COUNTRY" :
+                country = temp[1];
+                break;
+            default :
+                System.out.println("idk");
+        }
+    }
     @Override
-    public int evaluate() {
-//        if (unitOfTime.equals("DAY")||unitOfTime.equals("DAYS")){
-//            totalDays = Integer.parseInt(number.toString());
-//        }
-//        else if (unitOfTime.equals("WEEK")||unitOfTime.equals("WEEKS")){
-//            totalDays = Integer.parseInt(number.toString())*7;
-//        }
-//        else if (unitOfTime.equals("MONTH")||unitOfTime.equals("MONTHS")){
-//            totalDays = Integer.parseInt(number.toString())*30;
-//        }
-//        int level = 0;
-//        if (totalDays<=7){
-//            level = 1;
-//        } else if (totalDays<=14){
-//            level = 2;
-//        } else if (totalDays<=30){
-//            level =3;
-//        }
-        return 0;
+    public String[] evaluate() {
+
+        setTerm(term1);
+        if (term2 != null) {
+            setTerm(term2);
+        }
+
+        int totalDays = 0;
+
+        if (tunit.equals("DAY")||tunit.equals("DAYS")){
+            totalDays = time;
+        }
+        else if (tunit.equals("WEEK")||tunit.equals("WEEKS")){
+            totalDays = time*7;
+        }
+        else if (tunit.equals("MONTH")||tunit.equals("MONTHS")){
+            totalDays = time*30;
+        }
+
+        if (totalDays <= 7)
+            level = 1;
+        else if (totalDays <= 14)
+            level = 2;
+        else
+            level =3;
+
+        return new String[0];
     }
 
     @Override
     public String show() {
-        return "SemiExp{" + "term=" + term.show() + "; exp=" + exp.show() + '}';
+        return "" + "term=" + term1.show() + "; exp=" + term2.show() + '}';
     }
 
 

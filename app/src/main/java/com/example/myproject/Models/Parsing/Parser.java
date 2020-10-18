@@ -30,7 +30,7 @@ public class Parser {
             Exp base2 = parseBase();
             return new BaseExp(base1, base2);
         } else {
-            return base1;
+            return new BaseExp(base1);
         }
     }
 

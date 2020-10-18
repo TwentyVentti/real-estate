@@ -14,14 +14,15 @@ public class PlaceExp extends Exp{
 
 
     @Override
-    public int evaluate() {
+    public String[] evaluate() {
         // Al
-        return 0;
+        String [] temp = {placeType.toString(),place};
+        return temp;
     }
 
     @Override
     public String show() {
-        return "SemiExp{" + "term=" + placeType + "; exp=" + place + '}';
+        return "type=" + placeType + "; value=";
     }
 
 

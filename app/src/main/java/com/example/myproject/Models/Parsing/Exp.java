@@ -4,6 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class Exp {
-    public abstract int evaluate();
+    public abstract String[] evaluate();
     public abstract String show();
 }
