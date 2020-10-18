@@ -1,15 +1,11 @@
 package com.example.myproject.Models.Parsing;
 
-import java.util.ArrayList;
-
-import static com.example.myproject.Models.Parsing.Token.Type.*;
 
 /**
  * Name: Parser.java
  *
  *  The main objective of this class is to implement a simple parser.
  *  It should be able to parser the following grammar rule:
- *  <MAIN>   -> <BASE> | <>
  *  <BASE>    -> <USER> <BASE> | <USER>
  *  <USER>  -> <PLACE> EQ STRING SEMI | DURATION EQ INTEGER <TUNIT> SEMI
  *  <PLACE>   -> COUNTRY | CITY
@@ -33,17 +29,7 @@ public class Parser {
             return new BaseExp(base1);
     }
 
-//    public Exp parseMulti(Exp term1) {
-//        Exp term2 = parseUser();
-//        if (_tokenizer.hasNext()) {
-//            Exp base2 = parseBase();
-//            return new BaseExp(term1, term2);
-//        }
-//        else
-//            return term1;
-//    }
     public Exp parseUser() {
-//        System.out.println(_tokenizer.current().type());
         switch (_tokenizer.current().type()) {
             case CITY:
             case COUNTRY:

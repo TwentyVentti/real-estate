@@ -30,15 +30,13 @@ public class BaseExp extends Exp{
                 time = Integer.parseInt(temp[1]);
                 tunit = temp[2];
                 int totalDays = 0;
-                if (tunit.equals("DAY")||tunit.equals("DAYS")){
-                    totalDays = time;
+
+                switch (tunit) {
+                    case "DAY" : totalDays = time; break;
+                    case "WEEK" : totalDays = time * 7; break;
+                    case "MONTH" : totalDays = time * 30; break;
                 }
-                else if (tunit.equals("WEEK")||tunit.equals("WEEKS")){
-                    totalDays = time*7;
-                }
-                else if (tunit.equals("MONTH")||tunit.equals("MONTHS")){
-                    totalDays = time*30;
-                }
+
                 if (totalDays <= 7)
                     level = 1;
                 else if (totalDays <= 14)
@@ -53,7 +51,7 @@ public class BaseExp extends Exp{
                 country = temp[1];
                 break;
             default :
-                System.out.println("idk");
+                System.out.println("Error in parameters check parser");
         }
     }
     @Override

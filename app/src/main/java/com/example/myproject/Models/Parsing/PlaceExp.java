@@ -1,8 +1,5 @@
 package com.example.myproject.Models.Parsing;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class PlaceExp extends Exp{
     private Token.Type placeType;
     private String place;
@@ -16,8 +13,7 @@ public class PlaceExp extends Exp{
     @Override
     public String[] evaluate() {
         // Al
-        String [] temp = {placeType.toString(),place};
-        return temp;
+        return new String[]{placeType.toString(), place};
     }
 
     @Override
