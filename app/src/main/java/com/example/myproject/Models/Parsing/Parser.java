@@ -9,7 +9,8 @@ import static com.example.myproject.Models.Parsing.Token.Type.*;
  *
  *  The main objective of this class is to implement a simple parser.
  *  It should be able to parser the following grammar rule:
- *  <BASE>    -> <USER> <BASE>| <USER>
+ *  <MAIN>   -> <BASE> | <>
+ *  <BASE>    -> <USER> <BASE> | <USER>
  *  <USER>  -> <PLACE> EQ STRING SEMI | DURATION EQ INTEGER <TUNIT> SEMI
  *  <PLACE>   -> COUNTRY | CITY
  *  <TUNIT>   -> DAY | WEEK | MONTH
@@ -17,7 +18,6 @@ import static com.example.myproject.Models.Parsing.Token.Type.*;
 public class Parser {
 
     Tokenizer _tokenizer;
-    ArrayList<String> selected;
 
     public Parser(Tokenizer tokenizer) {
         _tokenizer = tokenizer;
@@ -26,15 +26,24 @@ public class Parser {
     public Exp parseBase() {
         Exp base1 = parseUser();
         if (_tokenizer.hasNext()) {
-            _tokenizer.next();
-            Exp base2 = parseBase();
+            BaseExp base2 = (BaseExp) parseBase();
             return new BaseExp(base1, base2);
         }
         else
             return new BaseExp(base1);
     }
 
+//    public Exp parseMulti(Exp term1) {
+//        Exp term2 = parseUser();
+//        if (_tokenizer.hasNext()) {
+//            Exp base2 = parseBase();
+//            return new BaseExp(term1, term2);
+//        }
+//        else
+//            return term1;
+//    }
     public Exp parseUser() {
+//        System.out.println(_tokenizer.current().type());
         switch (_tokenizer.current().type()) {
             case CITY:
             case COUNTRY:
@@ -64,6 +73,7 @@ public class Parser {
         _tokenizer.next();
         Token.Type tunit = parseTUnit();
 
+        _tokenizer.next();
         _tokenizer.next();
         return new TimeExp(time, tunit);
     }

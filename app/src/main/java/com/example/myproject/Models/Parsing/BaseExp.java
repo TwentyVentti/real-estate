@@ -11,9 +11,12 @@ public class BaseExp extends Exp{
     public String city;
     public int level;
     
-    public BaseExp(Exp term1, Exp term2) {
+    public BaseExp(Exp term1, BaseExp term2) {
         this.term1 = term1;
-        this.term2 = term2;
+        this.term2 = term2.term1;
+        setTerm(term2.term1);
+        if (term2.term2 != null)
+            setTerm(term2.term2);
     }
 
     public BaseExp(Exp term1) {
@@ -57,9 +60,6 @@ public class BaseExp extends Exp{
     public String[] evaluate() {
 
         setTerm(term1);
-        if (term2 != null) {
-            setTerm(term2);
-        }
         return new String[0];
     }
 
