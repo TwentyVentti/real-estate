@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.JsonReader;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,6 +41,9 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
     public static String userDetails;
     public static User user = new User();
+    TextView level;
+    TextView days;
+
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -54,10 +60,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -65,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 .setDrawerLayout(drawer)
                 .build();
         userDetails = getIntent().getStringExtra("UD");
+
 
         getUserSelectionFromEdit();
 //        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_home);
@@ -116,17 +128,20 @@ public class User {
     private Integer duration;
     private String country;
  */
-    public static User getUserSelectionFromEdit(){
 
+
+    public static User getUserSelectionFromEdit(){
 
         Tokenizer tokenizer = new Tokenizer(userDetails);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
+
         System.out.println(t1.city);
         System.out.println(t1.country);
         System.out.println(t1.time);
         System.out.println(t1.tunit);
         System.out.println(t1.level);
+
 
         ArrayList<String> inferedSelection = new ArrayList<>();
         User userNow = new User();

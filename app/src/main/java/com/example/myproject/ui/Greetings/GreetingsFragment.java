@@ -27,6 +27,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.myproject.JsonParsermap;
 //import com.example.myproject.Models.MapActivity;
 import com.example.myproject.R;
+import com.example.myproject.ViewModels.SearchActivity;
 import com.example.myproject.ui.HomePage.HomePageFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -69,7 +70,6 @@ public class GreetingsFragment extends Fragment {
     double currentLat = 0, currentLong = 0;
     private static final String TAG = "MapActivity";
     private static final float DEFAULT_ZOOM = 15f;
-
 
 
     @Override

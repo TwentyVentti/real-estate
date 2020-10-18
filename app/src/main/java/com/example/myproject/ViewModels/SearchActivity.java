@@ -78,13 +78,13 @@ public class SearchActivity extends AppCompatActivity {
 
 
         final int finalId = id;
+
         ref.child(ID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UserDetails profile = dataSnapshot.getValue(UserDetails.class);
 
                 if (profile!=null & (finalId == 0)){
-                    System.out.println(profile);
                     String name = profile.name;
                     userText.setText(name + "!");
                 }
