@@ -41,8 +41,8 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
     public static String userDetails;
     public static User user = new User();
-    TextView level;
-    TextView days;
+    static TextView level;
+    static TextView days;
 
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -62,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        View header = navigationView.inflateHeaderView(R.layout.nav_header_main);
+        level = (TextView) header.findViewById(R.id.textView10);
+        days = (TextView) header.findViewById(R.id.textView9);
+
 
         setSupportActionBar(toolbar);
 
@@ -130,11 +135,14 @@ public class User {
  */
 
 
+
     public static User getUserSelectionFromEdit(){
 
         Tokenizer tokenizer = new Tokenizer(userDetails);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
+        level.setText("Level: " + t1.level);
+        days.setText("Duration: " + t1.time +" "+t1.tunit);
 
         System.out.println(t1.city);
         System.out.println(t1.country);

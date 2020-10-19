@@ -45,7 +45,7 @@ public class SearchActivity extends AppCompatActivity {
 
 
     EditText inputText;
-
+/*
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -53,6 +53,8 @@ public class SearchActivity extends AppCompatActivity {
         startActivity(i);
         finish();
     }
+
+ */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
