@@ -73,6 +73,18 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        /*
+        if (mAuth.getCurrentUser() != null){
+            finish();
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        }
+
+         */
+
+
+
+
     }
 
     public void registerUser(View v) {

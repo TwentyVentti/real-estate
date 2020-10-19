@@ -28,7 +28,9 @@ import com.example.myproject.Models.Parsing.Tokenizer;
 import com.example.myproject.Models.User;
 import com.example.myproject.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.core.utilities.Tree;
 
 import java.util.ArrayList;
@@ -36,13 +38,14 @@ import java.util.Arrays;
 
 
 /**
- * @author Andrew Carse - u6666440
+ * @author Andrew Carse - u6666440 Purvesh - u7084724
  */
 public class MainActivity extends AppCompatActivity {
     public static String userDetails;
     public static User user = new User();
     static TextView level;
     static TextView days;
+    FirebaseAuth auth;
 
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -58,6 +61,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+       /*
+        auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() == null){
+            finish();
+            startActivity(new Intent(this, loginActivity.class));
+        }
+
+        */
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
 
@@ -67,12 +80,9 @@ public class MainActivity extends AppCompatActivity {
         level = (TextView) header.findViewById(R.id.textView10);
         days = (TextView) header.findViewById(R.id.textView9);
 
-
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-
-
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -88,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
     }
 
     @Override
