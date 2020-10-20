@@ -34,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
+import java.util.concurrent.ExecutionException;
 
 public class SearchActivity extends AppCompatActivity {
     PopupWindow popUp;
@@ -105,15 +106,19 @@ public class SearchActivity extends AppCompatActivity {
 
     public void searchClicked(View v){
 
-        if (inputText.length() == 0){
+        if (inputText.getText().toString().length() == 0){
             Toast.makeText(SearchActivity.this,"Please enter your details!",Toast.LENGTH_LONG).show();
 
         }
         else {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("UD", inputText.getText().toString());
+            try {
+                Intent intent = new Intent(SearchActivity.this, MainActivity.class);
+                intent.putExtra("UD", inputText.getText().toString());
+                startActivityForResult(intent,1);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
 
-            startActivity(intent);
         }
     }
     public void onButtonShowPopupWindowClick(View view) {

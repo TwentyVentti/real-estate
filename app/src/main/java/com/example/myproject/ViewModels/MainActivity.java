@@ -38,7 +38,7 @@ import java.util.Arrays;
 
 
 /**
- * @author Andrew Carse - u6666440 Purvesh - u7084724
+ * @author Andrew Carse - u6666440 & Purvesh - u7084724
  */
 public class MainActivity extends AppCompatActivity {
     public static String userDetails;
@@ -61,16 +61,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-       /*
-        auth = FirebaseAuth.getInstance();
-        if (auth.getCurrentUser() == null){
-            finish();
-            startActivity(new Intent(this, loginActivity.class));
-        }
-
-        */
-
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
 
