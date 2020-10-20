@@ -1,6 +1,5 @@
 package com.example.myproject.Models.Parsing;
 
-
 /**
  * Name: Parser.java
  *
@@ -10,7 +9,12 @@ package com.example.myproject.Models.Parsing;
  *  <USER>  -> <PLACE> EQ STRING SEMI | DURATION EQ INTEGER <TUNIT> SEMI
  *  <PLACE>   -> COUNTRY | CITY
  *  <TUNIT>   -> DAY | WEEK | MONTH
+ *
+ *
+ *  @author Abhaas Goyal - u7145384
  */
+
+// It's not strict with the last ;
 public class Parser {
 
     Tokenizer _tokenizer;
@@ -40,11 +44,10 @@ public class Parser {
 
     public Exp parseLocation() throws TokenException {
         Token.Type placeType = _tokenizer.current().type();
-
+        String place;
         _tokenizer.next();
         _tokenizer.next();
-
-        String place = _tokenizer.current().token().trim();
+        place = _tokenizer.current().token().trim();
 
         _tokenizer.next();
         _tokenizer.next();
@@ -63,15 +66,12 @@ public class Parser {
         _tokenizer.next();
         return new TimeExp(time, tunit);
     }
-    public Token.Type parseTUnit() {
+    public Token.Type parseTUnit() throws TokenException {
         switch (_tokenizer.current().type()) {
             case DAY: case MONTH: case WEEK:
                 return _tokenizer.current().type();
             default:
-                System.out.println("Error in creation of TUnit");
+                throw new TokenException("IK");
         }
-
-
-        return _tokenizer.current().type();
     }
 }

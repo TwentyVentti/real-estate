@@ -1,5 +1,8 @@
 package com.example.myproject.Models.Parsing;
 
+/**
+ * @author Abhaas Goyal - u7145384
+ */
 public class TokenException extends Exception {
     String toastMessageToken = "";
     public TokenException(String s) {
@@ -7,7 +10,7 @@ public class TokenException extends Exception {
             case "INT": toastMessageToken = "Invalid Token"; break;
             case "NULL": toastMessageToken = "Empty String"; break;
             case "ICT": toastMessageToken = "Tried to tokenize empty buffer/ Parsing error"; break;
-            case "IK" : toastMessageToken = "Illegal keyword"; break;
+            case "IK" : toastMessageToken = "Illegal keyword/ Missing String"; break;
             case "CM" : toastMessageToken = "Country parameter is mandatory"; break;
             default :
                 System.out.println("Wrong type of error thrown in code");

@@ -20,6 +20,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.myproject.Models.Parsing.BaseExp;
 import com.example.myproject.Models.Parsing.Parser;
+import com.example.myproject.Models.Parsing.ParserException;
 import com.example.myproject.Models.Parsing.Token;
 import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Parsing.Tokenizer;
@@ -37,6 +38,7 @@ import java.util.Hashtable;
 
 /**
  * @author Andrew Carse - u6666440
+ * @author Abhaas Goyol - u7145384
  */
 public class MainActivity extends AppCompatActivity {
     public static String userDetails;
@@ -144,9 +146,10 @@ public class User {
             }
             userNow.setCountry(t1.country.substring(0, 1).toUpperCase() + t1.country.substring(1));
             userNow.setLanguage(language.get(t1.country));
-            // TODO: Improve this by taking the value of the capital from the db
 
+            // TODO: Improve Assignment of city by taking the value of the capital from the db
             t1.city = t1.city == null ? "Paris" : t1.city;
+
             userNow.setCity(t1.city);
             inferedSelection.add(t1.city);
 

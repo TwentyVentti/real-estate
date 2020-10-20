@@ -3,6 +3,7 @@ package com.example.myproject;
 import com.example.myproject.Models.Parsing.BaseExp;
 
 import com.example.myproject.Models.Parsing.Parser;
+import com.example.myproject.Models.Parsing.ParserException;
 import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Parsing.Tokenizer;
 import static org.testng.AssertJUnit.assertEquals;
@@ -14,6 +15,10 @@ public class ParserTest {
     private static final String testCountryCase = "country = \"France\";";
     private static final String testSearchCase = "country = \"France\"; city = \"Paris\"; duration = 1 month ; ";
     private static final String testCombination = "city = \"Paris\"; duration = 1 month ; country = \"France\"; ";
+    private static final String testParanException = "city = \"Paris";
+    private static final String testWithoutParanException = "city = paris";
+    private static final String testIncompleteException = "city=";
+    private static final String testRandomException = "city = \"Paris\"; duration = 1 ; country = \"France\";";
 
     @Test
     public void testCity() throws TokenException {
@@ -53,7 +58,7 @@ public class ParserTest {
     }
 
     @Test
-    public void setTestCombination() throws TokenException {
+    public void testCombination() throws TokenException {
         Tokenizer tokenizer = new Tokenizer(testCombination);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
@@ -62,6 +67,38 @@ public class ParserTest {
         assertEquals(t1.time, 1);
         assertEquals(t1.country, "france");
         assertEquals(t1.level, 3);
-
     }
+
+    @Test(expectedExceptions = ParserException.class)
+    public void testParanException() throws TokenException {
+        Tokenizer tokenizer = new Tokenizer(testParanException);
+        BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
+        t1.evaluate();
+    }
+
+    @Test(expectedExceptions = TokenException.class)
+    public void testWithoutParanException() throws TokenException {
+        Tokenizer tokenizer = new Tokenizer(testWithoutParanException);
+        BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
+        t1.evaluate();
+    }
+
+    @Test(expectedExceptions = TokenException.class)
+    public void testIncompleteException() throws TokenException {
+        Tokenizer tokenizer = new Tokenizer(testIncompleteException);
+        BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
+        t1.evaluate();
+    }
+
+    @Test(expectedExceptions = TokenException.class)
+    public void testRandomeException() throws TokenException {
+        Tokenizer tokenizer = new Tokenizer(testRandomException);
+        BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
+        t1.evaluate();
+    }
+
+
+
+
+
 }

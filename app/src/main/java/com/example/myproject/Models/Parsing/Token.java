@@ -1,12 +1,13 @@
 package com.example.myproject.Models.Parsing;
+
+
 /**
  * Token class to save extracted token from tokenizer.
  * Each token has its surface form saved in {@code _token}
  * and type saved in {@code _type} which is one of the predefined type in Type enum.
  * Structure inspired from COMP2100 Lab
- */
-
-/**
+ *
+ *
  *  Types of tokens
  *  Keywords -> city, country, duration, day, week, month
  *  Operators -> =, <, >, <=, >=, &&, || (no need as of now)
@@ -17,13 +18,14 @@ package com.example.myproject.Models.Parsing;
  *  Digits = [Digit]+
  *  Character = [A-Za-z]
  *  String = "[Character]*"
+ *
+ *  @author Abhaas Goyal - u7145384
  */
-
 public class Token {
 
-    public enum Type {UNKNOWN, EQ, DURATION, DAY, WEEK, MONTH, CITY, COUNTRY, SEMI, STRING, INT};
-    private String _token = "";
-    private Type _type = Type.UNKNOWN;
+    public enum Type {UNKNOWN, EQ, DURATION, DAY, WEEK, MONTH, CITY, COUNTRY, SEMI, STRING, INT}
+    private String _token;
+    private Type _type;
 
     public Token(String token, Type type) {
         _token = token;

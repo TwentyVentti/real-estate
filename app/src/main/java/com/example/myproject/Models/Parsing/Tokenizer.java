@@ -1,7 +1,11 @@
 package com.example.myproject.Models.Parsing;
 
-import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+/**
+ * @author Abhaas Goyal - u7145384
+ */
 public class Tokenizer {
     private String _buffer;    //save text
     private Token current;    //save token extracted from next()
@@ -23,6 +27,9 @@ public class Tokenizer {
         _buffer = _buffer.trim(); // remove whitespace
 
         if (_buffer.isEmpty()) {
+            if (current == null || !current.token().equals(";")) {
+                throw new ParserException();
+            }
             current = null;    // if there's no string left, set currentToken null and return
             return;
         }
@@ -33,9 +40,17 @@ public class Tokenizer {
             current = new Token("=", Token.Type.EQ);
         if (firstChar == '\"') {
             // StringTokenizer is a legacy library if possible could use a better one idk
-            StringTokenizer st = new StringTokenizer(_buffer.substring(1),"\"");
-            current = new Token(st.nextToken().toLowerCase(), Token.Type.STRING);
-            // TODO: Checker for some types of invalid strings
+            Pattern p = Pattern.compile("\"([^\"]*)\"");
+            Matcher m = p.matcher(_buffer);
+            if (m.find()) {
+                current = new Token(m.group(1).toLowerCase(), Token.Type.STRING);
+                if (!current.token().matches("^[a-zA-Z0-9]*$")) {
+                    throw new ParserException();
+                }
+            }
+            else {
+                throw new ParserException();
+            }
         }
         if (Character.isLowerCase(firstChar)) {
             String[] result = _buffer.split("[^A-Za-z]");
