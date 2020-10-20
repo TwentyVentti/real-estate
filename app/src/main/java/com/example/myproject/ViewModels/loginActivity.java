@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Phrase;
 import com.example.myproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -75,12 +76,13 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         /*
-        if (mAuth.getCurrentUser() != null){
-            finish();
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-        }
+            if (mAuth.getCurrentUser() != null) {
+                finish();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
 
          */
+
 
 
 

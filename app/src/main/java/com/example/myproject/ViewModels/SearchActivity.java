@@ -107,11 +107,11 @@ public class SearchActivity extends AppCompatActivity {
 
     public void searchClicked(View v){
 
-        if (inputText.getText().toString().length() == 0){
-            Toast.makeText(SearchActivity.this,"Please enter your details!",Toast.LENGTH_LONG).show();
+        //if (inputText.getText().toString().length() == 0){
+        //    Toast.makeText(SearchActivity.this,"Please enter your details!",Toast.LENGTH_LONG).show();
 
-        }
-        else {
+        //}
+        //else {
             try {
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra("UD", inputText.getText().toString());
@@ -120,7 +120,7 @@ public class SearchActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-        }
+        //}
     }
     public void onButtonShowPopupWindowClick(View view) {
         Resources RESOURCES = this.getResources();
