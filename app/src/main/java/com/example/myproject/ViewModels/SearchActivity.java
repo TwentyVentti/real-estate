@@ -113,7 +113,7 @@ public class SearchActivity extends AppCompatActivity {
         }
         else {
             try {
-                Intent intent = new Intent(SearchActivity.this, MainActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra("UD", inputText.getText().toString());
                 startActivityForResult(intent,1);
             } catch (Exception e){

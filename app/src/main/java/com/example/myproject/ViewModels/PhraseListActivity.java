@@ -48,7 +48,7 @@ public class PhraseListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setLanguageArrays();
+        setLanguageArrays();
         setContentView(R.layout.activity_phrase_list);
         sectionTextView = findViewById(R.id.sectionTextView);
         textToSpeech=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
@@ -104,30 +104,30 @@ public class PhraseListActivity extends AppCompatActivity {
 //    /**
 //     * Sets the @userFirstLanguagePhrases and the @userSelectedLanguagePhrases
 //     */
-//    private void setLanguageArrays(){
-//        String language = HomePageFragment.USER_SELECTION.getLanguage();
-//        ArrayList<Phrase> phraseArrayList = getPhrases();
-//        int x =0;
-//        for (Phrase phrase :phraseArrayList) {
-//            userFirstLanguagePhrases.add(phrase.getEnglish());
-//            switch (language){
-//                case "French":
-//                    userSelectedLanguagePhrases.add(phrase.getFrench());
-//                    break;
-//                case "Dutch":
-//                    userSelectedLanguagePhrases.add(phrase.getDutch());
-//                    break;
-//                case "Italian":
-//                    userSelectedLanguagePhrases.add(phrase.getItalian());
-//                    break;
-//                case "Spanish":
-//                    userSelectedLanguagePhrases.add(phrase.getSpanish());
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//    }
+    private void setLanguageArrays(){
+        String language = HomePageFragment.USER_SELECTION.getLanguage();
+        ArrayList<Phrase> phraseArrayList = getPhrases();
+        int x =0;
+        for (Phrase phrase :phraseArrayList) {
+            userFirstLanguagePhrases.add(phrase.getEnglish());
+            switch (language){
+                case "French":
+                    userSelectedLanguagePhrases.add(phrase.getFrench());
+                    break;
+                case "Dutch":
+                    userSelectedLanguagePhrases.add(phrase.getDutch());
+                    break;
+                case "Italian":
+                    userSelectedLanguagePhrases.add(phrase.getItalian());
+                    break;
+                case "Spanish":
+                    userSelectedLanguagePhrases.add(phrase.getSpanish());
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 //
 //    public void textToSpeech(String phrase) throws IOException {
 //        try(TextToSpeechClient textToSpeechClient = TextToSpeechClient.create()) {

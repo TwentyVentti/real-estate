@@ -168,7 +168,7 @@ public class User {
                 }
                 else if (t1.country.equals("italy")){
                     inferedSelection.add("Italian");
-                    userNow.setCountry("France");
+                    userNow.setCountry("Italy");
                     userNow.setLanguage("Italian");
                 }
                 else if (t1.country.equals("netherlands")){
