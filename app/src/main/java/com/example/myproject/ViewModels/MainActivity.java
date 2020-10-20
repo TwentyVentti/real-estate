@@ -35,6 +35,7 @@ import com.google.firebase.database.core.utilities.Tree;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.Hashtable;
 
 
@@ -150,15 +151,18 @@ public class User {
         ArrayList<String> inferedSelection = new ArrayList<>();
         User userNow = new User();
 
-        Dictionary<String, String> language = new Hashtable<>();
+        HashMap<String, String> language = new HashMap<>();
         language.put("france", "French");
         language.put("italy", "Italian");
         language.put("netherlands", "Dutch");
         language.put("spain", "Spanish");
+        language.put("germany","German");
 
-        try {
             if (t1.country == null) {
                 throw new TokenException("CM");
+            }
+            if (!language.containsKey(t1.country)) {
+                throw new TokenException("ICO");
             }
             userNow.setCountry(t1.country.substring(0, 1).toUpperCase() + t1.country.substring(1));
             userNow.setLanguage(language.get(t1.country));
@@ -173,10 +177,6 @@ public class User {
             int level = t1.level;
             userNow.setLevel(level);
             inferedSelection.add(Integer.toString(t1.level));
-        }
-        catch (TokenException e) {
-            throw new TokenException("CM");
-        }
         return userNow;
         }
     }

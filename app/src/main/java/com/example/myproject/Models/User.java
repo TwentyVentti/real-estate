@@ -7,14 +7,6 @@ public class User {
     private Integer duration;
     private String country;
 
-    public User() {
-        this.language = language;
-        this.level = level;
-        this.city = city;
-        this.duration = duration;
-        this.country = country;
-    }
-
     public String getLanguage() {
         return language;
     }

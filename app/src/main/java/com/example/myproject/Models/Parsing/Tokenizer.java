@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 public class Tokenizer {
     private String _buffer;    //save text
     private Token current;    //save token extracted from next()
-    private int PARENTHESIS = 2;
+    private int QUOTES = 2;
 
     /**
      * Tokenizer class constructor
@@ -39,7 +39,6 @@ public class Tokenizer {
         if (firstChar == '=')
             current = new Token("=", Token.Type.EQ);
         if (firstChar == '\"') {
-            // StringTokenizer is a legacy library if possible could use a better one idk
             Pattern p = Pattern.compile("\"([^\"]*)\"");
             Matcher m = p.matcher(_buffer);
             if (m.find()) {
@@ -76,9 +75,7 @@ public class Tokenizer {
         int tokenLen;
         // Remove the extracted token from buffer
         if (current.type() == Token.Type.STRING)
-            //No magic numbers: 2, 3, 4;
-            // Instead make a global variable.
-            tokenLen = current.token().length() + PARENTHESIS;
+            tokenLen = current.token().length() + QUOTES;
         else
             tokenLen = current.token().length();
 

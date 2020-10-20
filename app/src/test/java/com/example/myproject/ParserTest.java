@@ -18,7 +18,7 @@ public class ParserTest {
     private static final String testParanException = "city = \"Paris";
     private static final String testWithoutParanException = "city = paris";
     private static final String testIncompleteException = "city=";
-    private static final String testRandomException = "city = \"Paris\"; duration = 1 ; country = \"France\";";
+    private static final String testRandomException = "city = \"Paris\"; duration = \"1 days\" ; country = \"France\";";
 
     @Test
     public void testCity() throws TokenException {

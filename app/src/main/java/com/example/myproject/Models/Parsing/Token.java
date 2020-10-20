@@ -23,7 +23,7 @@ package com.example.myproject.Models.Parsing;
  */
 public class Token {
 
-    public enum Type {UNKNOWN, EQ, DURATION, DAY, WEEK, MONTH, CITY, COUNTRY, SEMI, STRING, INT}
+    public enum Type {EQ, DURATION, DAY, WEEK, MONTH, CITY, COUNTRY, SEMI, STRING, INT}
     private String _token;
     private Type _type;
 
