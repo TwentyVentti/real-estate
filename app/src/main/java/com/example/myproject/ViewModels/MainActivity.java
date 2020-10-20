@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
             Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG).show();
         }
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -146,12 +147,12 @@ public class User {
     private String country;
  */
     public static User getUserSelectionFromEdit() throws GrammarException {
+
         Tokenizer tokenizer = new Tokenizer(userDetails);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
         level.setText("Level: " + t1.level);
-        days.setText("Duration: " + t1.time +" "+t1.tunit);
-
+        days.setText("Duration: " + t1.time + " " + t1.tunit);
 
         ArrayList<String> inferedSelection = new ArrayList<>();
         User userNow = new User();

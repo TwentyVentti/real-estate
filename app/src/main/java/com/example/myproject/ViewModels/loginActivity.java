@@ -75,16 +75,10 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             e.printStackTrace();
         }
 
-        /*
-            if (mAuth.getCurrentUser() != null) {
+        if (mAuth.getCurrentUser() != null) {
                 finish();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), SearchActivity.class));
             }
-
-         */
-
-
-
 
 
     }
