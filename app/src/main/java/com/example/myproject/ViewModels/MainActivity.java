@@ -21,6 +21,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.myproject.Models.Parsing.BaseExp;
+import com.example.myproject.Models.Parsing.GrammarException;
 import com.example.myproject.Models.Parsing.Parser;
 import com.example.myproject.Models.Parsing.ParserException;
 import com.example.myproject.Models.Parsing.Token;
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             getUserSelectionFromEdit();
         }
-        catch (TokenException e) {
+        catch (GrammarException e) {
             Intent intent = new Intent(this,SearchActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
@@ -144,7 +145,7 @@ public class User {
     private Integer duration;
     private String country;
  */
-    public static User getUserSelectionFromEdit() throws TokenException {
+    public static User getUserSelectionFromEdit() throws GrammarException {
         Tokenizer tokenizer = new Tokenizer(userDetails);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();

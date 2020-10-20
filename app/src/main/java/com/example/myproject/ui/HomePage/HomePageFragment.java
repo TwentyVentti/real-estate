@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.myproject.Models.Parsing.GrammarException;
 import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Phrase;
 import com.example.myproject.Models.User;
@@ -44,7 +45,7 @@ public class HomePageFragment extends Fragment {
         sectionListView = (ListView)root.findViewById(R.id.sectionListView);
         try {
             USER_SELECTION= MainActivity.getUserSelectionFromEdit();
-        } catch (TokenException e) {
+        } catch (GrammarException e) {
             e.printStackTrace();
         }
         sections = getSections();

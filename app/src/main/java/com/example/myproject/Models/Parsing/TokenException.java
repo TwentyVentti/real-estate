@@ -3,7 +3,7 @@ package com.example.myproject.Models.Parsing;
 /**
  * @author Abhaas Goyal - u7145384
  */
-public class TokenException extends Exception {
+public class TokenException extends GrammarException {
     String toastMessageToken = "";
     public TokenException(String s) {
         switch (s) {
@@ -17,6 +17,7 @@ public class TokenException extends Exception {
                 System.out.println("Wrong type of error thrown in code");
         }
     }
+
     public String toString() {
         return toastMessageToken;
     }

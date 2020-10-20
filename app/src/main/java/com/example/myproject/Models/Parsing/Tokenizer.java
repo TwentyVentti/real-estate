@@ -15,7 +15,7 @@ public class Tokenizer {
      * Tokenizer class constructor
      * The constructor extracts the first token and saves it to currentToken
      */
-    public Tokenizer(String text) throws TokenException {
+    public Tokenizer(String text) throws GrammarException {
         _buffer = text;        // save input text (string)
         next();                // extracts the first token.
     }
@@ -23,7 +23,7 @@ public class Tokenizer {
     /**
      * TODO: Create comments and docstring for this method.
      */
-    public void next() throws TokenException {
+    public void next() throws GrammarException {
         _buffer = _buffer.trim(); // remove whitespace
 
         if (_buffer.isEmpty()) {
