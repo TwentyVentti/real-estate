@@ -6,6 +6,8 @@ import android.util.JsonReader;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,6 +45,10 @@ import java.util.Hashtable;
 public class MainActivity extends AppCompatActivity {
     public static String userDetails;
     public static User user = new User();
+    static TextView level;
+    static TextView days;
+    FirebaseAuth auth;
+
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -63,6 +69,13 @@ public class MainActivity extends AppCompatActivity {
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+        //NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        View header = navigationView.inflateHeaderView(R.layout.nav_header_main);
+        level = (TextView) header.findViewById(R.id.textView10);
+        days = (TextView) header.findViewById(R.id.textView9);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -130,6 +143,9 @@ public class User {
         Tokenizer tokenizer = new Tokenizer(userDetails);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
+        level.setText("Level: " + t1.level);
+        days.setText("Duration: " + t1.time +" "+t1.tunit);
+
 
         ArrayList<String> inferedSelection = new ArrayList<>();
         User userNow = new User();
