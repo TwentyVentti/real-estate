@@ -125,25 +125,14 @@ public class User {
     private String country;
  */
     public static User getUserSelectionFromEdit() throws TokenException {
-            Tokenizer tokenizer = new Tokenizer(userDetails);
-            BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
-            t1.evaluate();
-
-//            try {
-//                System.out.println(t1.city);
-//                System.out.println(t1.country);
-//                System.out.println(t1.time);
-//                System.out.println(t1.tunit);
-//                System.out.println(t1.level);
-//            }
-//            catch (Exception e) {
-//                System.out.println("Incomplete Search");
-//            }
+        Tokenizer tokenizer = new Tokenizer(userDetails);
+        BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
+        t1.evaluate();
 
         ArrayList<String> inferedSelection = new ArrayList<>();
         User userNow = new User();
 
-        Dictionary language = new Hashtable();
+        Dictionary<String, String> language = new Hashtable<>();
         language.put("france", "French");
         language.put("italy", "Italian");
         language.put("netherlands", "Dutch");
@@ -154,49 +143,21 @@ public class User {
                 throw new TokenException("CM");
             }
             userNow.setCountry(t1.country.substring(0, 1).toUpperCase() + t1.country.substring(1));
-            userNow.setLanguage((String) language.get(t1.country));
-            if (t1.city == null) {
-                t1.city = "Paris"; // TODO: Improve this by taking the value of the capital from the db
-            }
+            userNow.setLanguage(language.get(t1.country));
+            // TODO: Improve this by taking the value of the capital from the db
+
+            t1.city = t1.city == null ? "Paris" : t1.city;
             userNow.setCity(t1.city);
             inferedSelection.add(t1.city);
-            if (t1.level == 0) {
-                t1.level = 1;
-            }
+
+            t1.level = t1.level == 0 ? 1: t1.level;
             int level = t1.level;
             userNow.setLevel(level);
             inferedSelection.add(Integer.toString(t1.level));
         }
         catch (TokenException e) {
-
+            throw new TokenException("CM");
         }
         return userNow;
-//                ArrayList<String> editText = new ArrayList<>(Arrays.asList(userDetails.split(";")));
-//                String country = editText.get(0).toUpperCase();
-                    // Assigning the country to the static user object
-                    // Adding the raw entries to the ArrayList if they match any countries we offer
-//
-//            if (t1.country.equals("france")) {
-//                 inferedSelection.add("French");
-//                 userNow.setCountry("France");
-//                 userNow.setLanguage("French");
-//            } else if (t1.country.equals("italy")) {
-//                inferedSelection.add("Italian");
-//                userNow.setCountry("Italy");
-//                userNow.setLanguage("Italian");
-//            } else if (t1.country.equals("netherlands")) {
-//                inferedSelection.add("Dutch");
-//                userNow.setCountry("Netherlands");
-//                userNow.setLanguage("Dutch");
-//            } else if (t1.country.equals("spain")) {
-//                inferedSelection.add("Spanish");
-//                userNow.setCountry("Spain");
-//                userNow.setLanguage("Spanish");
-//            } else {
-//                System.out.println("No strings matched");
-//            }
-            // Adding the city attribute
-            // Adding the city attribute to the arraylist
-
         }
     }
