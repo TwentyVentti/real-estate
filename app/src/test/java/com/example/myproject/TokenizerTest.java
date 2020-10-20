@@ -1,5 +1,6 @@
 package com.example.myproject;
 
+import com.example.myproject.Models.Parsing.GrammarException;
 import com.example.myproject.Models.Parsing.Token;
 import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Parsing.Tokenizer;
@@ -16,7 +17,7 @@ public class TokenizerTest {
     private static final String testSearchCase = "country = \"France\"; city = \"Paris\"; duration = 1 week ; ";
 
     @Test//(timeOut = 1000)
-    public void testCityToken() throws TokenException {
+    public void testCityToken() throws GrammarException {
         tokenizer = new Tokenizer(testCityCase);
 
         assertEquals("wrong token type", Token.Type.CITY, tokenizer.current().type());
@@ -37,7 +38,7 @@ public class TokenizerTest {
     }
 
     @Test
-    public void testDurationToken() throws TokenException {
+    public void testDurationToken() throws GrammarException {
         tokenizer = new Tokenizer(testDurationCase);
 
         assertEquals("wrong token type", Token.Type.DURATION, tokenizer.current().type());
@@ -62,7 +63,7 @@ public class TokenizerTest {
     }
 
     @Test
-    public void testCountryToken() throws TokenException {
+    public void testCountryToken() throws GrammarException {
         tokenizer = new Tokenizer(testCountryCase);
 
         assertEquals("wrong token type", Token.Type.COUNTRY, tokenizer.current().type());
@@ -83,7 +84,7 @@ public class TokenizerTest {
     }
 
     @Test
-    public void testSearch() throws TokenException {
+    public void testSearch() throws GrammarException {
         tokenizer = new Tokenizer(testSearchCase);
 
         assertEquals("wrong token type", Token.Type.COUNTRY, tokenizer.current().type());

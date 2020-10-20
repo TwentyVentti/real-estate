@@ -2,6 +2,7 @@ package com.example.myproject;
 
 import com.example.myproject.Models.Parsing.BaseExp;
 
+import com.example.myproject.Models.Parsing.GrammarException;
 import com.example.myproject.Models.Parsing.Parser;
 import com.example.myproject.Models.Parsing.ParserException;
 import com.example.myproject.Models.Parsing.TokenException;
@@ -21,7 +22,7 @@ public class ParserTest {
     private static final String testRandomException = "city = \"Paris\"; duration = \"1 days\" ; country = \"France\";";
 
     @Test
-    public void testCity() throws TokenException {
+    public void testCity() throws GrammarException {
         Tokenizer tokenizer = new Tokenizer(testCityCase);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
@@ -29,7 +30,7 @@ public class ParserTest {
     }
 
     @Test
-    public void testCountry() throws TokenException {
+    public void testCountry() throws GrammarException {
         Tokenizer tokenizer = new Tokenizer(testCountryCase);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
@@ -37,7 +38,7 @@ public class ParserTest {
     }
 
     @Test
-    public void testDuration() throws TokenException {
+    public void testDuration() throws GrammarException {
         Tokenizer tokenizer = new Tokenizer(testDurationCase);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
@@ -45,7 +46,7 @@ public class ParserTest {
     }
 
     @Test
-    public void testSearch() throws TokenException {
+    public void testSearch() throws GrammarException {
         Tokenizer tokenizer = new Tokenizer(testSearchCase);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
@@ -58,7 +59,7 @@ public class ParserTest {
     }
 
     @Test
-    public void testCombination() throws TokenException {
+    public void testCombination() throws GrammarException {
         Tokenizer tokenizer = new Tokenizer(testCombination);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
@@ -70,35 +71,31 @@ public class ParserTest {
     }
 
     @Test(expectedExceptions = ParserException.class)
-    public void testParanException() throws TokenException {
+    public void testParanException() throws GrammarException {
         Tokenizer tokenizer = new Tokenizer(testParanException);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
     }
 
     @Test(expectedExceptions = TokenException.class)
-    public void testWithoutParanException() throws TokenException {
+    public void testWithoutParanException() throws GrammarException {
         Tokenizer tokenizer = new Tokenizer(testWithoutParanException);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
     }
 
-    @Test(expectedExceptions = TokenException.class)
-    public void testIncompleteException() throws TokenException {
+    @Test(expectedExceptions = ParserException.class)
+    public void testIncompleteException() throws GrammarException {
         Tokenizer tokenizer = new Tokenizer(testIncompleteException);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
     }
 
-    @Test(expectedExceptions = TokenException.class)
-    public void testRandomeException() throws TokenException {
+    @Test(expectedExceptions = ParserException.class)
+    public void testRandomException() throws GrammarException {
         Tokenizer tokenizer = new Tokenizer(testRandomException);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
     }
-
-
-
-
 
 }
