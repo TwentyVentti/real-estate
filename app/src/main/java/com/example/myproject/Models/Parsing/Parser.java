@@ -19,7 +19,7 @@ public class Parser {
         _tokenizer = tokenizer;
     }
 
-    public Exp parseBase() {
+    public Exp parseBase() throws TokenException {
         Exp base1 = parseUser();
         if (_tokenizer.hasNext()) {
             BaseExp base2 = (BaseExp) parseBase();
@@ -29,7 +29,7 @@ public class Parser {
             return new BaseExp(base1);
     }
 
-    public Exp parseUser() {
+    public Exp parseUser() throws TokenException {
         switch (_tokenizer.current().type()) {
             case CITY:
             case COUNTRY:
@@ -38,7 +38,7 @@ public class Parser {
         }
     }
 
-    public Exp parseLocation() {
+    public Exp parseLocation() throws TokenException {
         Token.Type placeType = _tokenizer.current().type();
 
         _tokenizer.next();
@@ -51,7 +51,7 @@ public class Parser {
 
         return new PlaceExp(placeType, place);
     }
-    public Exp parseTime() {
+    public Exp parseTime() throws TokenException{
         _tokenizer.next();
         _tokenizer.next();
         int time = Integer.parseInt(_tokenizer.current().token());

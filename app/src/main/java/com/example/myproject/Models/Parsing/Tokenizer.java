@@ -11,7 +11,7 @@ public class Tokenizer {
      * Tokenizer class constructor
      * The constructor extracts the first token and saves it to currentToken
      */
-    public Tokenizer(String text) {
+    public Tokenizer(String text) throws TokenException {
         _buffer = text;        // save input text (string)
         next();                // extracts the first token.
     }
@@ -19,7 +19,7 @@ public class Tokenizer {
     /**
      * TODO: Create comments and docstring for this method.
      */
-    public void next() {
+    public void next() throws TokenException {
         _buffer = _buffer.trim(); // remove whitespace
 
         if (_buffer.isEmpty()) {
@@ -48,7 +48,7 @@ public class Tokenizer {
                 case "days"  : case "day"   : current = new Token(keyword, Token.Type.DAY); break;
                 case "months": case "month" : current = new Token(keyword, Token.Type.MONTH); break;
                 default :
-                    System.err.println("Wrong keyword I guess");
+                    throw new TokenException("IK");
             }
         }
         if (Character.isDigit(firstChar)) {
@@ -56,9 +56,8 @@ public class Tokenizer {
             current = new Token(result[0], Token.Type.INT);
         }
         if (current == null) {
-            System.out.println("Tokenizer error woah");
+            throw new TokenException("INT");
         }
-
         int tokenLen;
         // Remove the extracted token from buffer
         if (current.type() == Token.Type.STRING)

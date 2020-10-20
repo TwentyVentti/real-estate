@@ -1,6 +1,7 @@
 package com.example.myproject;
 
 import com.example.myproject.Models.Parsing.Token;
+import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Parsing.Tokenizer;
 
 import org.testng.annotations.Test;
@@ -15,7 +16,7 @@ public class TokenizerTest {
     private static final String testSearchCase = "country = \"France\"; city = \"Paris\"; duration = 1 week ; ";
 
     @Test//(timeOut = 1000)
-    public void testCityToken() {
+    public void testCityToken() throws TokenException {
         tokenizer = new Tokenizer(testCityCase);
 
         assertEquals("wrong token type", Token.Type.CITY, tokenizer.current().type());
@@ -36,7 +37,7 @@ public class TokenizerTest {
     }
 
     @Test
-    public void testDurationToken() {
+    public void testDurationToken() throws TokenException {
         tokenizer = new Tokenizer(testDurationCase);
 
         assertEquals("wrong token type", Token.Type.DURATION, tokenizer.current().type());
@@ -61,7 +62,7 @@ public class TokenizerTest {
     }
 
     @Test
-    public void testCountryToken() {
+    public void testCountryToken() throws TokenException {
         tokenizer = new Tokenizer(testCountryCase);
 
         assertEquals("wrong token type", Token.Type.COUNTRY, tokenizer.current().type());
@@ -82,7 +83,7 @@ public class TokenizerTest {
     }
 
     @Test
-    public void testSearch() {
+    public void testSearch() throws TokenException {
         tokenizer = new Tokenizer(testSearchCase);
 
         assertEquals("wrong token type", Token.Type.COUNTRY, tokenizer.current().type());

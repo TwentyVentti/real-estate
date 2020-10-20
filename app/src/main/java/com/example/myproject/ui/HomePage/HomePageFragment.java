@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Phrase;
 import com.example.myproject.Models.User;
 import com.example.myproject.R;
@@ -41,7 +42,11 @@ public class HomePageFragment extends Fragment {
         HomePageViewModel homePageViewModel = ViewModelProviders.of(this).get(HomePageViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         sectionListView = (ListView)root.findViewById(R.id.sectionListView);
-        USER_SELECTION= MainActivity.getUserSelectionFromEdit();
+        try {
+            USER_SELECTION= MainActivity.getUserSelectionFromEdit();
+        } catch (TokenException e) {
+            e.printStackTrace();
+        }
         sections = getSections();
         try {
             if (getActivity()!=null) {

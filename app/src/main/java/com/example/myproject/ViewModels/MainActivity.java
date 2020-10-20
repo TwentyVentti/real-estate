@@ -4,11 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.JsonReader;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,29 +21,26 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.myproject.Models.Parsing.BaseExp;
 import com.example.myproject.Models.Parsing.Parser;
 import com.example.myproject.Models.Parsing.Token;
+import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Parsing.Tokenizer;
 import com.example.myproject.Models.User;
 import com.example.myproject.R;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.core.utilities.Tree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 
 /**
- * @author Andrew Carse - u6666440 & Purvesh - u7084724
+ * @author Andrew Carse - u6666440
  */
 public class MainActivity extends AppCompatActivity {
     public static String userDetails;
     public static User user = new User();
-    static TextView level;
-    static TextView days;
-    FirebaseAuth auth;
-
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -63,17 +57,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-
-        View header = navigationView.inflateHeaderView(R.layout.nav_header_main);
-        level = (TextView) header.findViewById(R.id.textView10);
-        days = (TextView) header.findViewById(R.id.textView9);
-
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-
+        NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -81,13 +68,16 @@ public class MainActivity extends AppCompatActivity {
                 .setDrawerLayout(drawer)
                 .build();
         userDetails = getIntent().getStringExtra("UD");
-
-
-        getUserSelectionFromEdit();
-//        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_home);
+        try {
+            getUserSelectionFromEdit();
+        }
+        catch (TokenException e) {
+            Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+        }
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+//        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_home);
 
     }
 
@@ -134,70 +124,79 @@ public class User {
     private Integer duration;
     private String country;
  */
+    public static User getUserSelectionFromEdit() throws TokenException {
+            Tokenizer tokenizer = new Tokenizer(userDetails);
+            BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
+            t1.evaluate();
 
-
-
-    public static User getUserSelectionFromEdit(){
-
-        Tokenizer tokenizer = new Tokenizer(userDetails);
-        BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
-        t1.evaluate();
-        level.setText("Level: " + t1.level);
-        days.setText("Duration: " + t1.time +" "+t1.tunit);
-
-        System.out.println(t1.city);
-        System.out.println(t1.country);
-        System.out.println(t1.time);
-        System.out.println(t1.tunit);
-        System.out.println(t1.level);
-
+//            try {
+//                System.out.println(t1.city);
+//                System.out.println(t1.country);
+//                System.out.println(t1.time);
+//                System.out.println(t1.tunit);
+//                System.out.println(t1.level);
+//            }
+//            catch (Exception e) {
+//                System.out.println("Incomplete Search");
+//            }
 
         ArrayList<String> inferedSelection = new ArrayList<>();
         User userNow = new User();
-        if (userDetails!=null){
-            try{
-//                ArrayList<String> editText = new ArrayList<>(Arrays.asList(userDetails.split(";")));
-//                String country = editText.get(0).toUpperCase();
-                // Assigning the country to the static user object
-                // Adding the raw entries to the ArrayList if they match any countries we offer
 
-                if (t1.country.equals("france")){
-                    inferedSelection.add("French");
-                    userNow.setCountry("France");
-                    userNow.setLanguage("French");
-                }
-                else if (t1.country.equals("italy")){
-                    inferedSelection.add("Italian");
-                    userNow.setCountry("Italy");
-                    userNow.setLanguage("Italian");
-                }
-                else if (t1.country.equals("netherlands")){
-                    inferedSelection.add("Dutch");
-                    userNow.setCountry("Netherlands");
-                    userNow.setLanguage("Dutch");
-                }
-                else if (t1.country.equals("spain")){
-                    inferedSelection.add("Spanish");
-                    userNow.setCountry("Spain");
-                    userNow.setLanguage("Spanish");
-                }
-                else {
-                    System.out.println("No strings matched");
-                }
-                // Adding the city attribute
-                userNow.setCity(t1.city);
+        Dictionary language = new Hashtable();
+        language.put("france", "French");
+        language.put("italy", "Italian");
+        language.put("netherlands", "Dutch");
+        language.put("spain", "Spanish");
 
-                // Adding the city attribute to the arraylist
-                inferedSelection.add(t1.city);
-                int level = t1.level;
-
-                userNow.setLevel(level);
-                inferedSelection.add(Integer.toString(t1.level));
-            }catch (Exception ex){
-                ex.printStackTrace();
+        try {
+            if (t1.country == null) {
+                throw new TokenException("CM");
             }
+            userNow.setCountry(t1.country.substring(0, 1).toUpperCase() + t1.country.substring(1));
+            userNow.setLanguage((String) language.get(t1.country));
+            if (t1.city == null) {
+                t1.city = "Paris"; // TODO: Improve this by taking the value of the capital from the db
+            }
+            userNow.setCity(t1.city);
+            inferedSelection.add(t1.city);
+            if (t1.level == 0) {
+                t1.level = 1;
+            }
+            int level = t1.level;
+            userNow.setLevel(level);
+            inferedSelection.add(Integer.toString(t1.level));
+        }
+        catch (TokenException e) {
+
         }
         return userNow;
-    }
+//                ArrayList<String> editText = new ArrayList<>(Arrays.asList(userDetails.split(";")));
+//                String country = editText.get(0).toUpperCase();
+                    // Assigning the country to the static user object
+                    // Adding the raw entries to the ArrayList if they match any countries we offer
+//
+//            if (t1.country.equals("france")) {
+//                 inferedSelection.add("French");
+//                 userNow.setCountry("France");
+//                 userNow.setLanguage("French");
+//            } else if (t1.country.equals("italy")) {
+//                inferedSelection.add("Italian");
+//                userNow.setCountry("Italy");
+//                userNow.setLanguage("Italian");
+//            } else if (t1.country.equals("netherlands")) {
+//                inferedSelection.add("Dutch");
+//                userNow.setCountry("Netherlands");
+//                userNow.setLanguage("Dutch");
+//            } else if (t1.country.equals("spain")) {
+//                inferedSelection.add("Spanish");
+//                userNow.setCountry("Spain");
+//                userNow.setLanguage("Spanish");
+//            } else {
+//                System.out.println("No strings matched");
+//            }
+            // Adding the city attribute
+            // Adding the city attribute to the arraylist
 
-}
+        }
+    }

@@ -3,6 +3,7 @@ package com.example.myproject;
 import com.example.myproject.Models.Parsing.BaseExp;
 
 import com.example.myproject.Models.Parsing.Parser;
+import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Parsing.Tokenizer;
 import static org.testng.AssertJUnit.assertEquals;
 import org.testng.annotations.Test;
@@ -15,7 +16,7 @@ public class ParserTest {
     private static final String testCombination = "city = \"Paris\"; duration = 1 month ; country = \"France\"; ";
 
     @Test
-    public void testCity() {
+    public void testCity() throws TokenException {
         Tokenizer tokenizer = new Tokenizer(testCityCase);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
@@ -23,7 +24,7 @@ public class ParserTest {
     }
 
     @Test
-    public void testCountry() {
+    public void testCountry() throws TokenException {
         Tokenizer tokenizer = new Tokenizer(testCountryCase);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
@@ -31,7 +32,7 @@ public class ParserTest {
     }
 
     @Test
-    public void testDuration() {
+    public void testDuration() throws TokenException {
         Tokenizer tokenizer = new Tokenizer(testDurationCase);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
@@ -39,7 +40,7 @@ public class ParserTest {
     }
 
     @Test
-    public void testSearch() {
+    public void testSearch() throws TokenException {
         Tokenizer tokenizer = new Tokenizer(testSearchCase);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
@@ -52,7 +53,7 @@ public class ParserTest {
     }
 
     @Test
-    public void setTestCombination() {
+    public void setTestCombination() throws TokenException {
         Tokenizer tokenizer = new Tokenizer(testCombination);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
