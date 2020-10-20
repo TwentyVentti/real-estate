@@ -80,6 +80,7 @@ public class SearchActivity extends AppCompatActivity {
         }
 
 
+
         final int finalId = id;
 
         ref.child(ID).addListenerForSingleValueEvent(new ValueEventListener() {
