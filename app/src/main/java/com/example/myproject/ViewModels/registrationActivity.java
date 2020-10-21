@@ -57,18 +57,6 @@ public class registrationActivity extends AppCompatActivity implements View.OnCl
         final String n = name.getText().toString().trim();
         final String p = password.getText().toString().trim();
 
-        if(n.isEmpty()){
-            name.setError("Name is required");
-            name.requestFocus();
-            return;
-        }
-
-        if(a.isEmpty()){
-            age.setError("Age is required");
-            age.requestFocus();
-            return;
-        }
-
         if(e.isEmpty()){
             email.setError("Email is required");
             email.requestFocus();
@@ -81,14 +69,26 @@ public class registrationActivity extends AppCompatActivity implements View.OnCl
             return;
         }
 
+        if(a.isEmpty()){
+            age.setError("Age is required");
+            age.requestFocus();
+            return;
+        }
+
+        if(n.isEmpty()){
+            name.setError("Name is required");
+            name.requestFocus();
+            return;
+        }
+
         if(p.isEmpty()){
             password.setError("Password is required");
             password.requestFocus();
             return;
         }
 
-        if(p.length() < 6){
-            password.setError("Password should contain minimum 6 characters");
+        if(p.length() < 5){
+            password.setError("Password should contain minimum 5 characters");
             password.requestFocus();
             return;
         }
