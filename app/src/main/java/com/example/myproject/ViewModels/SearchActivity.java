@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myproject.Models.Parsing.BaseExp;
+import com.example.myproject.Models.Parsing.GrammarException;
 import com.example.myproject.Models.Parsing.Parser;
 import com.example.myproject.Models.Parsing.Tokenizer;
 import com.example.myproject.Models.UserDetails;
@@ -35,6 +36,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.util.concurrent.ExecutionException;
+
+import static com.example.myproject.ViewModels.MainActivity.getUserSelectionFromEdit;
 
 public class SearchActivity extends AppCompatActivity {
     PopupWindow popUp;
@@ -62,6 +65,16 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         inputText = (EditText) findViewById(R.id.citySelectEdit);
+        try {
+            getUserSelectionFromEdit();
+        }
+        catch (GrammarException e) {
+            Intent intent = new Intent(this,SearchActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+            Toast.makeText(SearchActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+        }
 
 
         user = FirebaseAuth.getInstance().getCurrentUser();
