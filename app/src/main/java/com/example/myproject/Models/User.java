@@ -4,7 +4,8 @@ public class User {
     private String language;
     private Integer level;
     private String city;
-    private Integer duration;
+    private Integer time;
+    private Integer tunit;
     private String country;
 
     public String getLanguage() {
@@ -31,12 +32,18 @@ public class User {
         this.city = city;
     }
 
-    public Integer getDuration() {
-        return duration;
+    public Integer getTime() {
+        return time;
     }
 
-    public void setDuration(Integer duration) {
-        this.duration = duration;
+    public void setTime(Integer time) {
+        this.time = time;
+    }
+
+    public Integer getTunit() { return tunit; }
+
+    public void setTunit(Integer time) {
+        this.tunit = time;
     }
 
     public String getCountry() {

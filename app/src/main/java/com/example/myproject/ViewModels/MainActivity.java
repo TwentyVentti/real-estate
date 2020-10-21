@@ -45,7 +45,7 @@ import java.util.Hashtable;
  * @author Abhaas Goyol - u7145384
  */
 public class MainActivity extends AppCompatActivity {
-    public static String userDetails;
+    public BaseExp userDetails;
     public static User user = new User();
     static TextView level;
     static TextView days;
@@ -84,17 +84,20 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_home, R.id.nav_gallery)
                 .setDrawerLayout(drawer)
                 .build();
-        userDetails = getIntent().getStringExtra("UD");
-        try {
-            getUserSelectionFromEdit();
-        }
-        catch (GrammarException e) {
-            Intent intent = new Intent(this,SearchActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
-            Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG).show();
-        }
+        userDetails = (BaseExp) getIntent().getSerializableExtra("UD");
+
+        level.setText("Level: " + userDetails.level);
+        days.setText("Duration: " + userDetails.time +" "+userDetails.tunit);
+//        try {
+//            getUserSelectionFromEdit();
+//        }
+//        catch (GrammarException e) {
+//            Intent intent = new Intent(this,SearchActivity.class);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            startActivity(intent);
+//            finish();
+//            Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+//        }
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -137,51 +140,54 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    /*
-public class User {
-    private String language;
-    private Integer level;
-    private String city;
-    private Integer duration;
-    private String country;
- */
-    public static User getUserSelectionFromEdit() throws GrammarException {
-        Tokenizer tokenizer = new Tokenizer(userDetails);
-        BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
-        t1.evaluate();
-        level.setText("Level: " + t1.level);
-        days.setText("Duration: " + t1.time +" "+t1.tunit);
-
-
-        ArrayList<String> inferedSelection = new ArrayList<>();
-        User userNow = new User();
-
-        HashMap<String, String> language = new HashMap<>();
-        language.put("france", "French");
-        language.put("italy", "Italian");
-        language.put("netherlands", "Dutch");
-        language.put("spain", "Spanish");
-        language.put("germany","German");
-
-            if (t1.country == null) {
-                throw new TokenException("CM");
-            }
-            if (!language.containsKey(t1.country)) {
-                throw new TokenException("ICO");
-            }
-            userNow.setCountry(t1.country.substring(0, 1).toUpperCase() + t1.country.substring(1));
-            userNow.setLanguage(language.get(t1.country));
-
-            // TODO: Improve Assignment of city by taking the value of the capital from the db
-            t1.city = t1.city == null ? "Paris" : t1.city;
-
-            userNow.setCity(t1.city);
-            inferedSelection.add(t1.city);
-
-            t1.level = t1.level == 0 ? 1: t1.level;
-            int level = t1.level;
-            userNow.setLevel(level);
-            inferedSelection.add(Integer.toString(t1.level));
-        return userNow;
-        }
+        /*
+    public class User {
+        private String language;
+        private Integer level;
+        private String city;
+        private Integer duration;
+        private String country;
+     */
+//        public static User getUserSelectionFromEdit() throws GrammarException {
+//            if (userDetails == null) {
+//                throw new TokenException("NULL");
+//            }
+//            Tokenizer tokenizer = new Tokenizer(userDetails);
+//            BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
+//            t1.evaluate();
+//            level.setText("Level: " + t1.level);
+//            days.setText("Duration: " + t1.time +" "+t1.tunit);
+//
+//
+//            ArrayList<String> inferedSelection = new ArrayList<>();
+//            User userNow = new User();
+//
+//            HashMap<String, String> language = new HashMap<>();
+//            language.put("france", "French");
+//            language.put("italy", "Italian");
+//            language.put("netherlands", "Dutch");
+//            language.put("spain", "Spanish");
+//            language.put("germany","German");
+//
+//                if (t1.country == null) {
+//                    throw new TokenException("CM");
+//                }
+//                if (!language.containsKey(t1.country)) {
+//                    throw new TokenException("ICO");
+//                }
+//                userNow.setCountry(t1.country.substring(0, 1).toUpperCase() + t1.country.substring(1));
+//                userNow.setLanguage(language.get(t1.country));
+//
+//                // TODO: Improve Assignment of city by taking the value of the capital from the db
+//                t1.city = t1.city == null ? "Paris" : t1.city;
+//
+//                userNow.setCity(t1.city);
+//                inferedSelection.add(t1.city);
+//
+//                t1.level = t1.level == 0 ? 1: t1.level;
+//                int level = t1.level;
+//                userNow.setLevel(level);
+//                inferedSelection.add(Integer.toString(t1.level));
+//            return userNow;
+//            }
     }

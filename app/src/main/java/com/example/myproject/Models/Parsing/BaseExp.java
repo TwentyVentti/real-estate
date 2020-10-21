@@ -1,9 +1,11 @@
 package com.example.myproject.Models.Parsing;
 
+import java.io.Serializable;
+
 /**
  * @author Abhaas Goyal - u7145384
  */
-public class BaseExp extends Exp{
+public class BaseExp extends Exp {
     private Exp term1;
     private Exp term2;
 
@@ -13,6 +15,7 @@ public class BaseExp extends Exp{
     public String country;
     public String city;
     public int level;
+    public String language;
     
     public BaseExp(Exp term1, BaseExp term2) {
         this.term1 = term1;

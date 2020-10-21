@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-import static com.example.myproject.ViewModels.MainActivity.getUserSelectionFromEdit;
-import static com.example.myproject.ViewModels.MainActivity.userDetails;
+import static com.example.myproject.ViewModels.SearchActivity.getUserSelectionFromEdit;
+import static com.example.myproject.ViewModels.SearchActivity.userDetails;
 
 /**
  * TODO: Docstring
@@ -23,7 +23,7 @@ import static com.example.myproject.ViewModels.MainActivity.userDetails;
  */
 public class HomePageViewModel extends ViewModel {
     private MutableLiveData<String> mText;
-    private TextView testTextView;
+//    private TextView testTextView;
 
     public HomePageViewModel() {
         mText = new MutableLiveData<>();

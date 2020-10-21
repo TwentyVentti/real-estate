@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.myproject.Models.Parsing.BaseExp;
 import com.example.myproject.Models.Parsing.GrammarException;
 import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Phrase;
@@ -21,6 +22,7 @@ import com.example.myproject.Models.User;
 import com.example.myproject.R;
 import com.example.myproject.ViewModels.MainActivity;
 import com.example.myproject.ViewModels.PhraseListActivity;
+import com.example.myproject.ViewModels.SearchActivity;
 import com.example.myproject.ViewModels.loginActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +37,7 @@ public class HomePageFragment extends Fragment {
     public static ArrayList<String> sections = new ArrayList<>();
     public static ArrayList<HashMap<String,ArrayList<Phrase>>> levelArrayMap;
     public View.OnClickListener clickListener;
-    public static User USER_SELECTION;
+    public static BaseExp USER_SELECTION;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,7 +46,7 @@ public class HomePageFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         sectionListView = (ListView)root.findViewById(R.id.sectionListView);
         try {
-            USER_SELECTION= MainActivity.getUserSelectionFromEdit();
+            USER_SELECTION= SearchActivity.getUserSelectionFromEdit();
         } catch (GrammarException e) {
             e.printStackTrace();
         }
@@ -82,21 +84,27 @@ public class HomePageFragment extends Fragment {
         ArrayList<HashMap<String,ArrayList<Phrase>>> mapArrayList = new ArrayList<>();
         try{
             phraseHash = loginActivity.phraseListHash;
-            int level = USER_SELECTION.getLevel();
+            int level = USER_SELECTION.level;
+            System.out.println(level);
             switch (level){
                 case 1:
                     mapArrayList = phraseHash.get("Level 1");
+                    System.out.println(11);
                     levelArrayMap = mapArrayList;
                     break;
                 case 2:
                     mapArrayList = phraseHash.get("Level 2");
+                    System.out.println(22);
                     levelArrayMap = mapArrayList;
                     break;
                 case 3:
                     mapArrayList = phraseHash.get("Level 3");
+                    System.out.println(mapArrayList.isEmpty());
+                    System.out.println(33);
                     levelArrayMap = mapArrayList;
                     break;
                 default:
+                    System.out.println(44);
                     break;
             }
             assert mapArrayList != null;

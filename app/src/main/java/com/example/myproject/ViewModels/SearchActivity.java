@@ -21,8 +21,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myproject.Models.Parsing.BaseExp;
+import com.example.myproject.Models.Parsing.GrammarException;
 import com.example.myproject.Models.Parsing.Parser;
+import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Parsing.Tokenizer;
+import com.example.myproject.Models.User;
 import com.example.myproject.Models.UserDetails;
 import com.example.myproject.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +37,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 public class SearchActivity extends AppCompatActivity {
@@ -42,7 +47,10 @@ public class SearchActivity extends AppCompatActivity {
     FirebaseUser user;
     DatabaseReference ref;
     private String ID;
-
+    public static String userDetails;
+//    public static User user = new User();
+//    static TextView level;
+//    static TextView days;
 
 
     EditText inputText;
@@ -62,8 +70,6 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         inputText = (EditText) findViewById(R.id.citySelectEdit);
-
-
         user = FirebaseAuth.getInstance().getCurrentUser();
         ref = FirebaseDatabase.getInstance().getReference("Users");
         try {
@@ -106,17 +112,21 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void searchClicked(View v){
-
+        userDetails = inputText.getText().toString();
         if (inputText.getText().toString().length() == 0){
             Toast.makeText(SearchActivity.this,"Please enter your details!",Toast.LENGTH_LONG).show();
-
         }
         else {
             try {
                 Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("UD", inputText.getText().toString());
+                BaseExp t1 = getUserSelectionFromEdit();
+                intent.putExtra("UD", t1);
                 startActivityForResult(intent,1);
-            } catch (Exception e){
+            }
+            catch (GrammarException e) {
+                Toast.makeText(SearchActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+            }
+            catch (Exception e){
                 e.printStackTrace();
             }
 
@@ -170,5 +180,56 @@ public class SearchActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    /*
+public class User {
+private String language;
+private Integer level;
+private String city;
+private Integer duration;
+private String country;
+*/
+    public static BaseExp getUserSelectionFromEdit() throws GrammarException {
+        if (userDetails == null) {
+            throw new TokenException("NULL");
+        }
+        System.out.println(userDetails);
+        Tokenizer tokenizer = new Tokenizer(userDetails);
+        BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
+        t1.evaluate();
+
+//        ArrayList<String> inferedSelection = new ArrayList<>();
+//        User userNow = new User();
+
+        HashMap<String, String> language = new HashMap<>();
+        language.put("france", "French");
+        language.put("italy", "Italian");
+        language.put("netherlands", "Dutch");
+        language.put("spain", "Spanish");
+        language.put("germany","German");
+
+        if (t1.country == null) {
+            throw new TokenException("CM");
+        }
+        if (!language.containsKey(t1.country)) {
+            throw new TokenException("ICO");
+        }
+        t1.country = t1.country.substring(0, 1).toUpperCase() + t1.country.substring(1);
+//        userNow.setCountry(t1.country.substring(0, 1).toUpperCase() + t1.country.substring(1));
+//        userNow.setLanguage(language.get(t1.country));
+        t1.language = language.get(t1.country);
+
+        // TODO: Improve Assignment of city by taking the value of the capital from the db
+        t1.city = t1.city == null ? "Paris" : t1.city;
+//
+//        userNow.setCity(t1.city);
+//        inferedSelection.add(t1.city);
+
+        t1.level = t1.level == 0 ? 1: t1.level;
+//        int currLevel = t1.level;
+//        userNow.setLevel(currLevel);
+//        inferedSelection.add(Integer.toString(t1.level));
+        return t1;
     }
 }
