@@ -74,7 +74,7 @@ public class GreetingsFragment extends Fragment {
 
 
         final String[] placeTypeList = {"restaurant", "bar", "hotel","atm"};
-
+        //search parameters
 
         String[] placeNameList = {"Looking for a place to eat?", "Looking for a place to drink?", "Looking for a place to stay?","Looking for a place to withdraw money?"};
         //Search options for user
@@ -107,7 +107,7 @@ public class GreetingsFragment extends Fragment {
                         "&sensor=true" +
                         "&key=" + getResources().getString(R.string.google_map_key);  // Google key for maps api
 
-                new PlaceTask().execute(url);
+                new PlaceTask().execute(url); //finding nearby places
 
 
             }
@@ -144,7 +144,7 @@ public class GreetingsFragment extends Fragment {
                             LatLng latLng = new LatLng(currentLat, currentLong);
                             MarkerOptions markerOptions = new MarkerOptions();
                             markerOptions.position(latLng);
-                            markerOptions.title("I am here !");
+                            markerOptions.title("I am here right now!"); //current location marker
                             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
                             mCurrLocationMarker = map.addMarker(markerOptions);
 
