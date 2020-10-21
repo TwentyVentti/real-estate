@@ -2,33 +2,21 @@ package com.example.myproject.ui.Greetings;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
-
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import com.example.myproject.JsonParsermap;
-//import com.example.myproject.Models.MapActivity;
 import com.example.myproject.R;
-import com.example.myproject.ViewModels.SearchActivity;
-import com.example.myproject.ui.HomePage.HomePageFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,10 +31,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -68,8 +54,6 @@ public class GreetingsFragment extends Fragment {
 
     FusedLocationProviderClient fusedLocationProviderClient;
     double currentLat = 0, currentLong = 0;
-    private static final String TAG = "MapActivity";
-    private static final float DEFAULT_ZOOM = 15f;
 
 
     @Override
@@ -90,10 +74,10 @@ public class GreetingsFragment extends Fragment {
 
 
         final String[] placeTypeList = {"restaurant", "bar", "hotel","atm"};
-        //grocery,hospital,parking
+
 
         String[] placeNameList = {"Looking for a place to eat?", "Looking for a place to drink?", "Looking for a place to stay?","Looking for a place to withdraw money?"};
-        //Grocery,Hospital,Parking
+        //Search options for user
 
 
 
@@ -118,10 +102,10 @@ public class GreetingsFragment extends Fragment {
                 int i = spType.getSelectedItemPosition();
                 String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" +
                         "?location=" + currentLat + "," + currentLong +
-                        "&radius=5000" +
-                        "&types=" + placeTypeList[i] +
+                        "&radius=5000" +    //Max area to search
+                        "&types=" + placeTypeList[i] +  //attribute to search
                         "&sensor=true" +
-                        "&key=" + getResources().getString(R.string.google_map_key);
+                        "&key=" + getResources().getString(R.string.google_map_key);  // Google key for maps api
 
                 new PlaceTask().execute(url);
 
@@ -170,18 +154,13 @@ public class GreetingsFragment extends Fragment {
 
                             CameraPosition cameraPosition = new CameraPosition.Builder()
                                     .target(latLng)      // Sets the center of the map to location user
-                                    .zoom(15)                   // Sets the zoom
+                                    .zoom(15)
                                     .bearing(90)                // Sets the orientation of the camera to east
-                                    .tilt(40)                   // Sets the tilt of the camera to 30 degrees
+                                    .tilt(40)                   // Sets the tilt of the camera
                                     .build();                   // Creates a CameraPosition from the builder
                             map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-
-                            //map.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                            //        new LatLng(currentLat,currentLong),10
-                            //));
-                            //map.setMinZoomPreference(12.0f);
-                            //map.setMaxZoomPreference(30.0f);
+                            //for maps ui
                             UiSettings uiSettings = map.getUiSettings();
                             uiSettings.setAllGesturesEnabled(true);
                             uiSettings.setMapToolbarEnabled(true);
