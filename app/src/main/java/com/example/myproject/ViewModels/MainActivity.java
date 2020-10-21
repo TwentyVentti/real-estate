@@ -27,10 +27,15 @@ import com.example.myproject.Models.Parsing.ParserException;
 import com.example.myproject.Models.Parsing.Token;
 import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Parsing.Tokenizer;
+import com.example.myproject.Models.SearchDetails;
 import com.example.myproject.Models.User;
+import com.example.myproject.Models.UserDetails;
 import com.example.myproject.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.core.utilities.Tree;
 
 import java.util.ArrayList;
@@ -49,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
     public static User user = new User();
     static TextView level;
     static TextView days;
-    FirebaseAuth auth;
+    static FirebaseAuth auth;
+
 
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -183,6 +189,23 @@ public class User {
             int level = t1.level;
             userNow.setLevel(level);
             inferedSelection.add(Integer.toString(t1.level));
+
+            auth = FirebaseAuth.getInstance();
+            String co = t1.country.trim();
+            String ci = t1.city.trim();
+            String u = auth.getCurrentUser().getUid().trim();
+
+            SearchDetails search = new SearchDetails(u,co,ci);
+
+        FirebaseDatabase.getInstance().getReference("SearchDetails")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .setValue(search).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+            }
+        });
+
         return userNow;
         }
     }

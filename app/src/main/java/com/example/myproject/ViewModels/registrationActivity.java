@@ -120,7 +120,7 @@ public class registrationActivity extends AppCompatActivity implements View.OnCl
 
                         }
                         else{
-                            Toast.makeText(registrationActivity.this,"Failed to Register, Try again!",Toast.LENGTH_LONG).show();
+                            Toast.makeText(registrationActivity.this,"Email ID already in use. Please use different one!",Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }
