@@ -83,7 +83,16 @@ public class MainActivity extends AppCompatActivity {
         View header = navigationView.inflateHeaderView(R.layout.nav_header_main);
         level = (TextView) header.findViewById(R.id.textView10);
         days = (TextView) header.findViewById(R.id.textView9);
-
+        try {
+            getUserSelectionFromEdit();
+        }
+        catch (GrammarException e) {
+            Intent intent = new Intent(this,SearchActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+            Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+        }
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
