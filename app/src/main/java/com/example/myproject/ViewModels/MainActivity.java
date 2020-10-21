@@ -27,9 +27,11 @@ import com.example.myproject.Models.Parsing.ParserException;
 import com.example.myproject.Models.Parsing.Token;
 import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Parsing.Tokenizer;
+import com.example.myproject.Models.SearchDetails;
 import com.example.myproject.Models.User;
 import com.example.myproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
@@ -100,6 +102,22 @@ public class MainActivity extends AppCompatActivity {
 //            finish();
 //            Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG).show();
 //        }
+
+        // Replace with a better method name
+        surpriseFeature();
+        auth = FirebaseAuth.getInstance();
+        String co = userDetails.country.trim();
+        String ci = userDetails.city.trim();
+        String u = auth.getCurrentUser().getUid().trim();
+
+        SearchDetails search = new SearchDetails(u,co,ci);
+
+//        FirebaseDatabase.getInstance().getReference("SearchDetails")
+//                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                .setValue(search).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            public void onComplete(@NonNull Task<Void> task) {
+//
+//            }
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -140,6 +158,25 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void surpriseFeature() {
+
+        auth = FirebaseAuth.getInstance();
+        String co = userDetails.country.trim();
+        String ci = userDetails.city.trim();
+        String u = auth.getCurrentUser().getUid().trim();
+
+        SearchDetails search = new SearchDetails(u, co, ci);
+
+        FirebaseDatabase.getInstance().getReference("SearchDetails")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .setValue(search).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+            }
+        });
     }
 
         /*
@@ -193,18 +230,4 @@ public class MainActivity extends AppCompatActivity {
 //            return userNow;
 //            }
 //
-//    auth = FirebaseAuth.getInstance();
-//    String co = t1.country.trim();
-//    String ci = t1.city.trim();
-//    String u = auth.getCurrentUser().getUid().trim();
-//
-//    SearchDetails search = new SearchDetails(u,co,ci);
-//
-//        FirebaseDatabase.getInstance().getReference("SearchDetails")
-//                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//            .setValue(search).addOnCompleteListener(new OnCompleteListener<Void>() {
-//        @Override
-//        public void onComplete(@NonNull Task<Void> task) {
-//
-//        }
     }
