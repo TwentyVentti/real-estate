@@ -91,17 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 .setDrawerLayout(drawer)
                 .build();
         userDetails = getIntent().getStringExtra("UD");
-        try {
-            getUserSelectionFromEdit();
-        }
-        catch (GrammarException e) {
-            Intent intent = new Intent(this,SearchActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
-            Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG).show();
-        }
-
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
