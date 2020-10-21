@@ -4,7 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author Abhaas Goyal - u7145384
+ * @co-author Abhaas Goyal - u7145384
+ * @co-author  Andrew Carse - u6666440
  */
 public class Tokenizer {
     private String _buffer;    //save text

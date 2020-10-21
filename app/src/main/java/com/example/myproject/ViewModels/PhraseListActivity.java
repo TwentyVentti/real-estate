@@ -74,6 +74,8 @@ public class PhraseListActivity extends AppCompatActivity {
 
                 Toast toast = Toast.makeText(getApplicationContext(),userSelectedLanguagePhrases.get(i),Toast.LENGTH_LONG);
                 toast.show();
+                String s = userSelectedLanguagePhrases.get(i).toString();
+                textToSpeech.speak(s,TextToSpeech.QUEUE_FLUSH,null);
             }
         });
         Intent homePageIntent = getIntent();
