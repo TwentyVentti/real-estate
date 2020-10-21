@@ -15,6 +15,7 @@ public class ParserTest {
     private static final String testDurationCase = "duration = 68 days;";
     private static final String testCountryCase = "country = \"France\";";
     private static final String testSearchCase = "country = \"France\"; city = \"Paris\"; duration = 1 month ; ";
+    private static final String testSearchCaseWithoutSpace = "country = \"France\"; city = \"Paris\"; duration = 2weeks ; ";
     private static final String testCombination = "city = \"Paris\"; duration = 1 month ; country = \"France\"; ";
     private static final String testParanException = "city = \"Paris";
     private static final String testWithoutParanException = "city = paris";
@@ -59,6 +60,19 @@ public class ParserTest {
     }
 
     @Test
+    public void testSearchWithoutSpace() throws GrammarException {
+        Tokenizer tokenizer = new Tokenizer(testSearchCaseWithoutSpace);
+        BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
+        t1.evaluate();
+        assertEquals(t1.tunit, "WEEK");
+        assertEquals(t1.city, "paris");
+        assertEquals(t1.time, 2);
+        assertEquals(t1.country, "france");
+        assertEquals(t1.level, 2);
+
+    }
+
+    @Test
     public void testCombination() throws GrammarException {
         Tokenizer tokenizer = new Tokenizer(testCombination);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
@@ -76,6 +90,7 @@ public class ParserTest {
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
     }
+
 
     @Test(expectedExceptions = TokenException.class)
     public void testWithoutParanException() throws GrammarException {
