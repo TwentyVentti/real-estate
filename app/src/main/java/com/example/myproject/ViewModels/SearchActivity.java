@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.example.myproject.Models.Parsing.BaseExp;
 import com.example.myproject.Models.Parsing.GrammarException;
 import com.example.myproject.Models.Parsing.Parser;
+import com.example.myproject.Models.Parsing.Token;
 import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Parsing.Tokenizer;
 import com.example.myproject.Models.User;
@@ -191,10 +192,10 @@ private Integer duration;
 private String country;
 */
     public static BaseExp getUserSelectionFromEdit() throws GrammarException {
+        System.out.println(userDetails);
         if (userDetails == null) {
             throw new TokenException("NULL");
         }
-        System.out.println(userDetails);
         Tokenizer tokenizer = new Tokenizer(userDetails);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
@@ -212,14 +213,16 @@ private String country;
         if (t1.country == null) {
             throw new TokenException("CM");
         }
-        if (!language.containsKey(t1.country)) {
+        else if (!language.containsKey(t1.country)) {
             throw new TokenException("ICO");
         }
-        t1.country = t1.country.substring(0, 1).toUpperCase() + t1.country.substring(1);
+        else {
+            t1.language = language.get(t1.country);
+            t1.country = t1.country.substring(0, 1).toUpperCase() + t1.country.substring(1);
+        }
+
 //        userNow.setCountry(t1.country.substring(0, 1).toUpperCase() + t1.country.substring(1));
 //        userNow.setLanguage(language.get(t1.country));
-        t1.language = language.get(t1.country);
-
         // TODO: Improve Assignment of city by taking the value of the capital from the db
         t1.city = t1.city == null ? "Paris" : t1.city;
 //
@@ -227,6 +230,8 @@ private String country;
 //        inferedSelection.add(t1.city);
 
         t1.level = t1.level == 0 ? 1: t1.level;
+        t1.time = t1.time == 0 ? 10 : t1.time;
+        t1.tunit = t1.tunit == null ? "days" : t1.tunit;
 //        int currLevel = t1.level;
 //        userNow.setLevel(currLevel);
 //        inferedSelection.add(Integer.toString(t1.level));

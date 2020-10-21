@@ -108,6 +108,7 @@ public class PhraseListActivity extends AppCompatActivity {
 //     */
     private void setLanguageArrays(){
         String language = HomePageFragment.USER_SELECTION.language;
+        System.out.println(language);
         ArrayList<Phrase> phraseArrayList = getPhrases();
         int x =0;
         for (Phrase phrase :phraseArrayList) {
