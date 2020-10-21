@@ -29,7 +29,7 @@
         <ImageView
             android:id="@+id/imageView6"
             android:layout_width="420dp"
-            android:layout_height="67dp"
+            android:layout_height="37dp"
             android:adjustViewBounds="true"
             android:cropToPadding="false"
             android:scaleType="fitXY"
