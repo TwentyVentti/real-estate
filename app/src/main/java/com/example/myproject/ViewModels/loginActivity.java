@@ -43,6 +43,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class loginActivity extends AppCompatActivity implements View.OnClickListener {
     EditText emailText;
@@ -57,7 +58,9 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     String LEVEL_4 = "Level 4";
     public static final String a = "a";
     public static HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> phraseListHash;
+    public static HashMap <String, Integer> SectionToID = new HashMap<>();
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +76,6 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         guest = findViewById(R.id.guest_user_button);
         try {
             phraseListHash = ObjectFromJSON();
-            System.out.println(phraseListHash.keySet());
             HashMap<String, BinarySearch> temp = binaryFromJSON();
 
         } catch (IOException e) {
@@ -109,7 +111,7 @@ Level 2:
 
     /**
      *
-     * @// Add objects to binary tree from sorted json obj
+     *  Add objects to binary tree from sorted json obj
      *  The hashmap's string is a particular language and the binary search is the corresponding BST
      *  For each node we only need 3 parameters (Their IDs, english phrase, and language phrase)
      *  1. Make an ArrayList<Node> for each language and pass it in construct to create the BST
@@ -118,18 +120,29 @@ Level 2:
      *  Also store hashmap of data[it][0]["level"] to the string of sectionName
      * @return Hashmap of Language to the corresponding BSTs
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public HashMap<String, BinarySearch> binaryFromJSON() {
+        if (SectionToID != null) {
+            SectionToID.clear();
+        }
+        HashMap <String, BinarySearch> LanguageToBST = new HashMap<>();
         try {
             HashMap <String, ArrayList<Node>> LanguageToDetails = new HashMap<>();
-            HashMap <String, Integer> SectionToID = new HashMap<>();
             JSONObject sectionObj = new JSONObject(loadJSON());
             JSONArray sectionNames = sectionObj.names();
             JSONArray sectionValues = sectionObj.toJSONArray(sectionNames);
+            assert sectionNames != null;
+            assert sectionValues != null;
+            LanguageToDetails.put("French", new ArrayList<Node>());
+            LanguageToDetails.put("Dutch", new ArrayList<Node>());
+            LanguageToDetails.put("Spanish", new ArrayList<Node>());
+            LanguageToDetails.put("Italian", new ArrayList<Node>());
+            LanguageToDetails.put("German", new ArrayList<Node>());
             for (int i=0; i< sectionNames.length(); i++) {
                 JSONArray levelObj = ((JSONArray) sectionValues.get(i));
                 JSONObject idLevel = (JSONObject) levelObj.get(0);
                 for (int j = 0; j < levelObj.length(); j++) {
-                    JSONObject instance = (JSONObject) levelObj.get(0);
+                    JSONObject instance = (JSONObject) levelObj.get(j);
                     String language = instance.getString("language");
                     String englishPhrase = instance.getString("english");
                     String languagePhrase = instance.getString("phrase");
@@ -137,17 +150,18 @@ Level 2:
                     LanguageToDetails.get(language).add(new Node(id,englishPhrase,languagePhrase));
                 }
                 int keyId = (int) idLevel.get("id") / 1000;
-                System.out.println(keyId);
-                System.out.println(sectionValues.get(i));
                 SectionToID.put(sectionNames.get(i).toString(),keyId);
             }
-
+            for ( Map.Entry <String, ArrayList<Node>> imp : LanguageToDetails.entrySet()) {
+                LanguageToBST.put(imp.getKey(), new BinarySearch(imp.getValue()));
+            }
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return LanguageToBST;
     }
+
     public HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>>ObjectFromJSON() throws IOException{
         HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> outerHashMap = new HashMap<>();
         try {
