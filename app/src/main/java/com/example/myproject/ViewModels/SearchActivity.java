@@ -26,7 +26,7 @@ import com.example.myproject.Models.Parsing.Parser;
 import com.example.myproject.Models.Parsing.Token;
 import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Parsing.Tokenizer;
-import com.example.myproject.Models.User;
+
 import com.example.myproject.Models.UserDetails;
 import com.example.myproject.R;
 import com.google.firebase.auth.FirebaseAuth;

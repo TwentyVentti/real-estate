@@ -28,7 +28,6 @@ import com.example.myproject.Models.Parsing.Token;
 import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Parsing.Tokenizer;
 import com.example.myproject.Models.SearchDetails;
-import com.example.myproject.Models.User;
 import com.example.myproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -50,7 +49,6 @@ import java.util.Hashtable;
  */
 public class MainActivity extends AppCompatActivity {
     public BaseExp userDetails;
-    public static User user = new User();
     static TextView level;
     static TextView days;
     FirebaseAuth auth;

@@ -18,7 +18,7 @@ import com.example.myproject.Models.Parsing.BaseExp;
 import com.example.myproject.Models.Parsing.GrammarException;
 import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Phrase;
-import com.example.myproject.Models.User;
+
 import com.example.myproject.R;
 import com.example.myproject.ViewModels.MainActivity;
 import com.example.myproject.ViewModels.PhraseListActivity;
