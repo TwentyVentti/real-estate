@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ViewModels.PhraseListActivity"></activity>
-        <activity android:name=".SplashScreenActivity" />
+        <activity android:name=".ViewModels.SplashScreenActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
