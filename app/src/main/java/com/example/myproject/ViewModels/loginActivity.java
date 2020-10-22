@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myproject.Models.BST.BinarySearch;
+import com.example.myproject.Models.BST.Node;
 import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Phrase;
 import com.example.myproject.R;
@@ -72,6 +73,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         guest = findViewById(R.id.guest_user_button);
         try {
             phraseListHash = ObjectFromJSON();
+            System.out.println(phraseListHash.keySet());
             HashMap<String, BinarySearch> temp = binaryFromJSON();
 
         } catch (IOException e) {
@@ -118,6 +120,7 @@ Level 2:
      */
     public HashMap<String, BinarySearch> binaryFromJSON() {
         try {
+            HashMap <String, ArrayList<Node>> LanguageToDetails = new HashMap<>();
             HashMap <String, Integer> SectionToID = new HashMap<>();
             JSONObject sectionObj = new JSONObject(loadJSON());
             JSONArray sectionNames = sectionObj.names();
@@ -125,11 +128,20 @@ Level 2:
             for (int i=0; i< sectionNames.length(); i++) {
                 JSONArray levelObj = ((JSONArray) sectionValues.get(i));
                 JSONObject idLevel = (JSONObject) levelObj.get(0);
+                for (int j = 0; j < levelObj.length(); j++) {
+                    JSONObject instance = (JSONObject) levelObj.get(0);
+                    String language = instance.getString("language");
+                    String englishPhrase = instance.getString("english");
+                    String languagePhrase = instance.getString("phrase");
+                    int id = (int) instance.get("id");
+                    LanguageToDetails.get(language).add(new Node(id,englishPhrase,languagePhrase));
+                }
                 int keyId = (int) idLevel.get("id") / 1000;
                 System.out.println(keyId);
                 System.out.println(sectionValues.get(i));
                 SectionToID.put(sectionNames.get(i).toString(),keyId);
             }
+
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -224,7 +236,7 @@ Level 2:
     }
 
     public String loadJSONFromAsset() {
-        String json;
+        String json = null;
         try {
             InputStream is = this.getAssets().open("phrase_array.json");
             int size = is.available();

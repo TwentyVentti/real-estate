@@ -6,12 +6,15 @@ public class BinarySearch {
 
     Node root;
     ArrayList <Integer> temp;
+    ArrayList <Node> tempNode;
     public BinarySearch() {
         temp = new ArrayList<>();
         root = null;
     }
 
-    //TODO: Instead of int[] arr passed pass array of json object or something
+    public BinarySearch(ArrayList <Node> arr) {
+        constructTree(arr);
+    }
     /**
      * Construct Balanced BSTs from sorted ArrayList (demo)
      * @param arr sorted array of integers
@@ -63,11 +66,37 @@ public class BinarySearch {
      */
     public void constructTree(ArrayList<Node> x) {
         // Make tree called from loginActivity
+        helpConstructTree(x, 0, x.size());
+    }
+
+    private Node helpConstructTree(ArrayList<Node> arr, int lowerBound, int higherBound) {
+        if (lowerBound > higherBound)
+            return null;
+        int middle = (lowerBound + higherBound)/2;
+        Node node = arr.get(middle);
+        node.left = helpConstructTree(arr, lowerBound, middle -1);
+        node.right = helpConstructTree(arr, middle+1,higherBound);
+        return node;
     }
 
     // Return the nodes of phrases of a particular section
-    public ArrayList<Node> sectionNodes() {
-        return null;
+    public ArrayList<Node> sectionNodes(int low, int high) {
+        tempNode.clear();
+        helpSectionNode(root, low, high);
+        return tempNode;
+    }
+
+    public void helpSectionNode(Node node, int low, int high) {
+        if (node == null) {
+            return;
+        }
+        if (low < node.ID)
+            helpSectionNode(node.left, low, high);
+        if (low <= node.ID && high >= node.ID) {
+            tempNode.add(node);
+        }
+        if (high > node.ID)
+            helpSectionNode(node.right, low, high);
     }
 
 }

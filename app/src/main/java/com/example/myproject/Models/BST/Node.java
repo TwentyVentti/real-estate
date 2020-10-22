@@ -11,6 +11,14 @@ public class Node {
         left = right = null;
     }
 
+    public Node(int ID, String englishPhrase, String languagePhrase ) {
+        this.ID = ID;
+        this.englishPhrase = englishPhrase;
+        this.languagePhrase = languagePhrase;
+        left = right = null;
+    }
+
+
     public Node () {
         left = right = null;
     }
