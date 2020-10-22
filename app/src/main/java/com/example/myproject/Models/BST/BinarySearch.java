@@ -67,13 +67,14 @@ public class BinarySearch {
         /**
          * Check whether nodes are being added perfectly
          */
-//        System.out.println(node.ID);
-//        System.out.println(node.englishPhrase);
-//        System.out.println(node.languagePhrase);
-
         helpInOrder(node.right);
     }
 
+    /**
+     *
+     * @param level The level of competence the user is categorized as.
+     * @return A list pertaining to all the phrases available to users in that level.
+     */
     public ArrayList<Node> getArrayFromLevel(int level) {
         return sectionNodes(level * 10000, (level+1) * 10000);
     }
