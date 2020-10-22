@@ -39,6 +39,7 @@ public class HomePageFragment extends Fragment {
     public ArrayAdapter<String> arrayAdapter;
     public ListView sectionListView;
     public static ArrayList<String> sections = new ArrayList<>();
+    public static ArrayList<Node> sectionsBST = new ArrayList<>();
     public static ArrayList<HashMap<String,ArrayList<Phrase>>> levelArrayMap;
     public View.OnClickListener clickListener;
     public static BaseExp USER_SELECTION;
@@ -55,6 +56,7 @@ public class HomePageFragment extends Fragment {
             e.printStackTrace();
         }
         sections = getSections();
+        sectionsBST = getBSTSections();
         try {
             if (getActivity()!=null) {
                 arrayAdapter = new ArrayAdapter<>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1, sections);
@@ -81,6 +83,21 @@ public class HomePageFragment extends Fragment {
         });
         return root;
     }
+
+    public ArrayList<Node> getBSTSections() {
+        HashMap<String, BinarySearch> levelBST;
+        ArrayList<Node> levelArray = null;
+        try {
+            levelBST = loginActivity.levelBST;
+            String language =USER_SELECTION.language;
+            int level = USER_SELECTION.level;
+            language = language.substring(0, 1).toUpperCase() + language.substring(1);
+            levelArray = levelBST.get(language).getArrayFromLevel(level);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return levelArray;
+    }
     /** TODO: Level 3 not created */
     public ArrayList<String> getSections(){
         ArrayList<String> sections = new ArrayList<>();
@@ -88,15 +105,9 @@ public class HomePageFragment extends Fragment {
         ArrayList<HashMap<String,ArrayList<Phrase>>> mapArrayList = new ArrayList<>();
 
 
-        HashMap<String, BinarySearch> levelBST;
-        ArrayList<Node> levelArray;
         try{
             phraseHash = loginActivity.phraseListHash;
-            levelBST = loginActivity.levelBST;
             int level = USER_SELECTION.level;
-            String language =USER_SELECTION.language;
-            language = language.substring(0, 1).toUpperCase() + language.substring(1);
-            levelArray = levelBST.get(language).getArrayFromLevel(level);
             System.out.println(level);
             switch (level){
                 case 1:
