@@ -133,7 +133,6 @@ public class HomePageFragment extends Fragment {
                     break;
                 case 3:
                     mapArrayList = phraseHash.get("Level 3");
-                    System.out.println(mapArrayList.isEmpty());
                     System.out.println(33);
                     levelArrayMap = mapArrayList;
                     break;
