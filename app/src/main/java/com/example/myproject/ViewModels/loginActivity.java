@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myproject.Models.BST.BinarySearch;
 import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Phrase;
 import com.example.myproject.R;
@@ -101,6 +102,22 @@ Level 2:
     At the restaurant:
 
  */
+    public HashMap <String, BinarySearch> binaryFromJSON() {
+        try {
+            JSONObject obj = new JSONObject(loadJSONFromAsset());
+            JSONArray outerNames = obj.names();
+            JSONArray outerValues = obj.toJSONArray(outerNames);
+            assert outerValues != null;
+            JSONObject innerObj = ((JSONObject) outerValues.get(0));
+            JSONArray innerNames = innerObj.names();
+            assert innerNames != null;
+            int level = 0;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new HashMap<>();
+    }
     public HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>>ObjectFromJSON() throws IOException{
         HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> outerHashMap = new HashMap<>();
         try {
@@ -188,7 +205,7 @@ Level 2:
     }
 
     public String loadJSONFromAsset() {
-        String json = null;
+        String json;
         try {
             InputStream is = this.getAssets().open("phrase_array.json");
             int size = is.available();

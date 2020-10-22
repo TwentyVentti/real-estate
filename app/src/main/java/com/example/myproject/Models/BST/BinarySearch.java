@@ -1,12 +1,18 @@
 package com.example.myproject.Models.BST;
 
+import java.util.ArrayList;
+
 public class BinarySearch {
 
     Node root;
+    ArrayList <Integer> temp;
     public BinarySearch() {
+        temp = new ArrayList<>();
         root = null;
     }
+
     public void construct(int [] arr) {
+        temp = new ArrayList<>();
         root = helpConstruct(arr, 0, arr.length - 1);
     }
     // TODO: Instead of int[] arr passed pass array of json object or something
@@ -20,15 +26,17 @@ public class BinarySearch {
         return node;
     }
 
-
-    public void inOrder() {
+    public ArrayList<Integer> inOrder() {
+        temp.clear();
         helpInOrder(root);
+        return temp;
     }
-    public void helpInOrder(Node node) {
+    private void helpInOrder(Node node) {
         if (node == null) {
             return;
         }
         helpInOrder(node.left);
+        temp.add(node.ID);
         System.out.println(node.ID);
         helpInOrder(node.right);
     }

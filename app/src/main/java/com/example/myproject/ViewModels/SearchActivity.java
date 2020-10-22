@@ -183,14 +183,6 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-    /*
-public class User {
-private String language;
-private Integer level;
-private String city;
-private Integer duration;
-private String country;
-*/
     public static BaseExp getUserSelectionFromEdit() throws GrammarException {
         System.out.println(userDetails);
         if (userDetails == null) {
