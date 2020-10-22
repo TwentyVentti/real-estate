@@ -11,6 +11,8 @@ public class BinarySearch {
         root = null;
     }
 
+
+    // Below 4 functions are basic test cases without JSON
     public void construct(int [] arr) {
         temp = new ArrayList<>();
         root = helpConstruct(arr, 0, arr.length - 1);
@@ -39,6 +41,15 @@ public class BinarySearch {
         temp.add(node.ID);
         System.out.println(node.ID);
         helpInOrder(node.right);
+    }
+
+    public void constructTree(ArrayList<Node> x) {
+        // Make tree called from loginActivity
+    }
+
+    // Return the nodes of phrases of a particular section
+    public ArrayList<Node> sectionNodes() {
+        return null;
     }
 
 }

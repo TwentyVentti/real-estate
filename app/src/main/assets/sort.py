@@ -19,9 +19,6 @@ for it in data:
 
 levelDict = {1:1, 2:1, 3:1, 4:1, 5:1}
 
-# for it in data:
-#     levelDict[it] = data[it][0]["level"]
-
 for it in data:
     temp = data[it][0]["level"]
     for jt in data[it]:

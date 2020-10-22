@@ -102,21 +102,20 @@ Level 2:
     At the restaurant:
 
  */
-    public HashMap <String, BinarySearch> binaryFromJSON() {
+    public HashMap<String, BinarySearch> binaryFromJSON() {
         try {
-            JSONObject obj = new JSONObject(loadJSONFromAsset());
-            JSONArray outerNames = obj.names();
-            JSONArray outerValues = obj.toJSONArray(outerNames);
-            assert outerValues != null;
-            JSONObject innerObj = ((JSONObject) outerValues.get(0));
-            JSONArray innerNames = innerObj.names();
-            assert innerNames != null;
-            int level = 0;
+            JSONObject obj = new JSONObject(loadJSON());
+            // Add objects to binary tree from sorted json obj
+            // The hashmap's string is a particular language and the binary search is the corresponding BST
+            // For each node we only need 3 parameters (Their IDs, english phrase, and language phrase)
+            // 1. Make an ArrayList<Node> and pass it in construct to create the BST
+            // Time to constrct = n + logn
+            // Also store hashmap of data[it][0]["level"] to the string of sectionName
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        return new HashMap<>();
+        return null;
     }
     public HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>>ObjectFromJSON() throws IOException{
         HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> outerHashMap = new HashMap<>();
@@ -124,6 +123,7 @@ Level 2:
             JSONObject obj = new JSONObject(loadJSONFromAsset());
 
             JSONArray outerNames = obj.names();
+
             JSONArray outerValues = obj.toJSONArray(outerNames);
             assert outerValues != null;
             JSONObject innerObj = ((JSONObject) outerValues.get(0));
@@ -208,6 +208,22 @@ Level 2:
         String json;
         try {
             InputStream is = this.getAssets().open("phrase_array.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, StandardCharsets.UTF_8);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
+    public String loadJSON() {
+        String json;
+        try {
+            InputStream is = this.getAssets().open("temp.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
