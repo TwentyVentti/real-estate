@@ -57,6 +57,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     String LEVEL_4 = "Level 4";
     public static final String a = "a";
     public static HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> phraseListHash;
+    public static HashMap<String, BinarySearch> temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +75,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         try {
             phraseListHash = ObjectFromJSON();
             System.out.println(phraseListHash.keySet());
-            HashMap<String, BinarySearch> temp = binaryFromJSON();
+            temp = binaryFromJSON();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -109,13 +110,13 @@ Level 2:
 
     /**
      *
-     * @// Add objects to binary tree from sorted json obj
-     *  The hashmap's string is a particular language and the binary search is the corresponding BST
-     *  For each node we only need 3 parameters (Their IDs, english phrase, and language phrase)
-     *  1. Make an ArrayList<Node> for each language and pass it in construct to create the BST
-     *  (above is similar to Construct in BST)
-     *  Time to constrct = n + logn
-     *  Also store hashmap of data[it][0]["level"] to the string of sectionName
+     * Add objects to binary tree from sorted json obj
+     * The hashmap's string is a particular language and the binary search is the corresponding BST
+     * For each node we only need 3 parameters (Their IDs, english phrase, and language phrase)
+     * 1. Make an ArrayList<Node> for each language and pass it in construct to create the BST
+     * (above is similar to Construct in BST)
+     * Time to constrct = n + logn
+     * Also store hashmap of data[it][0]["level"] to the string of sectionName
      * @return Hashmap of Language to the corresponding BSTs
      */
     public HashMap<String, BinarySearch> binaryFromJSON() {
