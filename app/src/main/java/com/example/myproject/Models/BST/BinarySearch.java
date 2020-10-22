@@ -57,7 +57,10 @@ public class BinarySearch {
         helpInOrder(node.right);
     }
 
-
+    /**
+     * Construct BSTs from ARraylist
+     * @param
+     */
     public void constructTree(ArrayList<Node> x) {
         // Make tree called from loginActivity
     }
