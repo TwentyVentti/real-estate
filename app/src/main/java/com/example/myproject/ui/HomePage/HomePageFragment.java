@@ -30,6 +30,7 @@ import com.example.myproject.ViewModels.SearchActivity;
 import com.example.myproject.ViewModels.loginActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * TODO: Docstring
@@ -98,7 +99,7 @@ public class HomePageFragment extends Fragment {
             String language =USER_SELECTION.language;
             int level = USER_SELECTION.level;
             language = language.substring(0, 1).toUpperCase() + language.substring(1);
-            levelArray = levelBST.get(language).getArrayFromLevel(level);
+            levelArray = Objects.requireNonNull(levelBST.get(language)).getArrayFromLevel(level);
         }catch (Exception ex){
             ex.printStackTrace();
         }
