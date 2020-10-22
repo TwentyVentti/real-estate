@@ -14,4 +14,28 @@ public class Node {
     public Node () {
         left = right = null;
     }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public String getEnglishPhrase() {
+        return englishPhrase;
+    }
+
+    public void setEnglishPhrase(String englishPhrase) {
+        this.englishPhrase = englishPhrase;
+    }
+
+    public String getLanguagePhrase() {
+        return languagePhrase;
+    }
+
+    public void setLanguagePhrase(String languagePhrase) {
+        this.languagePhrase = languagePhrase;
+    }
 }
