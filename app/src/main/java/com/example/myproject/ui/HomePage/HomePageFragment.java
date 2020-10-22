@@ -1,7 +1,6 @@
 package com.example.myproject.ui.HomePage;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -20,17 +17,16 @@ import com.example.myproject.Models.BST.BinarySearch;
 import com.example.myproject.Models.BST.Node;
 import com.example.myproject.Models.Parsing.BaseExp;
 import com.example.myproject.Models.Parsing.GrammarException;
-import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Phrase;
 
 import com.example.myproject.R;
-import com.example.myproject.ViewModels.MainActivity;
 import com.example.myproject.ViewModels.PhraseListActivity;
 import com.example.myproject.ViewModels.SearchActivity;
 import com.example.myproject.ViewModels.loginActivity;
+import com.google.common.collect.BiMap;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -57,7 +53,7 @@ public class HomePageFragment extends Fragment {
         } catch (GrammarException e) {
             e.printStackTrace();
         }
-        HashMap <Integer, String> sectionFromIDs = loginActivity.IDToSection;
+        BiMap<Integer, String> sectionFromIDs = loginActivity.IdAndSection;
         sections = getSectionsFromID();
         sectionsBST = getBSTSections();
         try {
@@ -101,7 +97,7 @@ public class HomePageFragment extends Fragment {
             String language =USER_SELECTION.language;
             int level = USER_SELECTION.level;
             language = language.substring(0, 1).toUpperCase() + language.substring(1);
-            levelArray = Objects.requireNonNull(levelBST.get(language)).getArrayFromLevel(level);
+            levelArray = levelBST.get(language).getArrayFromLevel(level);
         }catch (Exception ex){
             ex.printStackTrace();
         }
@@ -158,7 +154,7 @@ public class HomePageFragment extends Fragment {
      * @return the list of sections which will be shown to the user when they arrive at homepage fragment.
      */
     public ArrayList<String> getSectionsFromID(){
-        HashMap <Integer, String> sectionFromIDs = loginActivity.IDToSection;
+        BiMap <Integer, String> sectionFromIDs = loginActivity.IdAndSection;
         ArrayList<String> sections = new ArrayList<>();
         int level = USER_SELECTION.level;
         for ( Integer IDKey : sectionFromIDs.keySet()) {

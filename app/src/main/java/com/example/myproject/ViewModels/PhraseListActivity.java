@@ -12,6 +12,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myproject.Models.BST.BinarySearch;
+import com.example.myproject.Models.BST.Node;
 import com.example.myproject.Models.Phrase;
 import com.example.myproject.R;
 import com.example.myproject.ui.HomePage.HomePageFragment;
@@ -30,6 +32,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 /**
@@ -99,6 +102,22 @@ public class PhraseListActivity extends AppCompatActivity {
      *
      * @return the phrases that are needed to populate the listview.
      */
+
+    private ArrayList<Node> getBSTPhrases() {
+        ArrayList<Node> phrases = new ArrayList<>();
+        int currentSection = 1; // Replace it with getIntent
+        int level = HomePageFragment.USER_SELECTION.level;
+        HashMap<String, BinarySearch> levelBST;
+        try {
+            levelBST = loginActivity.levelBST;
+            String language =HomePageFragment.USER_SELECTION.language;
+            language = language.substring(0, 1).toUpperCase() + language.substring(1);
+            phrases = levelBST.get(language).getArrayFromLevelSection(level,currentSection);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return phrases;
+    }
     private ArrayList<Phrase> getPhrases(){
         ArrayList<Phrase> phrases = new ArrayList<>();
         String currentSection = getIntent().getStringExtra("Section");
@@ -119,42 +138,37 @@ public class PhraseListActivity extends AppCompatActivity {
      */
     private void setLanguageArrays(){
         String language = HomePageFragment.USER_SELECTION.language;
-        ArrayList<Phrase> phraseArrayList = getPhrases();
+//        ArrayList<Phrase> phraseArrayList = getPhrases();
+        ArrayList<Node> phraseBSTList = getBSTPhrases();
         int x =0;
-        for (Phrase phrase :phraseArrayList) {
-            userFirstLanguagePhrases.add(phrase.getEnglish());
+        for (Node phrase :phraseBSTList) {
+            userFirstLanguagePhrases.add(phrase.getEnglishPhrase());
             switch (language){
                 case "French":
                     if (x==0){
                         textToSpeech.setLanguage(Locale.FRENCH);
                         x+=1;
                     }
-                    userSelectedLanguagePhrases.add(phrase.getFrench());
-                    break;
                 case "Dutch":
                     if (x==0){
                         textToSpeech.setLanguage(new Locale("nl","NL"));
                         x+=1;
                     }
-                    userSelectedLanguagePhrases.add(phrase.getDutch());
-                    break;
                 case "Italian":
                     if (x==0){
                         textToSpeech.setLanguage(Locale.ITALIAN);
                         x+=1;
                     }
-                    userSelectedLanguagePhrases.add(phrase.getItalian());
-                    break;
                 case "Spanish":
                     if (x==0){
                         textToSpeech.setLanguage(new Locale("es_ES"));
                         x+=1;
                     }
-                    userSelectedLanguagePhrases.add(phrase.getSpanish());
                     break;
                 default:
                     break;
             }
+            userSelectedLanguagePhrases.add(phrase.getLanguagePhrase());
         }
     }
 

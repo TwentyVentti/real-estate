@@ -5,6 +5,8 @@ import java.util.UnknownFormatConversionException;
 
 public class BinarySearch {
 
+    Node partialRoot;
+
     Node root;
     ArrayList <Integer> tempInteger;
     ArrayList <Node> tempNode;
@@ -77,6 +79,10 @@ public class BinarySearch {
      */
     public ArrayList<Node> getArrayFromLevel(int level) {
         return sectionNodes(10000, (level+1) * 10000);
+    }
+
+    public ArrayList<Node> getArrayFromLevelSection(int level, int section) {
+        return sectionNodes(level * 10000 + section * 1000, level * 10000 + section * 1000 + 999);
     }
 
     /**

@@ -1,13 +1,13 @@
 package com.example.myproject.ViewModels;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
+
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.example.myproject.Models.BST.BinarySearch;
 import com.example.myproject.Models.BST.Node;
-import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Phrase;
 import com.example.myproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,23 +25,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -61,7 +53,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     public static HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> phraseListHash;
 
     // Integer is Node.ID String is Section Name
-    public static HashMap <Integer, String> IDToSection = new HashMap<>();
+    public static BiMap <Integer, String> IdAndSection = HashBiMap.create();
     public static HashMap <String, BinarySearch> levelBST;
 
 
@@ -111,8 +103,8 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
      */
 
     public HashMap<String, BinarySearch> binaryFromJSON() {
-        if (IDToSection != null) {
-            IDToSection.clear();
+        if (IdAndSection != null) {
+            IdAndSection.clear();
         }
         HashMap <String, BinarySearch> LanguageToBST = new HashMap<>();
         try {
@@ -139,7 +131,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                     LanguageToDetails.get(language).add(new Node(id,englishPhrase,languagePhrase));
                 }
                 int keyId = (int) idLevel.get("id") / 1000;
-                IDToSection.put(keyId, sectionNames.get(i).toString());
+                IdAndSection.put(keyId, sectionNames.get(i).toString());
             }
             for ( Map.Entry <String, ArrayList<Node>> imp : LanguageToDetails.entrySet()) {
                 LanguageToBST.put(imp.getKey(), new BinarySearch(imp.getValue()));
