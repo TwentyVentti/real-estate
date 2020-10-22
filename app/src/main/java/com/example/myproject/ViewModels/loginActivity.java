@@ -135,7 +135,7 @@ Level 2:
                     String englishPhrase = instance.getString("english");
                     String languagePhrase = instance.getString("phrase");
                     int id = (int) instance.get("id");
-                    LanguageToDetails.get(language).add(new Node(id,englishPhrase,languagePhrase));
+                    boolean add = LanguageToDetails.get(language).add(new Node(id, englishPhrase, languagePhrase));
                 }
                 int keyId = (int) idLevel.get("id") / 1000;
                 System.out.println(keyId);
@@ -149,6 +149,7 @@ Level 2:
         }
         return null;
     }
+
     public HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>>ObjectFromJSON() throws IOException{
         HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> outerHashMap = new HashMap<>();
         try {
