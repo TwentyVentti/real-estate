@@ -48,10 +48,9 @@ public class PhraseListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLanguageArrays();
         setContentView(R.layout.activity_phrase_list);
         sectionTextView = findViewById(R.id.sectionTextView);
-        textToSpeech=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+        textToSpeech =new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if(status != TextToSpeech.ERROR) {
@@ -65,6 +64,16 @@ public class PhraseListActivity extends AppCompatActivity {
                 finish();
             }
         };
+        setLanguageArrays();
+        initListView();
+        sectionTextView.setText(section);
+    }
+
+    /**
+     * Initialises the listView, arrayAdapter and all
+     * objects related to the list of phrases being displayed.
+     */
+    private void initListView(){
         phraseListView = findViewById(R.id.phraseListView);
         phraseArrayAdapter = new ArrayAdapter<>(PhraseListActivity.this,android.R.layout.simple_list_item_1, userFirstLanguagePhrases);
         phraseListView.setAdapter(phraseArrayAdapter);
@@ -85,7 +94,6 @@ public class PhraseListActivity extends AppCompatActivity {
             System.err.println("Null section title");
             ex.printStackTrace();
         }
-        sectionTextView.setText(section);
     }
     /**
      *
@@ -106,25 +114,42 @@ public class PhraseListActivity extends AppCompatActivity {
 
     /**
      * Sets the @userFirstLanguagePhrases and the @userSelectedLanguagePhrases
+     * Also, depending on the language, will set the text-to-speech object
+     * to the correct locale.
      */
     private void setLanguageArrays(){
         String language = HomePageFragment.USER_SELECTION.language;
-        System.out.println(language);
         ArrayList<Phrase> phraseArrayList = getPhrases();
         int x =0;
         for (Phrase phrase :phraseArrayList) {
             userFirstLanguagePhrases.add(phrase.getEnglish());
             switch (language){
                 case "French":
+                    if (x==0){
+                        textToSpeech.setLanguage(Locale.FRENCH);
+                        x+=1;
+                    }
                     userSelectedLanguagePhrases.add(phrase.getFrench());
                     break;
                 case "Dutch":
+                    if (x==0){
+                        textToSpeech.setLanguage(new Locale("nl","NL"));
+                        x+=1;
+                    }
                     userSelectedLanguagePhrases.add(phrase.getDutch());
                     break;
                 case "Italian":
+                    if (x==0){
+                        textToSpeech.setLanguage(Locale.ITALIAN);
+                        x+=1;
+                    }
                     userSelectedLanguagePhrases.add(phrase.getItalian());
                     break;
                 case "Spanish":
+                    if (x==0){
+                        textToSpeech.setLanguage(new Locale("es_ES"));
+                        x+=1;
+                    }
                     userSelectedLanguagePhrases.add(phrase.getSpanish());
                     break;
                 default:
