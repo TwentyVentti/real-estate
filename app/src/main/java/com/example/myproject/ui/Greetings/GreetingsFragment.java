@@ -51,7 +51,6 @@ public class GreetingsFragment extends Fragment {
     SupportMapFragment supportMapFragment;
     GoogleMap map;
     Marker mCurrLocationMarker;
-
     FusedLocationProviderClient fusedLocationProviderClient;
     double currentLat = 0, currentLong = 0;
 
@@ -65,12 +64,12 @@ public class GreetingsFragment extends Fragment {
 
         spType = v.findViewById(R.id.sp_type);
         btfind = v.findViewById(R.id.bt_find);
-        supportMapFragment = (SupportMapFragment) getChildFragmentManager()
+        supportMapFragment = (SupportMapFragment) getChildFragmentManager() //Map component
                 .findFragmentById(R.id.google_map);
 
 
 
-;
+        ;
 
 
         final String[] placeTypeList = {"restaurant", "bar", "hotel","atm"};
@@ -83,11 +82,11 @@ public class GreetingsFragment extends Fragment {
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, placeNameList);
-        spType.setAdapter(adapter);
+        spType.setAdapter(adapter); //for dropdown of options
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity());
 
-        if (ActivityCompat.checkSelfPermission(getActivity(),
+        if (ActivityCompat.checkSelfPermission(getActivity(),  // checking requesting permission
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             getCurrentLocation();
         } else {
@@ -95,16 +94,16 @@ public class GreetingsFragment extends Fragment {
 
         }
 
-        btfind.setOnClickListener(new View.OnClickListener() {
+        btfind.setOnClickListener(new View.OnClickListener() { // on clicking "Find"
             @Override
-            // https://maps.googleapis.com/maps/api/place/nearbysearch/json?types=Bar&sensor=true&key=AIzaSyCFeVEs1n24pffvedWoXsAaRxcVjPqNes8
+
             public void onClick(View v) {
                 int i = spType.getSelectedItemPosition();
-                String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" +
-                        "?location=" + currentLat + "," + currentLong +
+                String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" +  // string to search places
+                        "?location=" + currentLat + "," + currentLong + //current location
                         "&radius=5000" +    //Max area to search
                         "&types=" + placeTypeList[i] +  //attribute to search
-                        "&sensor=true" +
+                        "&sensor=true" +  //Indicates whether or not the geocoding request comes from a device with a location sensor
                         "&key=" + getResources().getString(R.string.google_map_key);  // Google key for maps api
 
                 new PlaceTask().execute(url); //finding nearby places
@@ -112,7 +111,7 @@ public class GreetingsFragment extends Fragment {
 
             }
         });
-        return v;
+        return v; // return view
     }
 
 
@@ -120,9 +119,9 @@ public class GreetingsFragment extends Fragment {
 
 
         @SuppressLint("MissingPermission")
-        Task<Location> task = fusedLocationProviderClient.getLastLocation();
+        Task<Location> task = fusedLocationProviderClient.getLastLocation(); //to retrieve the device's last known location
 
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+        task.addOnSuccessListener(new OnSuccessListener<Location>() { //called when location found
             @Override
             public void onSuccess(Location location) {
 
@@ -137,13 +136,13 @@ public class GreetingsFragment extends Fragment {
 
 
 
-                    supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+                    supportMapFragment.getMapAsync(new OnMapReadyCallback() {  //initializing the maps system
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
                             map=googleMap;
                             LatLng latLng = new LatLng(currentLat, currentLong);
                             MarkerOptions markerOptions = new MarkerOptions();
-                            markerOptions.position(latLng);
+                            markerOptions.position(latLng); //current location marker
                             markerOptions.title("I am here right now!"); //current location marker
                             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
                             mCurrLocationMarker = map.addMarker(markerOptions);
@@ -154,7 +153,7 @@ public class GreetingsFragment extends Fragment {
 
                             CameraPosition cameraPosition = new CameraPosition.Builder()
                                     .target(latLng)      // Sets the center of the map to location user
-                                    .zoom(15)
+                                    .zoom(15)            // zoom in on location
                                     .bearing(90)                // Sets the orientation of the camera to east
                                     .tilt(40)                   // Sets the tilt of the camera
                                     .build();                   // Creates a CameraPosition from the builder
@@ -187,13 +186,14 @@ public class GreetingsFragment extends Fragment {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        //permission check , If request is cancelled, the result is empty.
         if (requestCode == 44){
             if(grantResults.length > 0 && grantResults[0]== PackageManager.PERMISSION_GRANTED)
                 getCurrentLocation();
         }
     }
 
-    private class PlaceTask extends AsyncTask<String,Integer,String> {
+    private class PlaceTask extends AsyncTask<String,Integer,String> {//downloading url in background
 
         @Override
         protected String doInBackground(String... strings) {
@@ -212,13 +212,13 @@ public class GreetingsFragment extends Fragment {
         }
     }
 
-    private String downloadUrl(String string) throws IOException {
+    private String downloadUrl(String string) throws IOException { //downloading the url for places
 
         URL url = new URL(string);
 
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        connection.connect();
+        connection.connect(); // connecting to url
         InputStream stream = connection.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
         StringBuilder builder = new StringBuilder();
@@ -254,8 +254,8 @@ public class GreetingsFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(List<HashMap<String, String>> hashMaps) {
-            map.clear();
+        protected void onPostExecute(List<HashMap<String, String>> hashMaps) { //after background task is executed
+            map.clear(); // clear all previous markers
 
             for (int i=0; i<hashMaps.size(); i++)
             {
@@ -268,7 +268,7 @@ public class GreetingsFragment extends Fragment {
                 MarkerOptions options = new MarkerOptions();
                 options.position(latLng);
                 options.title(name);
-                map.addMarker(options);
+                map.addMarker(options);// adding new relevant markers
 
             }
         }
