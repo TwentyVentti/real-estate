@@ -61,6 +61,7 @@ public class PhraseListActivity extends AppCompatActivity {
             }
         });
 
+
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
@@ -69,7 +70,7 @@ public class PhraseListActivity extends AppCompatActivity {
         };
         setLanguageArrays();
         initListView();
-        sectionTextView.setText(section);
+
     }
 
     /**
@@ -92,7 +93,9 @@ public class PhraseListActivity extends AppCompatActivity {
         });
         Intent homePageIntent = getIntent();
         try {
-            section = homePageIntent.getStringExtra("Section").replaceAll("_", " ");
+            section = homePageIntent.getStringExtra("SecString");
+            sectionTextView.setText(section);
+            int x = 3;
         } catch (Exception ex){
             System.err.println("Null section title");
             ex.printStackTrace();
@@ -115,18 +118,6 @@ public class PhraseListActivity extends AppCompatActivity {
             phrases = levelBST.get(language).getArrayFromLevelSection(level,currentSection);
         }catch (Exception ex){
             ex.printStackTrace();
-        }
-        return phrases;
-    }
-    private ArrayList<Phrase> getPhrases(){
-        ArrayList<Phrase> phrases = new ArrayList<>();
-        String currentSection = getIntent().getStringExtra("Section");
-        for (int i = 0; i < HomePageFragment.levelArrayMap.size(); i++) {
-            if (HomePageFragment.levelArrayMap.get(i).keySet().iterator().hasNext()){
-                if (HomePageFragment.levelArrayMap.get(i).keySet().iterator().next().equals(currentSection)){
-                    phrases=HomePageFragment.levelArrayMap.get(i).get(currentSection);
-                }
-            }
         }
         return phrases;
     }

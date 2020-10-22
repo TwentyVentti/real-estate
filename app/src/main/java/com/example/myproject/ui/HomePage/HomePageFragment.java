@@ -78,6 +78,7 @@ public class HomePageFragment extends Fragment {
                 Intent intent = new Intent(getActivity().getApplicationContext(), PhraseListActivity.class);
                 String clickedSection = sections.get(i);
                 BiMap <Integer, String> IdsFromString = loginActivity.IdAndSection;
+                intent.putExtra("SecString",clickedSection);
                 intent.putExtra("Section",IdsFromString.inverse().get(clickedSection));
                 startActivityForResult(intent,1);
             }
