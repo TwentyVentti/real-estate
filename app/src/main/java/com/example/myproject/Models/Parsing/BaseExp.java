@@ -1,7 +1,5 @@
 package com.example.myproject.Models.Parsing;
 
-import java.io.Serializable;
-
 /**
  * @author Abhaas Goyal - u7145384
  */
@@ -9,7 +7,10 @@ public class BaseExp extends Exp {
     private Exp term1;
     private Exp term2;
 
-    // These 5 parameters can be accessed by the created object
+    /**
+     * The following public objects can be accessed without using getters and setters for efficient
+     * modification of the data
+     */
     public int time;
     public String tunit;
     public String country;

@@ -1,5 +1,6 @@
 package com.example.myproject.Models.Parsing;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,7 +11,6 @@ import java.util.regex.Pattern;
 public class Tokenizer {
     private String _buffer;    //save text
     private Token current;    //save token extracted from next()
-    private int QUOTES = 2;
 
     /**
      * Tokenizer class constructor
@@ -25,7 +25,7 @@ public class Tokenizer {
      * Sets the current character to a Token object
      * Removes the whitespace of the buffer
      *
-     * @throws GrammarException
+     * @throws GrammarException if token is not parsed correctly
      */
     public void next() throws GrammarException {
         _buffer = _buffer.trim(); // remove whitespace
@@ -46,7 +46,7 @@ public class Tokenizer {
             Pattern p = Pattern.compile("\"([^\"]*)\"");
             Matcher m = p.matcher(_buffer);
             if (m.find()) {
-                current = new Token(m.group(1).toLowerCase(), Token.Type.STRING);
+                current = new Token(Objects.requireNonNull(m.group(1)).toLowerCase(), Token.Type.STRING);
                 if (!current.token().matches("^[a-zA-Z0-9]*$")) {
                     throw new ParserException();
                 }
@@ -78,6 +78,7 @@ public class Tokenizer {
         }
         int tokenLen;
         // Remove the extracted token from buffer
+        int QUOTES = 2;
         if (current.type() == Token.Type.STRING)
             tokenLen = current.token().length() + QUOTES;
         else

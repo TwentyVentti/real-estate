@@ -21,7 +21,6 @@ public class TimeExp extends Exp{
     @Override
     public String[] evaluate()
     {
-        String [] temp = {"TIME", Integer.toString(time), unit.toString()};
-        return temp;
+        return new String[]{"TIME", Integer.toString(time), unit.toString()};
     }
 }
