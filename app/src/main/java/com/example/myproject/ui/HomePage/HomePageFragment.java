@@ -162,7 +162,7 @@ public class HomePageFragment extends Fragment {
         ArrayList<String> sections = new ArrayList<>();
         int level = USER_SELECTION.level;
         for ( Integer IDKey : sectionFromIDs.keySet()) {
-            if (IDKey/10==level){
+            if (IDKey/10<=level){
                 sections.add(sectionFromIDs.get(IDKey));
             }
         }
