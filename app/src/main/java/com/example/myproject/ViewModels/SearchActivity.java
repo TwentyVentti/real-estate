@@ -49,7 +49,6 @@ public class SearchActivity extends AppCompatActivity {
     DatabaseReference ref;
     private String ID;
     public static String userDetails;
-//    public static User user = new User();
 //    static TextView level;
 //    static TextView days;
 

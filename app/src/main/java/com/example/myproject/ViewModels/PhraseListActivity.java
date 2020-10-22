@@ -128,7 +128,6 @@ public class PhraseListActivity extends AppCompatActivity {
      */
     private void setLanguageArrays(){
         String language = HomePageFragment.USER_SELECTION.language;
-//        ArrayList<Phrase> phraseArrayList = getPhrases();
         ArrayList<Node> phraseBSTList = getBSTPhrases();
         int x =0;
         for (Node phrase :phraseBSTList) {
