@@ -107,51 +107,6 @@ public class HomePageFragment extends Fragment {
         }
         return levelArray;
     }
-
-//    /**
-//     * This will set the levelArrayMap variable based on the USER_SELECTION.
-//     *
-//     * @return the list of sections which will be shown to the user when they arrive at homepage fragment.
-//     */
-//    public ArrayList<String> getSections(){
-//        ArrayList<String> sections = new ArrayList<>();
-//        HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> phraseHash;
-//        ArrayList<HashMap<String,ArrayList<Phrase>>> mapArrayList = new ArrayList<>();
-//
-//        try{
-//            phraseHash = loginActivity.phraseListHash;
-//            int level = USER_SELECTION.level;
-//            System.out.println(level);
-//            switch (level){
-//                case 1:
-//                    mapArrayList = phraseHash.get("Level 1");
-//                    System.out.println(11);
-//                    levelArrayMap = mapArrayList;
-//                    break;
-//                case 2:
-//                    mapArrayList = phraseHash.get("Level 2");
-//                    System.out.println(22);
-//                    levelArrayMap = mapArrayList;
-//                    break;
-//                case 3:
-//                    mapArrayList = phraseHash.get("Level 3");
-//                    System.out.println(33);
-//                    levelArrayMap = mapArrayList;
-//                    break;
-//                default:
-//                    System.out.println(44);
-//                    break;
-//            }
-//            assert mapArrayList != null;
-//            for (HashMap<String,ArrayList<Phrase>> levelMap : mapArrayList) {
-//                sections.add(levelMap.keySet().iterator().next());
-//            }
-//        } catch (Exception ex){
-//            ex.printStackTrace();
-//        }
-//
-//        return sections;
-//    }
     /**
      * This will set the levelArrayMap variable based on the USER_SELECTION.
      *
