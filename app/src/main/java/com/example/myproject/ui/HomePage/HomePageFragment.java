@@ -30,6 +30,7 @@ import com.example.myproject.ViewModels.SearchActivity;
 import com.example.myproject.ViewModels.loginActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -56,7 +57,8 @@ public class HomePageFragment extends Fragment {
         } catch (GrammarException e) {
             e.printStackTrace();
         }
-        sections = getSections();
+        HashMap <Integer, String> sectionFromIDs = loginActivity.IDToSection;
+        sections = getSectionsFromID();
         sectionsBST = getBSTSections();
         try {
             if (getActivity()!=null) {
@@ -151,5 +153,16 @@ public class HomePageFragment extends Fragment {
         return sections;
     }
 
+    public ArrayList<String> getSectionsFromID(){
+        HashMap <Integer, String> sectionFromIDs = loginActivity.IDToSection;
+        ArrayList<String> sections = new ArrayList<>();
+        int level = USER_SELECTION.level;
+        for ( Integer IDKey : sectionFromIDs.keySet()) {
+            if (IDKey/10==level){
+                sections.add(sectionFromIDs.get(IDKey));
+            }
+        }
+        return sections;
+    }
 
 }
