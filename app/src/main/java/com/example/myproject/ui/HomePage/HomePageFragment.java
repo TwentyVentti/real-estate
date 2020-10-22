@@ -17,7 +17,6 @@ import com.example.myproject.Models.BST.BinarySearch;
 import com.example.myproject.Models.BST.Node;
 import com.example.myproject.Models.Parsing.BaseExp;
 import com.example.myproject.Models.Parsing.GrammarException;
-import com.example.myproject.Models.Phrase;
 
 import com.example.myproject.R;
 import com.example.myproject.ViewModels.PhraseListActivity;
@@ -38,7 +37,6 @@ public class HomePageFragment extends Fragment {
     public ListView sectionListView;
     public static ArrayList<String> sections = new ArrayList<>();
     public static ArrayList<Node> sectionsBST = new ArrayList<>();
-    public static ArrayList<HashMap<String,ArrayList<Phrase>>> levelArrayMap;
     public View.OnClickListener clickListener;
     public static BaseExp USER_SELECTION;
 
