@@ -59,7 +59,9 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     String LEVEL_4 = "Level 4";
     public static final String a = "a";
     public static HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> phraseListHash;
-    public static HashMap <String, Integer> SectionToID = new HashMap<>();
+
+    // Integer is Node.ID String is Section Name
+    public static HashMap <Integer, String> IDToSection = new HashMap<>();
     public static HashMap <String, BinarySearch> levelBST;
 
 
@@ -109,8 +111,8 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
      */
 
     public HashMap<String, BinarySearch> binaryFromJSON() {
-        if (SectionToID != null) {
-            SectionToID.clear();
+        if (IDToSection != null) {
+            IDToSection.clear();
         }
         HashMap <String, BinarySearch> LanguageToBST = new HashMap<>();
         try {
@@ -137,7 +139,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                     LanguageToDetails.get(language).add(new Node(id,englishPhrase,languagePhrase));
                 }
                 int keyId = (int) idLevel.get("id") / 1000;
-                SectionToID.put(sectionNames.get(i).toString(),keyId);
+                IDToSection.put(keyId, sectionNames.get(i).toString());
             }
             for ( Map.Entry <String, ArrayList<Node>> imp : LanguageToDetails.entrySet()) {
                 LanguageToBST.put(imp.getKey(), new BinarySearch(imp.getValue()));
