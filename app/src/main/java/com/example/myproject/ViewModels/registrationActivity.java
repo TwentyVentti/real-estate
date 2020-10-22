@@ -3,6 +3,7 @@ package com.example.myproject.ViewModels;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -108,8 +109,10 @@ public class registrationActivity extends AppCompatActivity implements View.OnCl
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
+                                        Intent intent = new Intent(registrationActivity.this,loginActivity.class);
                                         Toast.makeText(registrationActivity.this,"You have been registered succesfully",Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
+                                        startActivityForResult(intent,1);
                                     }
                                     else{
                                         Toast.makeText(registrationActivity.this,"Failed to Register, Try again!",Toast.LENGTH_LONG).show();
