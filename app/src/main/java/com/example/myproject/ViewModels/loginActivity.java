@@ -72,6 +72,8 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         guest = findViewById(R.id.guest_user_button);
         try {
             phraseListHash = ObjectFromJSON();
+            HashMap<String, BinarySearch> temp = binaryFromJSON();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -102,15 +104,32 @@ Level 2:
     At the restaurant:
 
  */
+
+    /**
+     *
+     * @// Add objects to binary tree from sorted json obj
+     *  The hashmap's string is a particular language and the binary search is the corresponding BST
+     *  For each node we only need 3 parameters (Their IDs, english phrase, and language phrase)
+     *  1. Make an ArrayList<Node> for each language and pass it in construct to create the BST
+     *  (above is similar to Construct in BST)
+     *  Time to constrct = n + logn
+     *  Also store hashmap of data[it][0]["level"] to the string of sectionName
+     * @return Hashmap of Language to the corresponding BSTs
+     */
     public HashMap<String, BinarySearch> binaryFromJSON() {
         try {
-            JSONObject obj = new JSONObject(loadJSON());
-            // Add objects to binary tree from sorted json obj
-            // The hashmap's string is a particular language and the binary search is the corresponding BST
-            // For each node we only need 3 parameters (Their IDs, english phrase, and language phrase)
-            // 1. Make an ArrayList<Node> and pass it in construct to create the BST
-            // Time to constrct = n + logn
-            // Also store hashmap of data[it][0]["level"] to the string of sectionName
+            HashMap <String, Integer> SectionToID = new HashMap<>();
+            JSONObject sectionObj = new JSONObject(loadJSON());
+            JSONArray sectionNames = sectionObj.names();
+            JSONArray sectionValues = sectionObj.toJSONArray(sectionNames);
+            for (int i=0; i< sectionNames.length(); i++) {
+                JSONArray levelObj = ((JSONArray) sectionValues.get(i));
+                JSONObject idLevel = (JSONObject) levelObj.get(0);
+                int keyId = (int) idLevel.get("id") / 1000;
+                System.out.println(keyId);
+                System.out.println(sectionValues.get(i));
+                SectionToID.put(sectionNames.get(i).toString(),keyId);
+            }
         }
         catch (Exception e) {
             e.printStackTrace();
