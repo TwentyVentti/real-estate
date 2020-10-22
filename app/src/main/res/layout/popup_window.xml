@@ -36,7 +36,7 @@
                 android:layout_marginStart="60dp"
                 android:layout_marginEnd="60dp"
                 android:layout_marginBottom="13dp"
-                android:text='country = "France"; city="Paris"; duration = 3 days'
+                android:text='country = "France"; city="Paris"; duration = 3 days;'
                 android:textColor="#E15F8B"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/layout_popup_butOne"
@@ -94,7 +94,7 @@
                 android:layout_marginStart="21dp"
                 android:layout_marginEnd="2dp"
                 android:layout_marginBottom="17dp"
-                android:text="-- France, Italy, Spain, Netherlands"
+                android:text="-- France, Italy, Spain, Netherlands, Germany"
                 android:textSize="16sp"
                 android:textColor="#E15F8B"
                 app:layout_constraintBottom_toTopOf="@+id/textView19"

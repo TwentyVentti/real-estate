@@ -26,7 +26,7 @@ import com.example.myproject.Models.Parsing.Parser;
 import com.example.myproject.Models.Parsing.Token;
 import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Parsing.Tokenizer;
-import com.example.myproject.Models.User;
+
 import com.example.myproject.Models.UserDetails;
 import com.example.myproject.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -183,14 +183,6 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-    /*
-public class User {
-private String language;
-private Integer level;
-private String city;
-private Integer duration;
-private String country;
-*/
     public static BaseExp getUserSelectionFromEdit() throws GrammarException {
         System.out.println(userDetails);
         if (userDetails == null) {
@@ -199,9 +191,6 @@ private String country;
         Tokenizer tokenizer = new Tokenizer(userDetails);
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
-
-//        ArrayList<String> inferedSelection = new ArrayList<>();
-//        User userNow = new User();
 
         HashMap<String, String> language = new HashMap<>();
         language.put("france", "French");
@@ -221,20 +210,15 @@ private String country;
             t1.country = t1.country.substring(0, 1).toUpperCase() + t1.country.substring(1);
         }
 
-//        userNow.setCountry(t1.country.substring(0, 1).toUpperCase() + t1.country.substring(1));
-//        userNow.setLanguage(language.get(t1.country));
         // TODO: Improve Assignment of city by taking the value of the capital from the db
+
+        // Setting default values for non required elements
         t1.city = t1.city == null ? "Paris" : t1.city;
-//
-//        userNow.setCity(t1.city);
-//        inferedSelection.add(t1.city);
 
         t1.level = t1.level == 0 ? 1: t1.level;
         t1.time = t1.time == 0 ? 10 : t1.time;
         t1.tunit = t1.tunit == null ? "days" : t1.tunit;
-//        int currLevel = t1.level;
-//        userNow.setLevel(currLevel);
-//        inferedSelection.add(Integer.toString(t1.level));
+
         return t1;
     }
 }

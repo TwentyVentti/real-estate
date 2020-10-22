@@ -19,7 +19,8 @@ package com.example.myproject.Models.Parsing;
  *  Character = [A-Za-z]
  *  String = "[Character]*"
  *
- *  @author Abhaas Goyal - u7145384
+ *  @co-author Abhaas Goyal - u7145384
+ *  @co-author Andrew Carse - u6666440
  */
 public class Token {
 

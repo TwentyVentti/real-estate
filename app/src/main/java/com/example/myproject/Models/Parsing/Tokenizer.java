@@ -22,7 +22,10 @@ public class Tokenizer {
     }
 
     /**
-     * TODO: Create comments and docstring for this method.
+     * Sets the current character to a Token object
+     * Removes the whitespace of the buffer
+     *
+     * @throws GrammarException
      */
     public void next() throws GrammarException {
         _buffer = _buffer.trim(); // remove whitespace

@@ -16,6 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myproject.Models.BST.BinarySearch;
+import com.example.myproject.Models.BST.Node;
 import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Phrase;
 import com.example.myproject.R;
@@ -41,6 +43,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class loginActivity extends AppCompatActivity implements View.OnClickListener {
     EditText emailText;
@@ -55,7 +58,9 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     String LEVEL_4 = "Level 4";
     public static final String a = "a";
     public static HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> phraseListHash;
+    public static HashMap <String, Integer> SectionToID = new HashMap<>();
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +76,8 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         guest = findViewById(R.id.guest_user_button);
         try {
             phraseListHash = ObjectFromJSON();
+            HashMap<String, BinarySearch> temp = binaryFromJSON();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -88,25 +95,67 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         startActivityForResult(intent1,1);
 
     }
-/*
-Level 1:
-    [Around town:
-        phrase1
-        phrase2
-        phrase3
-        phrase4
-    Greetings]
-    //HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>>
-Level 2:
-    At the restaurant:
 
- */
+    /**
+     *
+     *  Add objects to binary tree from sorted json obj
+     *  The hashmap's string is a particular language and the binary search is the corresponding BST
+     *  For each node we only need 3 parameters (Their IDs, english phrase, and language phrase)
+     *  1. Make an ArrayList<Node> for each language and pass it in construct to create the BST
+     *  (above is similar to Construct in BST)
+     *  Time to constrct = n + logn
+     *  Also store hashmap of data[it][0]["level"] to the string of sectionName
+     * @return Hashmap of Language to the corresponding BSTs
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public HashMap<String, BinarySearch> binaryFromJSON() {
+        if (SectionToID != null) {
+            SectionToID.clear();
+        }
+        HashMap <String, BinarySearch> LanguageToBST = new HashMap<>();
+        try {
+            HashMap <String, ArrayList<Node>> LanguageToDetails = new HashMap<>();
+            JSONObject sectionObj = new JSONObject(loadJSONFromAsset());
+            JSONArray sectionNames = sectionObj.names();
+            JSONArray sectionValues = sectionObj.toJSONArray(sectionNames);
+            assert sectionNames != null;
+            assert sectionValues != null;
+            LanguageToDetails.put("French", new ArrayList<Node>());
+            LanguageToDetails.put("Dutch", new ArrayList<Node>());
+            LanguageToDetails.put("Spanish", new ArrayList<Node>());
+            LanguageToDetails.put("Italian", new ArrayList<Node>());
+            LanguageToDetails.put("German", new ArrayList<Node>());
+            for (int i=0; i< sectionNames.length(); i++) {
+                JSONArray levelObj = ((JSONArray) sectionValues.get(i));
+                JSONObject idLevel = (JSONObject) levelObj.get(0);
+                for (int j = 0; j < levelObj.length(); j++) {
+                    JSONObject instance = (JSONObject) levelObj.get(j);
+                    String language = instance.getString("language");
+                    String englishPhrase = instance.getString("english");
+                    String languagePhrase = instance.getString("phrase");
+                    int id = (int) instance.get("id");
+                    LanguageToDetails.get(language).add(new Node(id,englishPhrase,languagePhrase));
+                }
+                int keyId = (int) idLevel.get("id") / 1000;
+                SectionToID.put(sectionNames.get(i).toString(),keyId);
+            }
+            for ( Map.Entry <String, ArrayList<Node>> imp : LanguageToDetails.entrySet()) {
+                LanguageToBST.put(imp.getKey(), new BinarySearch(imp.getValue()));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return LanguageToBST;
+    }
+
     public HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>>ObjectFromJSON() throws IOException{
         HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> outerHashMap = new HashMap<>();
         try {
             JSONObject obj = new JSONObject(loadJSONFromAsset());
 
             JSONArray outerNames = obj.names();
+
             JSONArray outerValues = obj.toJSONArray(outerNames);
             assert outerValues != null;
             JSONObject innerObj = ((JSONObject) outerValues.get(0));
@@ -187,10 +236,26 @@ Level 2:
         return outerHashMap;
     }
 
+//    public String loadJSON() {
+//        String json;
+//        try {
+//            InputStream is = this.getAssets().open("temp.json");
+//            int size = is.available();
+//            byte[] buffer = new byte[size];
+//            is.read(buffer);
+//            is.close();
+//            json = new String(buffer, StandardCharsets.UTF_8);
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//            return null;
+//        }
+//        return json;
+//    }
+
     public String loadJSONFromAsset() {
         String json = null;
         try {
-            InputStream is = this.getAssets().open("phrase_array.json");
+            InputStream is = this.getAssets().open("data.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
