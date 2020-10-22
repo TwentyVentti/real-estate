@@ -76,7 +76,9 @@ public class HomePageFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), PhraseListActivity.class);
-                intent.putExtra("Section",sections.get(i));
+                String clickedSection = sections.get(i);
+                BiMap <Integer, String> IdsFromString = loginActivity.IdAndSection;
+                intent.putExtra("Section",IdsFromString.inverse().get(clickedSection));
                 startActivityForResult(intent,1);
             }
         });
