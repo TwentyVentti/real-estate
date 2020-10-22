@@ -99,6 +99,11 @@ public class HomePageFragment extends Fragment {
         return levelArray;
     }
     /** TODO: Level 3 not created */
+    /**
+     * This will set the levelArrayMap variable based on the USER_SELECTION.
+     *
+     * @return the list of sections which will be shown to the user when they arrive at homepage fragment.
+     */
     public ArrayList<String> getSections(){
         ArrayList<String> sections = new ArrayList<>();
         HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> phraseHash;
