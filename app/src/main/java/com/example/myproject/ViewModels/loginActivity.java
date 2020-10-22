@@ -44,6 +44,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class loginActivity extends AppCompatActivity implements View.OnClickListener {
     EditText emailText;
@@ -81,7 +82,6 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         if (mAuth.getCurrentUser() != null) {
                 finish();
                 startActivity(new Intent(getApplicationContext(), SearchActivity.class));
@@ -89,7 +89,6 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
 
 
     }
-
     public void registerUser(View v) {
         Intent intent1 = new Intent(loginActivity.this, registrationActivity.class);
         startActivityForResult(intent1,1);
@@ -115,7 +114,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         HashMap <String, BinarySearch> LanguageToBST = new HashMap<>();
         try {
             HashMap <String, ArrayList<Node>> LanguageToDetails = new HashMap<>();
-            JSONObject sectionObj = new JSONObject(loadJSONFromAsset());
+            JSONObject sectionObj = new JSONObject(loadJSON());
             JSONArray sectionNames = sectionObj.names();
             JSONArray sectionValues = sectionObj.toJSONArray(sectionNames);
             assert sectionNames != null;
@@ -194,7 +193,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                         outerHashMap.put(LEVEL_1, innerArrayListHashMap);
                     }
                     else {
-                        outerHashMap.get(LEVEL_1).add(innerHashMap);
+                        Objects.requireNonNull(outerHashMap.get(LEVEL_1)).add(innerHashMap);
                     }
                     break;
 
@@ -203,7 +202,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                         outerHashMap.put(LEVEL_2, innerArrayListHashMap);
                     }
                     else {
-                        outerHashMap.get(LEVEL_2).add(innerHashMap);
+                        Objects.requireNonNull(outerHashMap.get(LEVEL_2)).add(innerHashMap);
                     }
                     break;
 
@@ -212,7 +211,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                         outerHashMap.put(LEVEL_3, innerArrayListHashMap);
                     }
                     else {
-                        outerHashMap.get(LEVEL_3).add(innerHashMap);
+                        Objects.requireNonNull(outerHashMap.get(LEVEL_3)).add(innerHashMap);
                     }
                     break;
 
@@ -236,26 +235,10 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         return outerHashMap;
     }
 
-//    public String loadJSON() {
-//        String json;
-//        try {
-//            InputStream is = this.getAssets().open("temp.json");
-//            int size = is.available();
-//            byte[] buffer = new byte[size];
-//            is.read(buffer);
-//            is.close();
-//            json = new String(buffer, StandardCharsets.UTF_8);
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//            return null;
-//        }
-//        return json;
-//    }
-
-    public String loadJSONFromAsset() {
+    public String loadJSON() {
         String json = null;
         try {
-            InputStream is = this.getAssets().open("data.json");
+            InputStream is = this.getAssets().open("temp.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -264,6 +247,21 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         } catch (IOException ex) {
             ex.printStackTrace();
             return null;
+        }
+        return json;
+    }
+
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = this.getAssets().open("phrase_array.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, StandardCharsets.UTF_8);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
         return json;
     }
