@@ -34,6 +34,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.core.utilities.Tree;
 
@@ -104,20 +105,15 @@ public class MainActivity extends AppCompatActivity {
 //        }
 
         // Replace with a better method name
-        surpriseFeature();
-        auth = FirebaseAuth.getInstance();
-        String co = userDetails.country.trim();
-        String ci = userDetails.city.trim();
-        String u = auth.getCurrentUser().getUid().trim();
+        int id = 0;
+        Intent intent = getIntent();
+        if (intent != null){
+            id = intent.getIntExtra("but",0);
+        }
+        if (id == 1) {
+            surpriseFeature();
+        }
 
-        SearchDetails search = new SearchDetails(u,co,ci);
-
-//        FirebaseDatabase.getInstance().getReference("SearchDetails")
-//                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                .setValue(search).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            public void onComplete(@NonNull Task<Void> task) {
-//
-//            }
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -162,10 +158,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void surpriseFeature() {
 
+        FirebaseUser Id;
         auth = FirebaseAuth.getInstance();
         String co = userDetails.country.trim();
         String ci = userDetails.city.trim();
-        String u = auth.getCurrentUser().getUid().trim();
+        String u;
+        Id = auth.getCurrentUser();
+
+        u = Id.getUid().trim();
+
+
 
         SearchDetails search = new SearchDetails(u, co, ci);
 
