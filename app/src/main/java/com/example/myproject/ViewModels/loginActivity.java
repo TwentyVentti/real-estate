@@ -94,19 +94,6 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         startActivityForResult(intent1,1);
 
     }
-/*
-Level 1:
-    [Around town:
-        phrase1
-        phrase2
-        phrase3
-        phrase4
-    Greetings]
-    //HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>>
-Level 2:
-    At the restaurant:
-
- */
 
     /**
      *
@@ -123,7 +110,7 @@ Level 2:
         try {
             HashMap <String, ArrayList<Node>> LanguageToDetails = new HashMap<>();
             HashMap <String, Integer> SectionToID = new HashMap<>();
-            JSONObject sectionObj = new JSONObject(loadJSON());
+            JSONObject sectionObj = new JSONObject(loadJSONFromAsset());
             JSONArray sectionNames = sectionObj.names();
             JSONArray sectionValues = sectionObj.toJSONArray(sectionNames);
             for (int i=0; i< sectionNames.length(); i++) {
@@ -237,26 +224,26 @@ Level 2:
         return outerHashMap;
     }
 
+//    public String loadJSON() {
+//        String json;
+//        try {
+//            InputStream is = this.getAssets().open("temp.json");
+//            int size = is.available();
+//            byte[] buffer = new byte[size];
+//            is.read(buffer);
+//            is.close();
+//            json = new String(buffer, StandardCharsets.UTF_8);
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//            return null;
+//        }
+//        return json;
+//    }
+
     public String loadJSONFromAsset() {
         String json = null;
         try {
-            InputStream is = this.getAssets().open("phrase_array.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, StandardCharsets.UTF_8);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
-
-    public String loadJSON() {
-        String json;
-        try {
-            InputStream is = this.getAssets().open("temp.json");
+            InputStream is = this.getAssets().open("data.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
