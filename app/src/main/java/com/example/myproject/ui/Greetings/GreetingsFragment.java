@@ -51,7 +51,6 @@ public class GreetingsFragment extends Fragment {
     SupportMapFragment supportMapFragment;
     GoogleMap map;
     Marker mCurrLocationMarker;
-
     FusedLocationProviderClient fusedLocationProviderClient;
     double currentLat = 0, currentLong = 0;
 
