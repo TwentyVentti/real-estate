@@ -76,7 +76,7 @@ public class BinarySearch {
      * @return A list pertaining to all the phrases available to users in that level.
      */
     public ArrayList<Node> getArrayFromLevel(int level) {
-        return sectionNodes(level * 10000, (level+1) * 10000);
+        return sectionNodes(10000, (level+1) * 10000);
     }
 
     /**

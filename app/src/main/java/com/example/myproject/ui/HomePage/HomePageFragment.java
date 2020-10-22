@@ -84,6 +84,12 @@ public class HomePageFragment extends Fragment {
         return root;
     }
 
+    /**
+     * Based on the user input, with respect to their selected language and level
+     * getBSTSections will interpret this and transform to an arraylist of nodes.
+     *
+     * @return An Arraylist of nodes objects based on user input w.r.t level and language
+     */
     public ArrayList<Node> getBSTSections() {
         HashMap<String, BinarySearch> levelBST;
         ArrayList<Node> levelArray = null;
@@ -98,7 +104,7 @@ public class HomePageFragment extends Fragment {
         }
         return levelArray;
     }
-    /** TODO: Level 3 not created */
+
     /**
      * This will set the levelArrayMap variable based on the USER_SELECTION.
      *
@@ -108,7 +114,6 @@ public class HomePageFragment extends Fragment {
         ArrayList<String> sections = new ArrayList<>();
         HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> phraseHash;
         ArrayList<HashMap<String,ArrayList<Phrase>>> mapArrayList = new ArrayList<>();
-
 
         try{
             phraseHash = loginActivity.phraseListHash;
