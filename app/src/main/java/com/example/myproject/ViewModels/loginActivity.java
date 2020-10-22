@@ -115,7 +115,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         HashMap <String, BinarySearch> LanguageToBST = new HashMap<>();
         try {
             HashMap <String, ArrayList<Node>> LanguageToDetails = new HashMap<>();
-            JSONObject sectionObj = new JSONObject(loadJSON());
+            JSONObject sectionObj = new JSONObject(loadJSONFromAsset());
             JSONArray sectionNames = sectionObj.names();
             JSONArray sectionValues = sectionObj.toJSONArray(sectionNames);
             assert sectionNames != null;
