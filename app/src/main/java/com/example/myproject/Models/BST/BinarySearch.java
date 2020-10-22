@@ -9,10 +9,14 @@ public class BinarySearch {
     ArrayList <Node> tempNode;
     public BinarySearch() {
         temp = new ArrayList<>();
+        tempNode = new ArrayList<>();
         root = null;
     }
 
     public BinarySearch(ArrayList <Node> arr) {
+        temp = new ArrayList<>();
+        tempNode = new ArrayList<>();
+        root = null;
         constructTree(arr);
     }
     /**
@@ -56,7 +60,6 @@ public class BinarySearch {
         }
         helpInOrder(node.left);
         temp.add(node.ID);
-        System.out.println(node.ID);
         helpInOrder(node.right);
     }
 
@@ -66,7 +69,7 @@ public class BinarySearch {
      */
     public void constructTree(ArrayList<Node> x) {
         // Make tree called from loginActivity
-        helpConstructTree(x, 0, x.size() - 1);
+        root = helpConstructTree(x, 0, x.size() - 1);
     }
 
     private Node helpConstructTree(ArrayList<Node> arr, int lowerBound, int higherBound) {
@@ -81,7 +84,8 @@ public class BinarySearch {
 
     // Return the nodes of phrases of a particular section
     public ArrayList<Node> sectionNodes(int low, int high) {
-        tempNode.clear();
+        if (tempNode != null)
+            tempNode.clear();
         helpSectionNode(root, low, high);
         return tempNode;
     }
@@ -90,13 +94,18 @@ public class BinarySearch {
         if (node == null) {
             return;
         }
-        if (low < node.ID)
+        if (low < node.ID) {
+            System.out.println(1);
             helpSectionNode(node.left, low, high);
+        }
         if (low <= node.ID && high >= node.ID) {
+            System.out.println(node.ID);
             tempNode.add(node);
         }
-        if (high > node.ID)
+        if (high > node.ID) {
+            System.out.println(2);
             helpSectionNode(node.right, low, high);
+        }
     }
 
 }

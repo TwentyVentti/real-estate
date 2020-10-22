@@ -22,12 +22,26 @@ public class BinaryTreeTest {
     public void testArraySortedConstruction() {
         testArrayConstruct.add(new Node(1101, "Hello", "Bonjour"));
         testArrayConstruct.add(new Node(1102, "How you doing", "Comment Cava"));
+        testArrayConstruct.add(new Node(1103, "I am fine", "Cava bien"));
         testArrayConstruct.add(new Node(1105, "I am fine", "Cava bien"));
         testArrayConstruct.add(new Node(1106, "What about you", "Et toi"));
         testArrayConstruct.add(new Node(1108, "Thank you", "Merci"));
         BinarySearch bs = new BinarySearch();
         bs.constructTree(testArrayConstruct);
         bs.inOrder();
+    }
+
+    @Test
+    public void testBSTRange() {
+        testArrayConstruct.add(new Node(1101, "Hello", "Bonjour"));
+        testArrayConstruct.add(new Node(1102, "How you doing", "Comment Cava"));
+        testArrayConstruct.add(new Node(1105, "I am fine", "Cava bien"));
+        testArrayConstruct.add(new Node(1106, "What about you", "Et toi"));
+        testArrayConstruct.add(new Node(1108, "Thank you", "Merci"));
+        BinarySearch bs = new BinarySearch();
+        bs.constructTree(testArrayConstruct);
+        ArrayList<Node> x = bs.sectionNodes(1102,1106);
+        System.out.println(x.size());
     }
 
 }
