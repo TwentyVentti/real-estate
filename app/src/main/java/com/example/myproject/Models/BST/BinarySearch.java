@@ -61,12 +61,12 @@ public class BinarySearch {
     }
 
     /**
-     * Construct BSTs from ARraylist
+     * Construct BSTs from Arraylist
      * @param
      */
     public void constructTree(ArrayList<Node> x) {
         // Make tree called from loginActivity
-        helpConstructTree(x, 0, x.size());
+        helpConstructTree(x, 0, x.size() - 1);
     }
 
     private Node helpConstructTree(ArrayList<Node> arr, int lowerBound, int higherBound) {
