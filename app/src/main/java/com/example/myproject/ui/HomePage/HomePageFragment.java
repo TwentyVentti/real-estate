@@ -1,6 +1,7 @@
 package com.example.myproject.ui.HomePage;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.myproject.Models.BST.BinarySearch;
+import com.example.myproject.Models.BST.Node;
 import com.example.myproject.Models.Parsing.BaseExp;
 import com.example.myproject.Models.Parsing.GrammarException;
 import com.example.myproject.Models.Parsing.TokenException;
@@ -82,9 +86,17 @@ public class HomePageFragment extends Fragment {
         ArrayList<String> sections = new ArrayList<>();
         HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> phraseHash;
         ArrayList<HashMap<String,ArrayList<Phrase>>> mapArrayList = new ArrayList<>();
+
+
+        HashMap<String, BinarySearch> levelBST;
+        ArrayList<Node> levelArray;
         try{
             phraseHash = loginActivity.phraseListHash;
+            levelBST = loginActivity.levelBST;
             int level = USER_SELECTION.level;
+            String language =USER_SELECTION.language;
+            language = language.substring(0, 1).toUpperCase() + language.substring(1);
+            levelArray = levelBST.get(language).getArrayFromLevel(level);
             System.out.println(level);
             switch (level){
                 case 1:

@@ -59,8 +59,9 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     public static final String a = "a";
     public static HashMap<String,ArrayList<HashMap<String,ArrayList<Phrase>>>> phraseListHash;
     public static HashMap <String, Integer> SectionToID = new HashMap<>();
+    public static HashMap <String, BinarySearch> levelBST;
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +77,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         guest = findViewById(R.id.guest_user_button);
         try {
             phraseListHash = ObjectFromJSON();
-            HashMap<String, BinarySearch> temp = binaryFromJSON();
+            levelBST = binaryFromJSON();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -120,7 +121,7 @@ Level 2:
      *  Also store hashmap of data[it][0]["level"] to the string of sectionName
      * @return Hashmap of Language to the corresponding BSTs
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     public HashMap<String, BinarySearch> binaryFromJSON() {
         if (SectionToID != null) {
             SectionToID.clear();
@@ -344,9 +345,5 @@ Level 2:
             }
         });
     }
-
-
-
-
 
 }

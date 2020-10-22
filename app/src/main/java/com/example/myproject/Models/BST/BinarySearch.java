@@ -1,30 +1,33 @@
 package com.example.myproject.Models.BST;
 
 import java.util.ArrayList;
+import java.util.UnknownFormatConversionException;
 
 public class BinarySearch {
 
     Node root;
-    ArrayList <Integer> temp;
+    ArrayList <Integer> tempInteger;
     ArrayList <Node> tempNode;
     public BinarySearch() {
-        temp = new ArrayList<>();
+        tempInteger = new ArrayList<>();
         tempNode = new ArrayList<>();
         root = null;
     }
 
     public BinarySearch(ArrayList <Node> arr) {
-        temp = new ArrayList<>();
+        tempInteger = new ArrayList<>();
         tempNode = new ArrayList<>();
         root = null;
         constructTree(arr);
+        inOrder();
     }
     /**
      * Construct Balanced BSTs from sorted ArrayList (demo)
+     * Only used in tests
      * @param arr sorted array of integers
      */
     public void construct(int [] arr) {
-        temp = new ArrayList<>();
+        tempInteger = new ArrayList<>();
         root = helpConstruct(arr, 0, arr.length - 1);
     }
 
@@ -50,22 +53,34 @@ public class BinarySearch {
      * @return
      */
     public ArrayList<Integer> inOrder() {
-        temp.clear();
+        tempInteger.clear();
         helpInOrder(root);
-        return temp;
+        return tempInteger;
     }
     private void helpInOrder(Node node) {
         if (node == null) {
             return;
         }
         helpInOrder(node.left);
-        temp.add(node.ID);
+        tempInteger.add(node.ID);
+
+        /**
+         * Check whether nodes are being added perfectly
+         */
+//        System.out.println(node.ID);
+//        System.out.println(node.englishPhrase);
+//        System.out.println(node.languagePhrase);
+
         helpInOrder(node.right);
     }
 
+    public ArrayList<Node> getArrayFromLevel(int level) {
+        return sectionNodes(level * 10000, (level+1) * 10000);
+    }
+
     /**
-     * Construct BSTs from Arraylist
-     * @param
+     * Construct BSTs from sorted Arraylist of Nodes
+     * @param x - ArrayList of Nodes
      */
     public void constructTree(ArrayList<Node> x) {
         // Make tree called from loginActivity
@@ -82,7 +97,12 @@ public class BinarySearch {
         return node;
     }
 
-    // Return the nodes of phrases of a particular section
+    /**
+     * Return Sorted Arraylist given a particular rangle
+     * @param low Lower bound of range
+     * @param high Higher bound for range
+     * @return Bounded Sorted Arraylist
+     */
     public ArrayList<Node> sectionNodes(int low, int high) {
         if (tempNode != null)
             tempNode.clear();
@@ -90,12 +110,14 @@ public class BinarySearch {
         return tempNode;
     }
 
+    /**
+     * Helper function to created bounded sorted arraylist
+     */
     public void helpSectionNode(Node node, int low, int high) {
         if (node == null) {
             return;
         }
         if (low < node.ID) {
-            System.out.println(1);
             helpSectionNode(node.left, low, high);
         }
         if (low <= node.ID && high >= node.ID) {

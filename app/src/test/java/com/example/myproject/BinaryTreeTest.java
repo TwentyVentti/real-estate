@@ -4,7 +4,7 @@ import com.example.myproject.Models.BST.BinarySearch;
 import com.example.myproject.Models.BST.Node;
 
 import org.testng.annotations.Test;
-
+import static org.testng.AssertJUnit.assertEquals;
 import java.util.ArrayList;
 
 public class BinaryTreeTest {
@@ -41,7 +41,7 @@ public class BinaryTreeTest {
         BinarySearch bs = new BinarySearch();
         bs.constructTree(testArrayConstruct);
         ArrayList<Node> x = bs.sectionNodes(1102,1106);
-        System.out.println(x.size());
+        assertEquals(x.size(),3);
     }
 
 }
