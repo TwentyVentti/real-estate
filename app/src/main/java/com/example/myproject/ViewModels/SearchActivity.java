@@ -244,9 +244,6 @@ public class SearchActivity extends AppCompatActivity {
             t1.country = t1.country.substring(0, 1).toUpperCase() + t1.country.substring(1);
         }
 
-        // TODO: Improve Assignment of city by taking the value of the capital from the db
-
-
 
         return t1;
     }
