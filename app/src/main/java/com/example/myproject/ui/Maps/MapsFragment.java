@@ -48,6 +48,8 @@ import java.util.Objects;
  */
 
 public class MapsFragment extends Fragment {
+
+    public MapsFragment() {};
     Spinner spType;
     Button btfind;
     SupportMapFragment supportMapFragment;
