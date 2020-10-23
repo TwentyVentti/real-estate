@@ -15,7 +15,7 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import com.example.myproject.JsonParsermap;
+import com.example.myproject.Models.JsonParsermap;
 import com.example.myproject.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -43,6 +43,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author Kanav Thareja  - u6995005
+ * The activity first first asks the user for location permsisions to load the app.It then goes on
+ * to create the map from the google API. It firstly retrieves the user's current location coordinate
+ * and displays it as a "Blue" marker with the text "I am here right now". An adapter dropdown stores
+ * all the possible options for the user to search   On the the basis of users selection in the
+ * dropdown it searches for the relevant places (subject to constraints) on buton click which with
+ * the help of the google api. It displays the relevant markers for the searched place and clears
+ * the previous markers everytime a new search is executed
+ */
+
 public class GreetingsFragment extends Fragment {
 
     public GreetingsFragment() {};
@@ -68,18 +79,11 @@ public class GreetingsFragment extends Fragment {
                 .findFragmentById(R.id.google_map);
 
 
-
-        ;
-
-
         final String[] placeTypeList = {"restaurant", "bar", "hotel","atm"};
         //search parameters
 
         String[] placeNameList = {"Looking for a place to eat?", "Looking for a place to drink?", "Looking for a place to stay?","Looking for a place to withdraw money?"};
         //Search options for user
-
-
-
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, placeNameList);
         spType.setAdapter(adapter); //for dropdown of options
@@ -114,30 +118,18 @@ public class GreetingsFragment extends Fragment {
         return v; // return view
     }
 
-
-
     private void getCurrentLocation() {
-
-
         @SuppressLint("MissingPermission")
         Task<Location> task = fusedLocationProviderClient.getLastLocation(); //to retrieve the device's last known location
 
         task.addOnSuccessListener(new OnSuccessListener<Location>() { //called when location found
             @Override
             public void onSuccess(Location location) {
-
-
-
                 if (location!=null)
                 {
                     currentLat=location.getLatitude();
 
                     currentLong=location.getLongitude();
-
-
-
-
-
                     supportMapFragment.getMapAsync(new OnMapReadyCallback() {  //initializing the maps system
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
@@ -167,11 +159,6 @@ public class GreetingsFragment extends Fragment {
                             uiSettings.setMapToolbarEnabled(true);
                             uiSettings.setZoomControlsEnabled(true);
                             uiSettings.setCompassEnabled(true);
-
-
-
-
-
                         }
 
 
@@ -182,10 +169,6 @@ public class GreetingsFragment extends Fragment {
             }
         });
     }
-
-
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         //permission check , If request is cancelled, the result is empty.
@@ -255,7 +238,6 @@ public class GreetingsFragment extends Fragment {
             return mapList;
         }
 
-        @SuppressLint("MissingPermission")
         @Override
         protected void onPostExecute(List<HashMap<String, String>> hashMaps) { //after background task is executed
 

@@ -1,8 +1,6 @@
 package com.example.myproject.Models.Parsing;
 
 /**
- * Name: Parser.java
- *
  *  The main objective of this class is to implement a simple parser.
  *  It should be able to parser the following grammar rule:
  *  <BASE>    -> <USER> <BASE> | <USER>
@@ -10,11 +8,9 @@ package com.example.myproject.Models.Parsing;
  *  <PLACE>   -> COUNTRY | CITY
  *  <TUNIT>   -> DAY | WEEK | MONTH
  *
- *
  *  @author Abhaas Goyal - u7145384
  */
 
-// It's not strict with the last ;
 public class Parser {
 
     Tokenizer _tokenizer;

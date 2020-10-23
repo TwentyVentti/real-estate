@@ -1,6 +1,4 @@
-package com.example.myproject;
-
-import com.google.gson.JsonArray;
+package com.example.myproject.Models;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,8 +8,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ *
+ */
 public class JsonParsermap {
-    private HashMap<String,String> parseJsonObject(JSONObject object)
+    /**
+     *
+     * @param object a JSON Object containing a cities: Name, latitude and longitude
+     * @return a hashmap of the names, latitude and longitude with respective keys/values.
+     */
+    private HashMap<String,String> parseJSONObject(JSONObject object)
     {
          HashMap<String,String> dataList = new HashMap<>();
         try {
@@ -39,7 +45,7 @@ public class JsonParsermap {
         for (int i=0; i<jsonArray.length();i++)
         {
             try {
-                HashMap<String,String> data = parseJsonObject((JSONObject) jsonArray.get(i));
+                HashMap<String,String> data = parseJSONObject((JSONObject) jsonArray.get(i));
                 dataList.add(data);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -58,6 +64,7 @@ public class JsonParsermap {
             e.printStackTrace();
         }
 
+        assert jsonArray != null;
         return  parseJsonArray(jsonArray);
     }
 

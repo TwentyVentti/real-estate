@@ -9,7 +9,7 @@
     android:layout_gravity="center"
     android:background="#FFFFFF"
     android:orientation="vertical"
-    tools:context=".ui.SplashScreens.SplashScreenActivity">
+    tools:context=".ui.SplashScreens.PreLoginSplashScreen">
 
     <VideoView
         android:id="@+id/surfaceView"

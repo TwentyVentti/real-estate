@@ -3,6 +3,7 @@ package com.example.myproject.ViewModels;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myproject.ui.SplashScreens.PostLoginSplash;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -89,7 +90,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         }
         if (mAuth.getCurrentUser() != null) {
                 finish();
-                startActivity(new Intent(getApplicationContext(), SearchActivity.class));
+                startActivity(new Intent(getApplicationContext(), PostLoginSplash.class));
             }
         
 
@@ -175,7 +176,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
 
 
     public void guestSessionClicked(View v) throws IOException {
-        Intent intent = new Intent(loginActivity.this, SearchActivity.class);
+        Intent intent = new Intent(loginActivity.this, PostLoginSplash.class);
         intent.putExtra("but",1);
         startActivityForResult(intent,1);
     }
@@ -227,7 +228,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     progressBar.setVisibility(View.GONE);
-                    startActivity(new Intent(loginActivity.this, SearchActivity.class));
+                    startActivity(new Intent(loginActivity.this, PostLoginSplash.class));
                     FirebaseUser user = mAuth.getCurrentUser();
                 }
                 else{
