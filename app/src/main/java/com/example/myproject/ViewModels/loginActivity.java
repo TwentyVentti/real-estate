@@ -63,12 +63,6 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     public static HashMap <String, BinarySearch> levelBST;
 
 
-    SupportMapFragment supportMapFragment;
-    GoogleMap map;
-
-    FusedLocationProviderClient fusedLocationProviderClient;
-    double currentLat = 0, currentLong = 0;
-    private static final String TAG = "MapActivity";
 
 
 
