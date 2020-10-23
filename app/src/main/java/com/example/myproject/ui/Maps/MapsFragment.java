@@ -76,12 +76,6 @@ public class MapsFragment extends Fragment {
         btfind = v.findViewById(R.id.bt_find);
         supportMapFragment = (SupportMapFragment) getChildFragmentManager() //Map component
                 .findFragmentById(R.id.google_map);
-
-
-
-        ;
-
-
         final String[] placeTypeList = {"restaurant", "bar", "hotel","atm"};
         //search parameters
 
@@ -96,11 +90,8 @@ public class MapsFragment extends Fragment {
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity());
 
-        /**
-         * The activity first first asks the user for location permsissions to load the app.It then goes on
-         * to create the map from the google API.
-         **/
-
+         //The activity first first asks the user for location permsissions to load the app.It then goes on
+         //to create the map from the google API.
         if (ActivityCompat.checkSelfPermission(getActivity(),  // checking requesting permission
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             getCurrentLocation();
@@ -109,10 +100,9 @@ public class MapsFragment extends Fragment {
 
         }
 
-        /**
-         *On the the basis of users selection in the dropdown it searches for the relevant places
-         * (subject to constraints) on button click which with the help of the google api
-         */
+
+        //On the the basis of users selection in the dropdown it searches for the relevant places
+        //(subject to constraints) on button click which with the help of the google api
         btfind.setOnClickListener(new View.OnClickListener() { // on clicking "Find"
             @Override
 
@@ -140,54 +130,60 @@ public class MapsFragment extends Fragment {
      *
      */
     private void getCurrentLocation() {
-        @SuppressLint("MissingPermission")
-        Task<Location> task = fusedLocationProviderClient.getLastLocation(); //to retrieve the device's last known location
-        task.addOnSuccessListener(new OnSuccessListener<Location>() { //called when location found
-            @Override
-            public void onSuccess(Location location) {
-                if (location!=null)
-                {
-                    currentLat=location.getLatitude();
-                    currentLong=location.getLongitude();
+        try {
 
-                    //Retrieves the user's current location coordinate and displays it as a "Blue"
-                    // marker with the text "I am here right now".
-                    supportMapFragment.getMapAsync(new OnMapReadyCallback() {  //initializing the maps system
-                        @Override
-                        public void onMapReady(GoogleMap googleMap) {
-                            map=googleMap;
-                            LatLng latLng = new LatLng(currentLat, currentLong);
-                            MarkerOptions markerOptions = new MarkerOptions();
-                            markerOptions.position(latLng); //current location marker
-                            markerOptions.title("I am here right now!"); //current location marker
-                            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-                            mCurrLocationMarker = map.addMarker(markerOptions);
+            @SuppressLint("MissingPermission")
+            Task<Location> task = fusedLocationProviderClient.getLastLocation(); //to retrieve the device's last known location
 
-                            //move map camera
-                            map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                            map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLat, currentLat), 13));
+            task.addOnSuccessListener(new OnSuccessListener<Location>() { //called when location found
+                @Override
+                public void onSuccess(Location location) {
+                    if (location != null) {
+                        currentLat = location.getLatitude();
+                        currentLong = location.getLongitude();
 
-                            CameraPosition cameraPosition = new CameraPosition.Builder()
-                                    .target(latLng)      // Sets the center of the map to location user
-                                    .zoom(ZOOM_VALUE)            // zoom in on location
-                                    .bearing(BEARING_VALUE)                // Sets the orientation of the camera to east
-                                    .tilt(TILT_VALUE)                   // Sets the tilt of the camera
-                                    .build();                   // Creates a CameraPosition from the builder
-                            map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                        //Retrieves the user's current location coordinate and displays it as a "Blue"
+                        // marker with the text "I am here right now".
+                        supportMapFragment.getMapAsync(new OnMapReadyCallback() {  //initializing the maps system
+                            @Override
+                            public void onMapReady(GoogleMap googleMap) {
+                                map = googleMap;
+                                LatLng latLng = new LatLng(currentLat, currentLong);
+                                MarkerOptions markerOptions = new MarkerOptions();
+                                markerOptions.position(latLng); //current location marker
+                                markerOptions.title("I am here right now!"); //current location marker
+                                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                                mCurrLocationMarker = map.addMarker(markerOptions);
 
-                            //for maps ui
-                            UiSettings uiSettings = map.getUiSettings();
-                            uiSettings.setAllGesturesEnabled(true);
-                            uiSettings.setMapToolbarEnabled(true);
-                            uiSettings.setZoomControlsEnabled(true);
-                            uiSettings.setCompassEnabled(true);
-                        }
-                    });
+                                //move map camera
+                                map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                                map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLat, currentLat), 13));
+
+                                CameraPosition cameraPosition = new CameraPosition.Builder()
+                                        .target(latLng)      // Sets the center of the map to location user
+                                        .zoom(ZOOM_VALUE)            // zoom in on location
+                                        .bearing(BEARING_VALUE)                // Sets the orientation of the camera to east
+                                        .tilt(TILT_VALUE)                   // Sets the tilt of the camera
+                                        .build();                   // Creates a CameraPosition from the builder
+                                map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+                                //for maps ui
+                                UiSettings uiSettings = map.getUiSettings();
+                                uiSettings.setAllGesturesEnabled(true);
+                                uiSettings.setMapToolbarEnabled(true);
+                                uiSettings.setZoomControlsEnabled(true);
+                                uiSettings.setCompassEnabled(true);
+                            }
+                        });
+
+                    }
 
                 }
-
-            }
-        });
+            });
+        } catch (Exception ex){
+            ex.printStackTrace();
+            System.err.println(ex.getLocalizedMessage());
+        }
     }
 
 
@@ -195,12 +191,20 @@ public class MapsFragment extends Fragment {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        //permission check , If request is cancelled, the result is empty.
-        if (requestCode == REQUEST_CODE_VALUE){
-            if(grantResults.length > 0 && grantResults[0]== PackageManager.PERMISSION_GRANTED)
-                getCurrentLocation();
+        try {
+
+            //permission check , If request is cancelled, the result is empty.
+            if (requestCode == REQUEST_CODE_VALUE){
+                if(grantResults.length > 0 && grantResults[0]== PackageManager.PERMISSION_GRANTED) {
+                    getCurrentLocation();
+                }
+            }
+        } catch (Exception ex){
+            ex.printStackTrace();
+            System.err.println(ex.getLocalizedMessage());
         }
     }
+
 
     private class PlaceTask extends AsyncTask<String,Integer,String> {//downloading url in background
 
@@ -226,29 +230,37 @@ public class MapsFragment extends Fragment {
      */
 
     private String downloadUrl(String string) throws IOException { //downloading the url for places
+        String data = "";
+        try {
 
-        URL url = new URL(string);
+            URL url = new URL(string);
 
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        connection.connect(); // connecting to url
-        InputStream stream = connection.getInputStream();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-        StringBuilder builder = new StringBuilder();
-        String line = "";
+            connection.connect(); // connecting to url
+            InputStream stream = connection.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+            StringBuilder builder = new StringBuilder();
+            String line = "";
 
-        while ((line = reader.readLine()) != null){
+            while ((line = reader.readLine()) != null){
 
-            builder.append(line);
+                builder.append(line);
+            }
+
+            data = builder.toString();
+            reader.close();
+        } catch (Exception ex){
+            ex.printStackTrace();
+            System.err.println(ex.getLocalizedMessage());
         }
-
-        String data = builder.toString();
-        reader.close();
         return data;
     }
 
+
     @SuppressLint("StaticFieldLeak")
     private class  ParserTask extends AsyncTask<String,Integer, List<HashMap<String,String >>>{
+
 
         @Override
         protected List<HashMap<String, String>> doInBackground(String... strings) {
@@ -266,11 +278,13 @@ public class MapsFragment extends Fragment {
             return mapList;
         }
 
-        /**
+
+
+
+         /**
          *after background task is executed,it clears all previous markers and displays new ones
          * based on the search
          */
-
         @SuppressLint("MissingPermission")
         @Override
         protected void onPostExecute(List<HashMap<String, String>> hashMaps) { //after background task is executed
