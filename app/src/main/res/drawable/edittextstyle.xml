@@ -9,8 +9,16 @@
 
         android:color="#ffd1dc"/>
     <corners android:radius="10dp" />
-    <gradient
 
+    <padding
+        android:bottom="5dp"
+        android:left="5dp"
+        android:right="5dp"
+        android:top="5dp"
+        />
+
+
+    <gradient
 
 
         android:type="linear"
