@@ -6,5 +6,5 @@ package com.example.myproject.Models.Parsing;
  * @author Abhaas Goyal - u7145384
  */
 public abstract class GrammarException extends Exception {
-    public abstract String toString();
+    public abstract String printError();
 }

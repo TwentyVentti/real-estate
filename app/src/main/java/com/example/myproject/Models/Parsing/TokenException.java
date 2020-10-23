@@ -19,7 +19,7 @@ public class TokenException extends GrammarException {
         }
     }
 
-    public String toString() {
+    public String printError() {
         return toastMessageToken;
     }
 }

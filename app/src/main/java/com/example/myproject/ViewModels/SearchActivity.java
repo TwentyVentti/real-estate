@@ -141,7 +141,7 @@ public class SearchActivity extends AppCompatActivity {
                             intent.putExtra("UD", t1);
                             startActivityForResult(intent, 1);
                         } catch (GrammarException e) {
-                            Toast.makeText(SearchActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(SearchActivity.this, e.printError(), Toast.LENGTH_LONG).show();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
