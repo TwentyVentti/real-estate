@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import com.example.myproject.Models.JsonParsermap;
-import com.example.myproject.Models.JsonParsermap;
 import com.example.myproject.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -58,11 +57,11 @@ public class MapsFragment extends Fragment {
     Marker mCurrLocationMarker;
     FusedLocationProviderClient fusedLocationProviderClient;
     double currentLat = 0, currentLong = 0;
-    private final int ZOOMVALUE=15;
-    private final int RADIUSVALUE=5000;
-    private final int BEARINGVALUE=90;
-    private final int TILTVALUE=40;
-    private final int REQUESTCODEVALUE=44;
+    private final int ZOOM_VALUE =15;
+    private final int RADIUS_VALUE =5000;
+    private final int BEARING_VALUE =90;
+    private final int TILT_VALUE =40;
+    private final int REQUEST_CODE_VALUE =44;
 
 
 
@@ -135,31 +134,24 @@ public class MapsFragment extends Fragment {
     }
 
 
-
+    /**
+     * This method obtains the current location of the user and updates currentLat and
+     * currentLong accordingly.
+     *
+     */
     private void getCurrentLocation() {
-
-
         @SuppressLint("MissingPermission")
         Task<Location> task = fusedLocationProviderClient.getLastLocation(); //to retrieve the device's last known location
-
         task.addOnSuccessListener(new OnSuccessListener<Location>() { //called when location found
             @Override
             public void onSuccess(Location location) {
-
-
-
                 if (location!=null)
                 {
                     currentLat=location.getLatitude();
-
                     currentLong=location.getLongitude();
 
-
-
-                    /**It  retrieves the user's current location coordinate
-                     * and displays it as a "Blue" marker with the text "I am here right now".
-                     **/
-
+                    //Retrieves the user's current location coordinate and displays it as a "Blue"
+                    // marker with the text "I am here right now".
                     supportMapFragment.getMapAsync(new OnMapReadyCallback() {  //initializing the maps system
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
@@ -177,9 +169,9 @@ public class MapsFragment extends Fragment {
 
                             CameraPosition cameraPosition = new CameraPosition.Builder()
                                     .target(latLng)      // Sets the center of the map to location user
-                                    .zoom(ZOOMVALUE)            // zoom in on location
-                                    .bearing(BEARINGVALUE)                // Sets the orientation of the camera to east
-                                    .tilt(TILTVALUE)                   // Sets the tilt of the camera
+                                    .zoom(ZOOM_VALUE)            // zoom in on location
+                                    .bearing(BEARING_VALUE)                // Sets the orientation of the camera to east
+                                    .tilt(TILT_VALUE)                   // Sets the tilt of the camera
                                     .build();                   // Creates a CameraPosition from the builder
                             map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
@@ -189,14 +181,7 @@ public class MapsFragment extends Fragment {
                             uiSettings.setMapToolbarEnabled(true);
                             uiSettings.setZoomControlsEnabled(true);
                             uiSettings.setCompassEnabled(true);
-
-
-
-
-
                         }
-
-
                     });
 
                 }
@@ -211,7 +196,7 @@ public class MapsFragment extends Fragment {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         //permission check , If request is cancelled, the result is empty.
-        if (requestCode == REQUESTCODEVALUE){
+        if (requestCode == REQUEST_CODE_VALUE){
             if(grantResults.length > 0 && grantResults[0]== PackageManager.PERMISSION_GRANTED)
                 getCurrentLocation();
         }
