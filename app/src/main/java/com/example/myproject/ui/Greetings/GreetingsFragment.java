@@ -115,6 +115,7 @@ public class GreetingsFragment extends Fragment {
     }
 
 
+
     private void getCurrentLocation() {
 
 
@@ -124,6 +125,7 @@ public class GreetingsFragment extends Fragment {
         task.addOnSuccessListener(new OnSuccessListener<Location>() { //called when location found
             @Override
             public void onSuccess(Location location) {
+
 
 
                 if (location!=null)
@@ -253,9 +255,11 @@ public class GreetingsFragment extends Fragment {
             return mapList;
         }
 
+        @SuppressLint("MissingPermission")
         @Override
         protected void onPostExecute(List<HashMap<String, String>> hashMaps) { //after background task is executed
-            map.clear(); // clear all previous markers
+
+                map.clear(); // clear all previous markers
 
             for (int i=0; i<hashMaps.size(); i++)
             {

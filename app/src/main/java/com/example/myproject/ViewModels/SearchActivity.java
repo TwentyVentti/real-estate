@@ -29,6 +29,10 @@ import com.example.myproject.Models.Parsing.Tokenizer;
 
 import com.example.myproject.Models.UserDetails;
 import com.example.myproject.R;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,6 +47,10 @@ import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 public class SearchActivity extends AppCompatActivity {
+
+    private static InterstitialAd ad;
+    //InterstitialAd ad;
+    Button search;
     PopupWindow popUp;
     boolean click = true;
     FirebaseUser user;
@@ -70,6 +78,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         inputText = (EditText) findViewById(R.id.citySelectEdit);
+        search = (Button) findViewById(R.id.search);
         user = FirebaseAuth.getInstance().getCurrentUser();
         ref = FirebaseDatabase.getInstance().getReference("Users");
         try {
@@ -109,26 +118,43 @@ public class SearchActivity extends AppCompatActivity {
                 Toast.makeText(SearchActivity.this,"Something went wrong!!",Toast.LENGTH_LONG).show();
             }
         });
+
+        MobileAds.initialize(this);
+
+        ad = new InterstitialAd(this);
+        ad.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        AdRequest adRequest = new AdRequest.Builder().addKeyword("flights to paris").build();
+        ad.loadAd(adRequest);
+
+
     }
+
+
 
     public void searchClicked(View v){
         userDetails = inputText.getText().toString();
+
         if (inputText.getText().toString().length() == 0){
             Toast.makeText(SearchActivity.this,"Please enter your details!",Toast.LENGTH_LONG).show();
         }
         else {
-            try {
-                Intent intent = new Intent(this, MainActivity.class);
-                BaseExp t1 = getUserSelectionFromEdit();
-                intent.putExtra("UD", t1);
-                startActivityForResult(intent,1);
-            }
-            catch (GrammarException e) {
-                Toast.makeText(SearchActivity.this, e.toString(), Toast.LENGTH_LONG).show();
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
+            ad.show();
+                ad.setAdListener(new AdListener() {
+                    @Override
+                    public void onAdClosed() {
+                        try {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            BaseExp t1 = getUserSelectionFromEdit();
+                            intent.putExtra("UD", t1);
+                            startActivityForResult(intent, 1);
+                        } catch (GrammarException e) {
+                            Toast.makeText(SearchActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        ad.loadAd(new AdRequest.Builder().addKeyword("flights to paris").build());
+                    }
+                });
 
         }
     }
@@ -137,6 +163,7 @@ public class SearchActivity extends AppCompatActivity {
         Object SYSTEM_SERVICE = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         PopupWindow POPUP = new PopupWindow(this);
         ShowPopup("For the moment only these options are available --", RESOURCES,SYSTEM_SERVICE, POPUP);
+
     }
     public static PopupWindow POPUP_WINDOW_SCORE = null;
 
@@ -173,7 +200,6 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 //Do Something
-
                 //Close Window
                 POPUP_WINDOW_SCORE.dismiss();
             }
