@@ -1,14 +1,12 @@
 package com.example.myproject.ViewModels;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.JsonReader;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,17 +14,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.myproject.Models.Parsing.BaseExp;
-import com.example.myproject.Models.Parsing.GrammarException;
-import com.example.myproject.Models.Parsing.Parser;
-import com.example.myproject.Models.Parsing.ParserException;
-import com.example.myproject.Models.Parsing.Token;
-import com.example.myproject.Models.Parsing.TokenException;
-import com.example.myproject.Models.Parsing.Tokenizer;
 import com.example.myproject.Models.SearchDetails;
 import com.example.myproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,13 +26,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.core.utilities.Tree;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.Hashtable;
+import java.util.Objects;
 
 
 /**
@@ -50,7 +35,9 @@ import java.util.Hashtable;
  */
 public class MainActivity extends AppCompatActivity {
     public BaseExp userDetails;
+    @SuppressLint("StaticFieldLeak")
     static TextView level;
+    @SuppressLint("StaticFieldLeak")
     static TextView days;
     FirebaseAuth auth;
 
@@ -65,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,20 +63,19 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
-        //NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-
         View header = navigationView.inflateHeaderView(R.layout.nav_header_main);
-        level = (TextView) header.findViewById(R.id.textView10);
-        days = (TextView) header.findViewById(R.id.textView9);
+        level = header.findViewById(R.id.textView10);
+        days = header.findViewById(R.id.textView9);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery)
-                .setDrawerLayout(drawer)
+                .setOpenableLayout(drawer)
                 .build();
         userDetails = (BaseExp) getIntent().getSerializableExtra("UD");
 
+        assert userDetails != null;
         level.setText("Level: " + userDetails.level);
         days.setText("Duration: " + userDetails.time +" "+userDetails.tunit);
 
@@ -105,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-//        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_home);
 
     }
 
@@ -120,16 +106,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id){
-            case R.id.action_settings:
-                FirebaseAuth.getInstance().signOut();
-                Intent intent= new Intent (this,loginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                break;
-
-
+        if (id == R.id.action_settings) {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(this, loginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         }
         return  super.onOptionsItemSelected(item);
     }
@@ -153,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
         String u;
         Id = auth.getCurrentUser();
 
+        assert Id != null;
         u = Id.getUid().trim();
 
 
@@ -160,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         SearchDetails search = new SearchDetails(u, co, ci);
 
         FirebaseDatabase.getInstance().getReference("SearchDetails")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
                 .setValue(search).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
