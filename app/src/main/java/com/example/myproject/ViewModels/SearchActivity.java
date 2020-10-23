@@ -225,7 +225,6 @@ public class SearchActivity extends AppCompatActivity {
         langCap.put("netherlands", Arrays.asList("Dutch", "Amsterdam"));
         langCap.put("spain", Arrays.asList("Spanish", "Madrid"));
         langCap.put("germany",Arrays.asList("German", "Berlin"));
-        System.out.printf(t1.country);
         if (t1.country == null) {
             throw new TokenException("CM");
         }
