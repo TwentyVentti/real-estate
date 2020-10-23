@@ -44,9 +44,8 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     FirebaseAuth mAuth;
     ProgressBar progressBar;
     TextView forgotpassword;
-    public static final String a = "a";
     // Integer is Node.ID String is Section Name
-    public static BiMap <Integer, String> IdAndSection = HashBiMap.create();
+    public static BiMap <Integer, String> IdAndSection;
     public static HashMap <String, BinarySearch> levelBST;
 
 
@@ -63,12 +62,14 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         forgotpassword = findViewById(R.id.textView);
         forgotpassword.setOnClickListener(this);
         guest = findViewById(R.id.guest_user_button);
-//        try {
+        IdAndSection = HashBiMap.create();
+        try {
             levelBST = binaryFromJSON();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
+        } catch (Exception e) {
+            Toast.makeText(loginActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
         if (mAuth.getCurrentUser() != null) {
                 finish();
                 startActivity(new Intent(getApplicationContext(), SearchActivity.class));
@@ -91,6 +92,8 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
      *  (above is similar to Construct in BST)
      *  Time to constrct = n + logn
      *  Also store hashmap of data[it][0]["level"] to the string of sectionName
+     * @co-author Andrew Carse u6666440
+     * @co-author Abhaas Goyal - u7145384
      * @return Hashmap of Language to the corresponding BSTs
      */
 

@@ -34,7 +34,6 @@
         <activity android:name=".ViewModels.SearchActivity" />
         <activity android:name=".ViewModels.resetpasswordActivity" />
         <activity android:name=".ViewModels.registrationActivity" />
-        <activity android:name=".Models.MapActivity" />
     </application>
 
 </manifest>
