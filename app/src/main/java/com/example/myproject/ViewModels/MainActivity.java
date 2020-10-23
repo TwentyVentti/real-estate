@@ -135,8 +135,8 @@ public class MainActivity extends AppCompatActivity {
         String userString;
         Id = auth.getCurrentUser();
 
-        userString = Id.getUid().trim();
         assert Id != null;
+        userString = Id.getUid().trim();
 
         SearchDetails search = new SearchDetails(userString, countryString, cityString);
 
