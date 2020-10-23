@@ -14,13 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ViewModels.PhraseListActivity"></activity>
-        <activity android:name=".ViewModels.SplashScreenActivity" />
+        <activity android:name=".ViewModels.loginActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_key" />
 
-        <activity android:name=".ViewModels.loginActivity">
+        <activity android:name=".ViewModels.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
