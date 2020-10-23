@@ -3,6 +3,7 @@ package com.example.myproject.ViewModels;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -10,12 +11,9 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +21,6 @@ import android.widget.Toast;
 import com.example.myproject.Models.Parsing.BaseExp;
 import com.example.myproject.Models.Parsing.GrammarException;
 import com.example.myproject.Models.Parsing.Parser;
-import com.example.myproject.Models.Parsing.Token;
 import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Parsing.Tokenizer;
 
@@ -40,28 +37,24 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
+import java.util.Objects;
 
+/**
+ * @author Andrew Carse - u6666440
+ * @author Abhaas Goyol - u7145384
+ * @author Purvesh Badmera - u7084724
+ */
 public class SearchActivity extends AppCompatActivity {
 
     private static InterstitialAd ad;
     //InterstitialAd ad;
     Button search;
-    PopupWindow popUp;
-    boolean click = true;
     FirebaseUser user;
     DatabaseReference ref;
-    private String ID;
     public static String userDetails;
-//    static TextView level;
-//    static TextView days;
-
 
     EditText inputText;
 /*
@@ -79,17 +72,18 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        inputText = (EditText) findViewById(R.id.citySelectEdit);
-        search = (Button) findViewById(R.id.search);
+        inputText = findViewById(R.id.citySelectEdit);
+        search = findViewById(R.id.search);
         user = FirebaseAuth.getInstance().getCurrentUser();
         ref = FirebaseDatabase.getInstance().getReference("Users");
+        String ID;
         try {
             ID = user.getUid();
         }
         catch (NullPointerException e){
             ID = "Guest";
         }
-        final TextView userText = (TextView)findViewById(R.id.user);
+        final TextView userText = findViewById(R.id.user);
         int id = 0;
         Intent intent = getIntent();
         if (intent != null){
@@ -101,13 +95,14 @@ public class SearchActivity extends AppCompatActivity {
         final int finalId = id;
 
         ref.child(ID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UserDetails profile = dataSnapshot.getValue(UserDetails.class);
 
                 if (profile!=null & (finalId == 0)){
                     String name = profile.name;
-                    userText.setText(name + "!");
+                    userText.setText(String.format("%s!", name));
                 }
                 else{
                     userText.setText("Guest!");
@@ -136,10 +131,6 @@ public class SearchActivity extends AppCompatActivity {
     public void searchClicked(View v){
         userDetails = inputText.getText().toString();
 
-//        if (inputText.getText().toString().length() == 0){
-//            Toast.makeText(SearchActivity.this,"Please enter your details!",Toast.LENGTH_LONG).show();
-//        }
-//        else {
             ad.show();
                 ad.setAdListener(new AdListener() {
                     @Override
@@ -158,7 +149,6 @@ public class SearchActivity extends AppCompatActivity {
                     }
                 });
 
-//        }
     }
     public void onButtonShowPopupWindowClick(View view) {
         Resources RESOURCES = this.getResources();
@@ -177,7 +167,7 @@ public class SearchActivity extends AppCompatActivity {
 
         // Inflate the popup_layout.xml
         LayoutInflater layoutInflater = (LayoutInflater) systemService;
-        View layout = layoutInflater.inflate(R.layout.popup_window, null);
+        @SuppressLint("InflateParams") View layout = layoutInflater.inflate(R.layout.popup_window, null);
 
         // Creating the PopupWindow
         POPUP_WINDOW_SCORE = popUp;
@@ -191,11 +181,11 @@ public class SearchActivity extends AppCompatActivity {
 
         POPUP_WINDOW_SCORE.showAtLocation(layout, Gravity.CENTER, 1, 1);
 
-        TextView txtMessage = (TextView) layout.findViewById(R.id.layout_popup_txtMessage);
+        TextView txtMessage = layout.findViewById(R.id.layout_popup_txtMessage);
         txtMessage.setText(message);
 
         // Getting a reference to button one and do something
-        Button butOne = (Button) layout.findViewById(R.id.layout_popup_butOne);
+        Button butOne = layout.findViewById(R.id.layout_popup_butOne);
         butOne.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -233,8 +223,8 @@ public class SearchActivity extends AppCompatActivity {
         }
         else {
             // Setting default values for non required elements
-            t1.language = langCap.get(t1.country).get(0);
-            t1.city = t1.city == null ? langCap.get(t1.country).get(1): t1.city;
+            t1.language = Objects.requireNonNull(langCap.get(t1.country)).get(0);
+            t1.city = t1.city == null ? Objects.requireNonNull(langCap.get(t1.country)).get(1): t1.city;
             t1.level = t1.level == 0 ? 1: t1.level;
             t1.time = t1.time == 0 ? 10 : t1.time;
             t1.tunit = t1.tunit == null ? "days" : t1.tunit;
