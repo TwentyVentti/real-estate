@@ -148,16 +148,16 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser Id;
         auth = FirebaseAuth.getInstance();
-        String co = userDetails.country.trim();
-        String ci = userDetails.city.trim();
-        String u;
+        String countryString = userDetails.country.trim();
+        String cityString = userDetails.city.trim();
+        String userString;
         Id = auth.getCurrentUser();
 
-        u = Id.getUid().trim();
+        userString = Id.getUid().trim();
 
 
 
-        SearchDetails search = new SearchDetails(u, co, ci);
+        SearchDetails search = new SearchDetails(userString, countryString, cityString);
 
         FirebaseDatabase.getInstance().getReference("SearchDetails")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
