@@ -27,7 +27,7 @@ public class SplashScreenActivity extends Activity {
         try {
             VideoView splashView = new VideoView(this);
             setContentView(splashView);
-            Uri video = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.pre_login);
+            Uri video = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.pre_login_wider);
             splashView.setVideoURI(video);
 
 
