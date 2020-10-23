@@ -2,8 +2,8 @@ package com.example.myproject.Models.Parsing;
 
 /**
  * Base Grammar implementation for show and evaluate
- * @co-author Abhaas Goyal - u7145384
- * @co-author Andrew Carse u6666440
+ * @author Abhaas Goyal - u7145384
+ *
  */
 public class BaseExp extends Exp {
     private Exp term1;

@@ -18,7 +18,7 @@ public class ParserException extends GrammarException {
     }
 
     @Override
-    public String toString() {
+    public String printError() {
         if (nearToken == null || keyword == null) {
             return "Unknown Parsing error on input";
         }
