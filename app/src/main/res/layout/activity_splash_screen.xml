@@ -4,17 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constr"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="#FFFFFF"
     android:orientation="vertical"
-    tools:context=".ViewModels.SplashScreenActivity">
+    tools:context=".ui.SplashScreens.SplashScreenActivity">
 
     <VideoView
         android:id="@+id/surfaceView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="bottom|center"
         android:background="#FFFEFF"
         app:layout_constraintBottom_toBottomOf="parent"

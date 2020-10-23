@@ -1,18 +1,15 @@
-package com.example.myproject.ViewModels;
+package com.example.myproject.ui.SplashScreens;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
 import com.example.myproject.R;
-
-import static android.content.ContentValues.TAG;
+import com.example.myproject.ViewModels.loginActivity;
 
 public class SplashScreenActivity extends Activity {
     VideoView videoView;
@@ -26,8 +23,8 @@ public class SplashScreenActivity extends Activity {
 
         try {
             VideoView splashView = new VideoView(this);
-            setContentView(splashView);
             Uri video = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.pre_login_wider);
+            setContentView(splashView);
             splashView.setVideoURI(video);
 
 
