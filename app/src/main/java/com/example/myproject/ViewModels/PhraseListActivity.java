@@ -108,7 +108,7 @@ public class PhraseListActivity extends AppCompatActivity {
     private ArrayList<Node> getBSTPhrases() {
         ArrayList<Node> phrases = new ArrayList<>();
         int currentSection = getIntent().getIntExtra("Section",0) % 10;
-        int level = HomePageFragment.USER_SELECTION.level;
+        int level = getIntent().getIntExtra("Section",0) / 10;
         HashMap<String, BinarySearch> levelBST;
         try {
             levelBST = loginActivity.levelBST;

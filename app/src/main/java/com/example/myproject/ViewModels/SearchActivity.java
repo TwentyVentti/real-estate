@@ -43,7 +43,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class SearchActivity extends AppCompatActivity {
@@ -217,32 +219,34 @@ public class SearchActivity extends AppCompatActivity {
         BaseExp t1 = (BaseExp) new Parser(tokenizer).parseBase();
         t1.evaluate();
 
-        HashMap<String, String> language = new HashMap<>();
-        language.put("france", "French");
-        language.put("italy", "Italian");
-        language.put("netherlands", "Dutch");
-        language.put("spain", "Spanish");
-        language.put("germany","German");
-
+        HashMap<String, List<String>> langCap = new HashMap<>();
+        langCap.put("france", Arrays.asList("French", "Paris"));
+        langCap.put("italy", Arrays.asList("Italian", "Rome"));
+        langCap.put("netherlands", Arrays.asList("Dutch", "Amsterdam"));
+        langCap.put("spain", Arrays.asList("Spanish", "Madrid"));
+        langCap.put("germany",Arrays.asList("German", "Berlin"));
+        System.out.printf(t1.country);
         if (t1.country == null) {
             throw new TokenException("CM");
         }
-        else if (!language.containsKey(t1.country)) {
+        else if (!langCap.containsKey(t1.country)) {
             throw new TokenException("ICO");
         }
         else {
-            t1.language = language.get(t1.country);
+            // Setting default values for non required elements
+            t1.language = langCap.get(t1.country).get(0);
+            t1.city = t1.city == null ? langCap.get(t1.country).get(1): t1.city;
+            t1.level = t1.level == 0 ? 1: t1.level;
+            t1.time = t1.time == 0 ? 10 : t1.time;
+            t1.tunit = t1.tunit == null ? "days" : t1.tunit;
+
+            // Updating country with first cap case
             t1.country = t1.country.substring(0, 1).toUpperCase() + t1.country.substring(1);
         }
 
         // TODO: Improve Assignment of city by taking the value of the capital from the db
 
-        // Setting default values for non required elements
-        t1.city = t1.city == null ? "Paris" : t1.city;
 
-        t1.level = t1.level == 0 ? 1: t1.level;
-        t1.time = t1.time == 0 ? 10 : t1.time;
-        t1.tunit = t1.tunit == null ? "days" : t1.tunit;
 
         return t1;
     }
