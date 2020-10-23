@@ -1,4 +1,4 @@
-package com.example.myproject.ui.Greetings;
+package com.example.myproject.ui.Maps;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -54,9 +54,9 @@ import java.util.Objects;
  * the previous markers everytime a new search is executed
  */
 
-public class GreetingsFragment extends Fragment {
+public class MapsFragment extends Fragment {
 
-    public GreetingsFragment() {};
+    public MapsFragment() {};
     Spinner spType;
     Button btfind;
     SupportMapFragment supportMapFragment;
