@@ -20,11 +20,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
+
 public class registrationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText name,age,email,password;
     private FirebaseAuth mAuth;
-    private Button register;
     private ProgressBar progressBar;
 
     @Override
@@ -33,22 +34,20 @@ public class registrationActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_registration);
         mAuth = FirebaseAuth.getInstance();
 
-        name = (EditText)findViewById(R.id.name);
-        age = (EditText)findViewById(R.id.age);
-        email = (EditText)findViewById(R.id.email);
-        password = (EditText)findViewById(R.id.password);
+        name = findViewById(R.id.name);
+        age = findViewById(R.id.age);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
 
-        register = (Button)findViewById(R.id.registeruser);
+        Button register = findViewById(R.id.registeruser);
         register.setOnClickListener(this);
-        progressBar = (ProgressBar)findViewById(R.id.progressBar2);
+        progressBar = findViewById(R.id.progressBar2);
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.registeruser:
-                registerUser();
-                break;
+        if (view.getId() == R.id.registeruser) {
+            registerUser();
         }
     }
 
@@ -104,7 +103,7 @@ public class registrationActivity extends AppCompatActivity implements View.OnCl
                             UserDetails user = new UserDetails(n,a,e,p);
 
                             FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

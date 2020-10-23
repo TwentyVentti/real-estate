@@ -26,13 +26,10 @@ import android.speech.tts.TextToSpeech;
 //import com.google.cloud.texttospeech.v1.TextToSpeechClient;
 //import com.google.cloud.texttospeech.v1.VoiceSelectionParams;
 //import com.google.protobuf.ByteString;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * This class represents the activity which will be called when the user clicks on one of the list objects
@@ -86,7 +83,7 @@ public class PhraseListActivity extends AppCompatActivity {
 
                 Toast toast = Toast.makeText(getApplicationContext(),userSelectedLanguagePhrases.get(i),Toast.LENGTH_LONG);
                 toast.show();
-                String s = userSelectedLanguagePhrases.get(i).toString();
+                String s = userSelectedLanguagePhrases.get(i);
                 textToSpeech.speak(s,TextToSpeech.QUEUE_FLUSH,null);
             }
         });
@@ -94,7 +91,6 @@ public class PhraseListActivity extends AppCompatActivity {
         try {
             section = homePageIntent.getStringExtra("SecString");
             sectionTextView.setText(section);
-            int x = 3;
         } catch (Exception ex){
             System.err.println("Null section title");
             ex.printStackTrace();
@@ -114,7 +110,7 @@ public class PhraseListActivity extends AppCompatActivity {
             levelBST = loginActivity.levelBST;
             String language =HomePageFragment.USER_SELECTION.language;
             language = language.substring(0, 1).toUpperCase() + language.substring(1);
-            phrases = levelBST.get(language).getArrayFromLevelSection(level,currentSection);
+            phrases = Objects.requireNonNull(levelBST.get(language)).getArrayFromLevelSection(level,currentSection);
         }catch (Exception ex){
             ex.printStackTrace();
         }

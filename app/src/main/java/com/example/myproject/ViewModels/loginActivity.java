@@ -4,30 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myproject.ui.SplashScreens.PostLoginSplash;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +36,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class loginActivity extends AppCompatActivity implements View.OnClickListener {
     EditText emailText;
@@ -142,7 +129,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                     String englishPhrase = instance.getString("english");
                     String languagePhrase = instance.getString("phrase");
                     int id = (int) instance.get("id");
-                    LanguageToDetails.get(language).add(new Node(id,englishPhrase,languagePhrase));
+                    Objects.requireNonNull(LanguageToDetails.get(language)).add(new Node(id,englishPhrase,languagePhrase));
                 }
                 int keyId = (int) idLevel.get("id") / 1000;
                 IdAndSection.put(keyId, sectionNames.get(i).toString());
@@ -159,7 +146,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
 
 
     public String loadJSON() {
-        String json = null;
+        String json;
         try {
             InputStream is = this.getAssets().open("temp.json");
             int size = is.available();
@@ -175,7 +162,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    public void guestSessionClicked(View v) throws IOException {
+    public void guestSessionClicked(View v) {
         Intent intent = new Intent(loginActivity.this, PostLoginSplash.class);
         intent.putExtra("but",1);
         startActivityForResult(intent,1);

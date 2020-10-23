@@ -2,7 +2,6 @@ package com.example.myproject;
 
 import com.example.myproject.Models.Parsing.GrammarException;
 import com.example.myproject.Models.Parsing.Token;
-import com.example.myproject.Models.Parsing.TokenException;
 import com.example.myproject.Models.Parsing.Tokenizer;
 
 import org.testng.annotations.Test;
