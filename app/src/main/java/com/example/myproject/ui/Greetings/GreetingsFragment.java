@@ -43,6 +43,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author Kanav Thareja  - u6995005
+ * The activity first first asks the user for location permsisions to load the app.It then goes on
+ * to create the map from the google API. It firstly retrieves the user's current location coordinate
+ * and displays it as a "Blue" marker with the text "I am here right now". An adapter dropdown stores
+ * all the possible options for the user to search   On the the basis of users selection in the
+ * dropdown it searches for the relevant places (subject to constraints) on buton click which with
+ * the help of the google api. It displays the relevant markers for the searched place and clears
+ * the previous markers everytime a new search is executed
+ */
+
 public class GreetingsFragment extends Fragment {
 
     public GreetingsFragment() {};
