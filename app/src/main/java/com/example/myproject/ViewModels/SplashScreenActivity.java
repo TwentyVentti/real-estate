@@ -4,26 +4,31 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
 import com.example.myproject.R;
 
+import static android.content.ContentValues.TAG;
+
 public class SplashScreenActivity extends Activity {
     VideoView videoView;
-    RelativeLayout relativeLayout;
+    View placeholder;
+
+    //    RelativeLayout relativeLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         videoView = (VideoView) findViewById(R.id.surfaceView);
-        relativeLayout = findViewById(R.id.linLay);
 
         try {
             VideoView splashView = new VideoView(this);
-            Uri video = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.post_search);
-            splashView.setVideoURI(video);
             setContentView(splashView);
+            Uri video = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.pre_login);
+            splashView.setVideoURI(video);
 
 
             splashView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -31,7 +36,9 @@ public class SplashScreenActivity extends Activity {
                     jump();
                 }
             });
-            splashView.start();
+            videoView = splashView;
+            videoView.setZOrderOnTop(true);
+            videoView.start();
         } catch (Exception ex) {
             jump();
         }
@@ -46,7 +53,9 @@ public class SplashScreenActivity extends Activity {
     private void jump() {
         if (isFinishing())
             return;
-        startActivity(new Intent(SplashScreenActivity.this, loginActivity.class ));
+        startActivity(new Intent(SplashScreenActivity.this, loginActivity.class));
         finish();
     }
+
+
 }

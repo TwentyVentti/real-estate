@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewModels.PhraseListActivity"></activity>
+        <activity android:name=".ViewModels.PhraseListActivity"/>
         <activity android:name=".ViewModels.loginActivity" />
 
         <meta-data
@@ -36,7 +36,6 @@
         <activity android:name=".ViewModels.SearchActivity" />
         <activity android:name=".ViewModels.resetpasswordActivity" />
         <activity android:name=".ViewModels.registrationActivity" />
-        <activity android:name=".Models.MapActivity" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
