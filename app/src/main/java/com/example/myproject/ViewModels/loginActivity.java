@@ -51,6 +51,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class will handle the user login and guest login along with validation of input details. It
+ * will also validate the input given by user e.g. valid email address.
+ * @author Purvesh Mukesh Badmera - u7084724
+ */
 public class loginActivity extends AppCompatActivity implements View.OnClickListener {
     EditText emailText;
     EditText passwordText;
@@ -175,11 +180,16 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
+    /**
+     * This function particulaty handels the guest login.
+     * @author Purvesh Mukesh Badmera - u7084724
+     */
     public void guestSessionClicked(View v) throws IOException {
         Intent intent = new Intent(loginActivity.this, PostLoginSplash.class);
         intent.putExtra("but",1);
         startActivityForResult(intent,1);
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -193,6 +203,11 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         }
 
     }
+
+    /**
+     * This class will handle the user login along with validation of input details.
+     * @author Purvesh Mukesh Badmera - u7084724
+     */
     private void userLogin() {
         String email = emailText.getText().toString().trim();
         String password = passwordText.getText().toString().trim();
@@ -215,7 +230,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-        if(password.length() < 6){
+        if(password.length() < 5){
             passwordText.setError("Password should contain minimum 6 characters");
             passwordText.requestFocus();
             return;

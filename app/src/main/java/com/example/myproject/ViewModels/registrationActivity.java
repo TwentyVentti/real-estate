@@ -20,6 +20,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+
+/**
+ * This class is reponsible for the registration of new user to the firebase.
+ * @author Purvesh Mukesh Badmera - u7084724
+ */
 public class registrationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText name,age,email,password;
@@ -52,6 +57,10 @@ public class registrationActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+    /**
+     * This function handles all the user details then validates it and sends it to the firebase.
+     * @author Purvesh Mukesh Badmera - u7084724
+     */
     private void registerUser() {
         final String e = email.getText().toString().trim();
         final String a = age.getText().toString().trim();

@@ -17,6 +17,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * This class will help user to reset the password of their account by sending a link to their email.
+ * @author Purvesh Mukesh Badmera - u7084724
+ */
 public class resetpasswordActivity extends AppCompatActivity {
 
     EditText email;

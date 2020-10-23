@@ -31,7 +31,8 @@ import java.util.Objects;
 
 /**
  * @author Andrew Carse - u6666440
- * @author Abhaas Goyol - u7145384
+ * @author Abhaas Goyal - u7145384
+ * @author Purvesh Mukesh Badmera - u7084724
  */
 public class MainActivity extends AppCompatActivity {
     public BaseExp userDetails;
@@ -102,7 +103,10 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
+    /**
+     * This function helps user to successfully logout from the app.
+     * @author Purvesh Mukesh Badmera - u7084724
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -126,6 +130,10 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    /**
+     * This function will save the user search details to the firebase.
+     * @author Purvesh Mukesh Badmera - u7084724
+     */
     public void surpriseFeature() {
 
         FirebaseUser Id;
