@@ -42,9 +42,9 @@ public class resetpasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resetpassword);
 
-        email = (EditText)findViewById(R.id.emailid);
-        reset = (Button)findViewById(R.id.button2);
-        progressBar = (ProgressBar)findViewById(R.id.progressBar4);
+        email = findViewById(R.id.emailid);
+        reset = findViewById(R.id.button2);
+        progressBar = findViewById(R.id.progressBar4);
         auth = FirebaseAuth.getInstance();
 
         reset.setOnClickListener(new View.OnClickListener() {
@@ -76,12 +76,11 @@ public class resetpasswordActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(resetpasswordActivity.this,"Check your mail to reset password!",Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
                 }
                 else{
                     Toast.makeText(resetpasswordActivity.this,"Please try again!",Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
                 }
+                progressBar.setVisibility(View.GONE);
 
             }
         });
