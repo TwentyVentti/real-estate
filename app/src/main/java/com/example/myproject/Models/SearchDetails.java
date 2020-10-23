@@ -12,4 +12,6 @@ public class SearchDetails {
         this.country = country;
         this.user = user;
     }
+
+
 }

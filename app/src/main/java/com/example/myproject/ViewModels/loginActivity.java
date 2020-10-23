@@ -163,6 +163,9 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
+    /**
+     * @return a string which represents all of the JSON from temp.json
+     */
     public String loadJSON() {
         String json = null;
         try {
