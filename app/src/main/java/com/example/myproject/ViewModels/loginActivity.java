@@ -3,16 +3,30 @@ package com.example.myproject.ViewModels;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +63,9 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     public static HashMap <String, BinarySearch> levelBST;
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +91,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                 finish();
                 startActivity(new Intent(getApplicationContext(), SearchActivity.class));
             }
+        
 
 
     }
@@ -219,5 +237,6 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
     }
+
 
 }
