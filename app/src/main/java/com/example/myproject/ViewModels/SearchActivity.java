@@ -136,10 +136,10 @@ public class SearchActivity extends AppCompatActivity {
     public void searchClicked(View v){
         userDetails = inputText.getText().toString();
 
-        if (inputText.getText().toString().length() == 0){
-            Toast.makeText(SearchActivity.this,"Please enter your details!",Toast.LENGTH_LONG).show();
-        }
-        else {
+//        if (inputText.getText().toString().length() == 0){
+//            Toast.makeText(SearchActivity.this,"Please enter your details!",Toast.LENGTH_LONG).show();
+//        }
+//        else {
             ad.show();
                 ad.setAdListener(new AdListener() {
                     @Override
@@ -158,7 +158,7 @@ public class SearchActivity extends AppCompatActivity {
                     }
                 });
 
-        }
+//        }
     }
     public void onButtonShowPopupWindowClick(View view) {
         Resources RESOURCES = this.getResources();
@@ -212,7 +212,7 @@ public class SearchActivity extends AppCompatActivity {
 
     public static BaseExp getUserSelectionFromEdit() throws GrammarException {
         System.out.println(userDetails);
-        if (userDetails == null) {
+        if (userDetails.equals("")) {
             throw new TokenException("NULL");
         }
         Tokenizer tokenizer = new Tokenizer(userDetails);

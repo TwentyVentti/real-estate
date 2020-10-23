@@ -8,7 +8,7 @@ public class TokenException extends GrammarException {
     public TokenException(String s) {
         switch (s) {
             case "INT": toastMessageToken = "Invalid Token"; break;
-            case "NULL": toastMessageToken = "Please enter an input"; break;
+            case "NULL": toastMessageToken = "Please enter your details!"; break;
             case "ICT": toastMessageToken = "Tried to tokenize empty buffer/ Parsing error"; break;
             case "IK" : toastMessageToken = "Illegal keyword/ Missing String"; break;
             case "CM" : toastMessageToken = "Country parameter is mandatory"; break;
