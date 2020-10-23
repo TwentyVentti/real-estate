@@ -7,6 +7,9 @@ import java.util.regex.Pattern;
 /**
  * @co-author Abhaas Goyal - u7145384
  * @co-author  Andrew Carse - u6666440
+ *
+ * This class takes user inputs and converts it to our
+ * optimized grammar in order for our parser to interpret it efficiently.
  */
 public class Tokenizer {
     private String _buffer;    //save text

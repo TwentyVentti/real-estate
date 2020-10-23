@@ -16,7 +16,6 @@ public class PlaceExp extends Exp{
 
     @Override
     public String[] evaluate() {
-        // Al
         return new String[]{placeType.toString(), place};
     }
 
