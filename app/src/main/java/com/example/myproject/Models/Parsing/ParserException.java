@@ -5,11 +5,24 @@ package com.example.myproject.Models.Parsing;
  */
 public class ParserException extends GrammarException {
 
-    public ParserException() {
+    public String nearToken;
+    public String keyword;
+
+    public ParserException(String nearToken, String keyword) {
+        this.nearToken = nearToken;
+        this.keyword = keyword;
+    }
+    public ParserException(String nearToken) {
+        this.nearToken = nearToken;
     }
 
     @Override
     public String toString() {
-        return "Parsing error on input";
+        if (nearToken == null || keyword == null) {
+            return "Unknown Parsing error on input";
+        }
+        else {
+            return "Parsing error on input on parameter " + keyword + " near token " + nearToken;
+        }
     }
 }

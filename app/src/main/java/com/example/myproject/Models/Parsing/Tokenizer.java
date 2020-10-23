@@ -31,8 +31,11 @@ public class Tokenizer {
         _buffer = _buffer.trim(); // remove whitespace
 
         if (_buffer.isEmpty()) {
-            if (current == null || !current.token().equals(";")) {
-                throw new ParserException();
+            if (current == null) {
+                throw new ParserException("end of input");
+            }
+            else if (!current.token().equals(";")) {
+                throw new ParserException(current().token());
             }
             current = null;    // if there's no string left, set currentToken null and return
             return;
@@ -48,11 +51,11 @@ public class Tokenizer {
             if (m.find()) {
                 current = new Token(Objects.requireNonNull(m.group(1)).toLowerCase(), Token.Type.STRING);
                 if (!current.token().matches("^[a-zA-Z0-9]*$")) {
-                    throw new ParserException();
+                    throw new ParserException(current.token());
                 }
             }
             else {
-                throw new ParserException();
+                throw new ParserException(current.token());
             }
         }
         if (Character.isLowerCase(firstChar)) {

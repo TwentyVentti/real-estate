@@ -34,41 +34,53 @@ public class Parser {
     }
 
     public Exp parseUser() throws GrammarException {
-        switch (_tokenizer.current().type()) {
-            case CITY:
-            case COUNTRY:
-                return parseLocation();
-            default : return parseTime();
-        }
+            switch (_tokenizer.current().type()) {
+                case CITY:
+                case COUNTRY:
+                    return parseLocation();
+                default:
+                    return parseTime();
+            }
     }
 
     public Exp parseLocation() throws GrammarException {
-        Token.Type placeType = _tokenizer.current().type();
-        String place;
-        _tokenizer.next();
-        _tokenizer.next();
-        place = _tokenizer.current().token().trim();
+        try {
+            Token.Type placeType = _tokenizer.current().type();
+            String place;
+            _tokenizer.next();
+            _tokenizer.next();
+            place = _tokenizer.current().token().trim();
 
-        _tokenizer.next();
-        _tokenizer.next();
-
-        return new PlaceExp(placeType, place);
+            _tokenizer.next();
+            _tokenizer.next();
+            return new PlaceExp(placeType, place);
+        }
+        catch (ParserException e) {
+            throw new ParserException(e.nearToken, "country/city");
+        }
     }
     public Exp parseTime() throws GrammarException{
-        _tokenizer.next();
-        _tokenizer.next();
-        int time = Integer.parseInt(_tokenizer.current().token());
+        try {
+            _tokenizer.next();
+            _tokenizer.next();
+            int time = Integer.parseInt(_tokenizer.current().token());
 
-        _tokenizer.next();
-        Token.Type tunit = parseTUnit();
+            _tokenizer.next();
+            Token.Type tunit = parseTUnit();
 
-        _tokenizer.next();
-        _tokenizer.next();
-        return new TimeExp(time, tunit);
+            _tokenizer.next();
+            _tokenizer.next();
+            return new TimeExp(time, tunit);
+        }
+        catch (ParserException e) {
+            throw new ParserException(e.nearToken, "duration");
+        }
     }
     public Token.Type parseTUnit() throws GrammarException {
         switch (_tokenizer.current().type()) {
-            case DAY: case MONTH: case WEEK:
+            case DAY:
+            case MONTH:
+            case WEEK:
                 return _tokenizer.current().type();
             default:
                 throw new TokenException("IK");
