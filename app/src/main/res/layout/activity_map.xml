@@ -37,6 +37,7 @@
         android:layout_marginEnd="2dp"
         android:layout_marginBottom="2dp"
         android:background="#E15F8B"
+        android:onClick="findButtonClicked"
         android:text="Find"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/google_map"

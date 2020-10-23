@@ -50,12 +50,13 @@ import java.util.Objects;
 public class MapsFragment extends Fragment {
 
     public MapsFragment() {};
-    Spinner spType;
-    Button btfind;
-    SupportMapFragment supportMapFragment;
-    GoogleMap map;
-    Marker mCurrLocationMarker;
-    FusedLocationProviderClient fusedLocationProviderClient;
+    private Spinner spType;
+    private Button findButton;
+    private SupportMapFragment supportMapFragment;
+    private GoogleMap map;
+    private String[] placeTypeList =null;
+    private Marker mCurrLocationMarker;
+    private FusedLocationProviderClient fusedLocationProviderClient;
     double currentLat = 0, currentLong = 0;
     private final int ZOOM_VALUE =15;
     private final int RADIUS_VALUE =5000;
@@ -73,10 +74,10 @@ public class MapsFragment extends Fragment {
         View v = inflater.inflate(R.layout.activity_map, container, false);
 
         spType = v.findViewById(R.id.sp_type);
-        btfind = v.findViewById(R.id.bt_find);
+        findButton = v.findViewById(R.id.bt_find);
         supportMapFragment = (SupportMapFragment) getChildFragmentManager() //Map component
                 .findFragmentById(R.id.google_map);
-        final String[] placeTypeList = {"restaurant", "bar", "hotel","atm"};
+        placeTypeList = new String[]{"restaurant", "bar", "hotel", "atm"};
         //search parameters
 
         String[] placeNameList = {"Looking for a place to eat?", "Looking for a place to drink?", "Looking for a place to stay?","Looking for a place to withdraw money?"};
@@ -85,25 +86,26 @@ public class MapsFragment extends Fragment {
 
         /**An adapter dropdown stores all the possible options for the user to search as a dropdown**/
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, placeNameList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_item, placeNameList);
         spType.setAdapter(adapter); //for dropdown of options
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity());
 
          //The activity first first asks the user for location permsissions to load the app.It then goes on
          //to create the map from the google API.
-        if (ActivityCompat.checkSelfPermission(getActivity(),  // checking requesting permission
+        if (ActivityCompat.checkSelfPermission(requireActivity(),  // checking requesting permission
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             getCurrentLocation();
         } else {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+            ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
 
         }
 
 
+
         //On the the basis of users selection in the dropdown it searches for the relevant places
         //(subject to constraints) on button click which with the help of the google api
-        btfind.setOnClickListener(new View.OnClickListener() { // on clicking "Find"
+        findButton.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
@@ -123,6 +125,18 @@ public class MapsFragment extends Fragment {
         return v; // return view
     }
 
+    public void findButtonClicked(View view){
+        int i = spType.getSelectedItemPosition();
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" +  // string to search places
+                "?location=" + currentLat + "," + currentLong + //current location
+                "&radius=RADIUSVALUE" +    //Max area to search
+                "&types=" + placeTypeList[i] +  //attribute to search
+                "&sensor=true" +  //Indicates whether or not the geocoding request comes from a device with a location sensor
+                "&key=" + getResources().getString(R.string.google_map_key);  // Google key for maps api
+
+        new PlaceTask().execute(url); //finding nearby places
+
+    }
 
     /**
      * This method obtains the current location of the user and updates currentLat and
