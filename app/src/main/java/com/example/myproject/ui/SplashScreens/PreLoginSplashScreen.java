@@ -23,7 +23,7 @@ public class PreLoginSplashScreen extends Activity {
 
         try {
             VideoView splashView = new VideoView(this);
-            Uri video = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.pre_login_wider);
+            Uri video = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.pre_login);
             setContentView(splashView);
             splashView.setVideoURI(video);
 
