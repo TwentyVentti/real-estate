@@ -6,10 +6,7 @@ public class UserDetails {
     public String email;
     public String password;
 
-    public UserDetails(){
-
-    }
-
+    public UserDetails () {}
 
     public UserDetails(String name, String age, String email, String password){
         this.name = name;
