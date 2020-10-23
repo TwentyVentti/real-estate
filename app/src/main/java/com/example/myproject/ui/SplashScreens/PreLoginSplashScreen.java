@@ -11,7 +11,7 @@ import android.widget.VideoView;
 import com.example.myproject.R;
 import com.example.myproject.ViewModels.loginActivity;
 
-public class SplashScreenActivity extends Activity {
+public class PreLoginSplashScreen extends Activity {
     VideoView videoView;
     View placeholder;
 
@@ -50,7 +50,7 @@ public class SplashScreenActivity extends Activity {
     private void jump() {
         if (isFinishing())
             return;
-        startActivity(new Intent(SplashScreenActivity.this, loginActivity.class));
+        startActivity(new Intent(PreLoginSplashScreen.this, loginActivity.class));
         finish();
     }
 

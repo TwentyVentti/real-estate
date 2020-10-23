@@ -23,7 +23,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_key" />
 
-        <activity android:name=".ui.SplashScreens.SplashScreenActivity">
+        <activity android:name=".ui.SplashScreens.PreLoginSplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

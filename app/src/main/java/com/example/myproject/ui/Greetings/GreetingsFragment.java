@@ -79,18 +79,11 @@ public class GreetingsFragment extends Fragment {
                 .findFragmentById(R.id.google_map);
 
 
-
-        ;
-
-
         final String[] placeTypeList = {"restaurant", "bar", "hotel","atm"};
         //search parameters
 
         String[] placeNameList = {"Looking for a place to eat?", "Looking for a place to drink?", "Looking for a place to stay?","Looking for a place to withdraw money?"};
         //Search options for user
-
-
-
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, placeNameList);
         spType.setAdapter(adapter); //for dropdown of options
@@ -125,30 +118,18 @@ public class GreetingsFragment extends Fragment {
         return v; // return view
     }
 
-
-
     private void getCurrentLocation() {
-
-
         @SuppressLint("MissingPermission")
         Task<Location> task = fusedLocationProviderClient.getLastLocation(); //to retrieve the device's last known location
 
         task.addOnSuccessListener(new OnSuccessListener<Location>() { //called when location found
             @Override
             public void onSuccess(Location location) {
-
-
-
                 if (location!=null)
                 {
                     currentLat=location.getLatitude();
 
                     currentLong=location.getLongitude();
-
-
-
-
-
                     supportMapFragment.getMapAsync(new OnMapReadyCallback() {  //initializing the maps system
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
@@ -178,11 +159,6 @@ public class GreetingsFragment extends Fragment {
                             uiSettings.setMapToolbarEnabled(true);
                             uiSettings.setZoomControlsEnabled(true);
                             uiSettings.setCompassEnabled(true);
-
-
-
-
-
                         }
 
 
@@ -193,10 +169,6 @@ public class GreetingsFragment extends Fragment {
             }
         });
     }
-
-
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         //permission check , If request is cancelled, the result is empty.
@@ -266,7 +238,6 @@ public class GreetingsFragment extends Fragment {
             return mapList;
         }
 
-        @SuppressLint("MissingPermission")
         @Override
         protected void onPostExecute(List<HashMap<String, String>> hashMaps) { //after background task is executed
 
