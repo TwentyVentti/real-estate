@@ -15,7 +15,8 @@ public class TokenException extends GrammarException {
             case "CM" : toastMessageToken = "Country parameter is mandatory"; break;
             case "ICO" : toastMessageToken = "Invalid Country"; break;
             default :
-                System.out.println("Wrong type of error thrown in code");
+                System.err.println("Wrong type of error thrown in code");
+                printStackTrace();
         }
     }
 
