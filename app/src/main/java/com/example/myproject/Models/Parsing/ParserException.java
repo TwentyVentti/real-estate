@@ -1,6 +1,7 @@
 package com.example.myproject.Models.Parsing;
 
 /**
+ * Custom ParserExceptionClass
  * @author Abhaas Goyal - u7145384
  */
 public class ParserException extends GrammarException {

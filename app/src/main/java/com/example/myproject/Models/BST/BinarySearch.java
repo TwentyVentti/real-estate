@@ -1,11 +1,12 @@
 package com.example.myproject.Models.BST;
 
 import java.util.ArrayList;
-import java.util.UnknownFormatConversionException;
 
+/**
+ * BST implementation for searchActivity and phraseListActivity
+ * @author Abhaas Goyal - u7145384
+ */
 public class BinarySearch {
-
-    Node partialRoot;
 
     Node root;
     ArrayList <Integer> tempInteger;
@@ -23,36 +24,10 @@ public class BinarySearch {
         constructTree(arr);
         inOrder();
     }
-    /**
-     * Construct Balanced BSTs from sorted ArrayList (demo)
-     * Only used in tests
-     * @param arr sorted array of integers
-     */
-    public void construct(int [] arr) {
-        tempInteger = new ArrayList<>();
-        root = helpConstruct(arr, 0, arr.length - 1);
-    }
-
-    /**
-     * Helper function to construct Balanced BST from construct()
-     * @param arr
-     * @param lowerBound
-     * @param higherBound
-     * @return Balanced Subtree
-     */
-    private Node helpConstruct (int[] arr, int lowerBound, int higherBound) {
-        if (lowerBound > higherBound)
-            return null;
-        int middle = (lowerBound + higherBound)/2;
-        Node node = new Node(arr[middle]);
-        node.left = helpConstruct(arr, lowerBound, middle -1);
-        node.right = helpConstruct(arr, middle+1,higherBound);
-        return node;
-    }
 
     /**
      * Inorder traversal of BST
-     * @return
+     * @return Arraylist of integers
      */
     public ArrayList<Integer> inOrder() {
         tempInteger.clear();
@@ -66,9 +41,7 @@ public class BinarySearch {
         helpInOrder(node.left);
         tempInteger.add(node.ID);
 
-        /**
-         * Check whether nodes are being added perfectly
-         */
+        //Check whether nodes are being added perfectly
         helpInOrder(node.right);
     }
 
@@ -94,6 +67,13 @@ public class BinarySearch {
         root = helpConstructTree(x, 0, x.size() - 1);
     }
 
+    /**
+     * Helper function to construct Balanced BST from construct()
+     * @param arr Input arraylist of nodes
+     * @param lowerBound lower bound of array used to create subtree
+     * @param higherBound higher bound of array used to create subtree
+     * @return Balanced Subtree
+     */
     private Node helpConstructTree(ArrayList<Node> arr, int lowerBound, int higherBound) {
         if (lowerBound > higherBound)
             return null;
@@ -113,6 +93,8 @@ public class BinarySearch {
     public ArrayList<Node> sectionNodes(int low, int high) {
         if (tempNode != null)
             tempNode.clear();
+        assert tempNode != null;
+        System.out.println(tempNode.size());
         helpSectionNode(root, low, high);
         return tempNode;
     }
@@ -128,11 +110,11 @@ public class BinarySearch {
             helpSectionNode(node.left, low, high);
         }
         if (low <= node.ID && high >= node.ID) {
-            System.out.println(node.ID);
+//            System.out.println(node.ID);
             tempNode.add(node);
         }
         if (high > node.ID) {
-            System.out.println(2);
+//            System.out.println(2);
             helpSectionNode(node.right, low, high);
         }
     }

@@ -55,7 +55,7 @@ public class ParserTest {
         assertEquals(t1.city, "paris");
         assertEquals(t1.time, 1);
         assertEquals(t1.country, "france");
-        assertEquals(t1.level, 3);
+        assertEquals(t1.level, 4);
 
     }
 
@@ -81,7 +81,7 @@ public class ParserTest {
         assertEquals(t1.city, "paris");
         assertEquals(t1.time, 1);
         assertEquals(t1.country, "france");
-        assertEquals(t1.level, 3);
+        assertEquals(t1.level, 4);
     }
 
     @Test(expectedExceptions = ParserException.class)

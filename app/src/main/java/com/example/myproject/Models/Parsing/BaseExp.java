@@ -1,7 +1,9 @@
 package com.example.myproject.Models.Parsing;
 
 /**
- * @author Abhaas Goyal - u7145384
+ * Base Grammar implementation for show and evaluate
+ * @co-author Abhaas Goyal - u7145384
+ * @co-author Andrew Carse u6666440
  */
 public class BaseExp extends Exp {
     private Exp term1;
@@ -48,8 +50,12 @@ public class BaseExp extends Exp {
                     level = 1;
                 else if (totalDays <= 14)
                     level = 2;
-                else
+                else if (totalDays <= 21)
                     level = 3;
+                else if (totalDays <= 30)
+                    level = 4;
+                else
+                    level = 5;
                 break;
             case "CITY":
                 city = temp[1];

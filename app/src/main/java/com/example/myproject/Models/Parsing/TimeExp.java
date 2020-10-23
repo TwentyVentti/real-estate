@@ -1,8 +1,10 @@
 package com.example.myproject.Models.Parsing;
 
 /**
+ * Show and Evaluate time Expressions
  * @author Abhaas Goyal - u7145384
  */
+
 public class TimeExp extends Exp{
 
     int time;

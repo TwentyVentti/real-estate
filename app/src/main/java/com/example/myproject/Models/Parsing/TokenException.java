@@ -1,6 +1,7 @@
 package com.example.myproject.Models.Parsing;
 
 /**
+ * Custom token exception class for errors in tokenizer step
  * @author Abhaas Goyal - u7145384
  */
 public class TokenException extends GrammarException {
