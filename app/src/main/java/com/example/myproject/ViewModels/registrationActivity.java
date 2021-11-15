@@ -118,7 +118,7 @@ public class registrationActivity extends AppCompatActivity implements View.OnCl
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        Intent intent = new Intent(registrationActivity.this,loginActivity.class);
+                                        Intent intent = new Intent(registrationActivity.this, landlordLoginActivity.class);
                                         Toast.makeText(registrationActivity.this,"You have been registered succesfully",Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
                                         startActivityForResult(intent,1);

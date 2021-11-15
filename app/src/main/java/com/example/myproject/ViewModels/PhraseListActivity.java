@@ -107,7 +107,7 @@ public class PhraseListActivity extends AppCompatActivity {
         int level = getIntent().getIntExtra("Section",0) / 10;
         HashMap<String, BinarySearch> levelBST;
         try {
-            levelBST = loginActivity.levelBST;
+            levelBST = landlordLoginActivity.levelBST;
             String language =HomePageFragment.USER_SELECTION.language;
             language = language.substring(0, 1).toUpperCase() + language.substring(1);
             phrases = Objects.requireNonNull(levelBST.get(language)).getArrayFromLevelSection(level,currentSection);
@@ -128,27 +128,27 @@ public class PhraseListActivity extends AppCompatActivity {
         int x =0;
         for (Node phrase :phraseBSTList) {
             userFirstLanguagePhrases.add(phrase.getEnglishPhrase());
-            switch (language){
-                case "French":
-                    if (x==0){
-                        textToSpeech.setLanguage(Locale.FRENCH);
-                        x+=1;
-                    }
-                case "Dutch":
-                    if (x==0){
-                        textToSpeech.setLanguage(new Locale("nl","NL"));
-                        x+=1;
-                    }
-                case "Italian":
-                    if (x==0){
-                        textToSpeech.setLanguage(Locale.ITALIAN);
-                        x+=1;
-                    }
-                case "Spanish":
-                    if (x==0){
-                        textToSpeech.setLanguage(new Locale("es_ES"));
-                        x+=1;
-                    }
+                    switch (language){
+                        case "French":
+                            if (x==0){
+                                textToSpeech.setLanguage(Locale.FRENCH);
+                                x+=1;
+                            }
+                        case "Dutch":
+                            if (x==0){
+                                textToSpeech.setLanguage(new Locale("nl","NL"));
+                                x+=1;
+                            }
+                        case "Italian":
+                            if (x==0){
+                                textToSpeech.setLanguage(Locale.ITALIAN);
+                                x+=1;
+                            }
+                        case "Spanish":
+                            if (x==0){
+                                textToSpeech.setLanguage(new Locale("es_ES"));
+                                x+=1;
+                            }
                     break;
                 default:
                     break;

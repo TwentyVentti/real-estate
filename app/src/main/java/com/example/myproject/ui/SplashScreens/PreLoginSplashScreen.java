@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.VideoView;
 
 import com.example.myproject.R;
-import com.example.myproject.ViewModels.loginActivity;
+import com.example.myproject.ViewModels.landlordLoginActivity;
 
 public class PreLoginSplashScreen extends Activity {
     VideoView videoView;
@@ -50,7 +50,7 @@ public class PreLoginSplashScreen extends Activity {
     private void jump() {
         if (isFinishing())
             return;
-        startActivity(new Intent(PreLoginSplashScreen.this, loginActivity.class));
+        startActivity(new Intent(PreLoginSplashScreen.this, landlordLoginActivity.class));
         finish();
     }
 

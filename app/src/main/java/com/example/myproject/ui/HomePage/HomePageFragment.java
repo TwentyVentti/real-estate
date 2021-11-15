@@ -21,12 +21,11 @@ import com.example.myproject.Models.Parsing.GrammarException;
 import com.example.myproject.R;
 import com.example.myproject.ViewModels.PhraseListActivity;
 import com.example.myproject.ViewModels.SearchActivity;
-import com.example.myproject.ViewModels.loginActivity;
+import com.example.myproject.ViewModels.landlordLoginActivity;
 import com.google.common.collect.BiMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 /**
  * TODO: Docstring
@@ -51,7 +50,7 @@ public class HomePageFragment extends Fragment {
         } catch (GrammarException e) {
             e.printStackTrace();
         }
-        BiMap<Integer, String> sectionFromIDs = loginActivity.IdAndSection;
+        BiMap<Integer, String> sectionFromIDs = landlordLoginActivity.IdAndSection;
         sections = getSectionsFromID();
         sectionsBST = getBSTSections();
         try {
@@ -75,7 +74,7 @@ public class HomePageFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), PhraseListActivity.class);
                 String clickedSection = sections.get(i);
-                BiMap <Integer, String> IdsFromString = loginActivity.IdAndSection;
+                BiMap <Integer, String> IdsFromString = landlordLoginActivity.IdAndSection;
                 intent.putExtra("SecString",clickedSection);
                 intent.putExtra("Section",IdsFromString.inverse().get(clickedSection));
                 startActivityForResult(intent,1);
@@ -94,7 +93,7 @@ public class HomePageFragment extends Fragment {
         HashMap<String, BinarySearch> levelBST;
         ArrayList<Node> levelArray = null;
         try {
-            levelBST = loginActivity.levelBST;
+            levelBST = landlordLoginActivity.levelBST;
             String language =USER_SELECTION.language;
             int level = USER_SELECTION.level;
             language = language.substring(0, 1).toUpperCase() + language.substring(1);
@@ -110,7 +109,7 @@ public class HomePageFragment extends Fragment {
      * @return the list of sections which will be shown to the user when they arrive at homepage fragment.
      */
     public ArrayList<String> getSectionsFromID(){
-        BiMap <Integer, String> sectionFromIDs = loginActivity.IdAndSection;
+        BiMap <Integer, String> sectionFromIDs = landlordLoginActivity.IdAndSection;
         ArrayList<String> sections = new ArrayList<>();
         int level = USER_SELECTION.level;
         for ( Integer IDKey : sectionFromIDs.keySet()) {

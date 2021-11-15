@@ -32,7 +32,7 @@ public class resetpasswordActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(this, loginActivity.class);
+        Intent i = new Intent(this, landlordLoginActivity.class);
         startActivity(i);
         finish();
     }

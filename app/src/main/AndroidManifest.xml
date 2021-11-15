@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.SplashScreens.PostLoginSplash"/>
         <activity android:name=".ViewModels.PhraseListActivity" />
-        <activity android:name=".ViewModels.loginActivity" />
+        <activity android:name=".ViewModels.landlordLoginActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

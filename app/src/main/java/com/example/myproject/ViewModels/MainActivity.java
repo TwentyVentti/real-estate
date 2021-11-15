@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(this, loginActivity.class);
+            Intent intent = new Intent(this, landlordLoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);

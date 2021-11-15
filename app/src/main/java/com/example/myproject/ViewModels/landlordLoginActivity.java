@@ -4,30 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myproject.ui.SplashScreens.PostLoginSplash;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,7 +42,7 @@ import java.util.Map;
  * will also validate the input given by user e.g. valid email address.
  * @author Purvesh Mukesh Badmera - u7084724
  */
-public class loginActivity extends AppCompatActivity implements View.OnClickListener {
+public class landlordLoginActivity extends AppCompatActivity implements View.OnClickListener {
     EditText emailText;
     EditText passwordText;
     Button signin;
@@ -90,7 +76,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             levelBST = binaryFromJSON();
 
         } catch (Exception e) {
-            Toast.makeText(loginActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(landlordLoginActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
         if (mAuth.getCurrentUser() != null) {
@@ -102,7 +88,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
 
     }
     public void registerUser(View v) {
-        Intent intent1 = new Intent(loginActivity.this, registrationActivity.class);
+        Intent intent1 = new Intent(landlordLoginActivity.this, registrationActivity.class);
         startActivityForResult(intent1,1);
 
     }
@@ -188,7 +174,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
      * @author Purvesh Mukesh Badmera - u7084724
      */
     public void guestSessionClicked(View v) throws IOException {
-        Intent intent = new Intent(loginActivity.this, PostLoginSplash.class);
+        Intent intent = new Intent(landlordLoginActivity.this, PostLoginSplash.class);
         intent.putExtra("but",1);
         startActivityForResult(intent,1);
     }
@@ -246,11 +232,11 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     progressBar.setVisibility(View.GONE);
-                    startActivity(new Intent(loginActivity.this, PostLoginSplash.class));
+                    startActivity(new Intent(landlordLoginActivity.this, PostLoginSplash.class));
                     FirebaseUser user = mAuth.getCurrentUser();
                 }
                 else{
-                    Toast.makeText(loginActivity.this,"Failed to login! Please check your credentials",Toast.LENGTH_LONG).show();
+                    Toast.makeText(landlordLoginActivity.this,"Failed to login! Please check your credentials",Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }
             }
